@@ -6,8 +6,8 @@
 
 class MapPoint : public sf::Sprite {
 public:
-    MapPoint(int x, int y);
-    MapPoint(sf::Vector2f pos);
+    MapPoint(int x, int y, std::string n, std::string d, float lon, float lat);
+    MapPoint(sf::Vector2f pos, std::string n, std::string d, float lon, float lat);
     MapPoint(const MapPoint& orig);
     virtual ~MapPoint();
     
