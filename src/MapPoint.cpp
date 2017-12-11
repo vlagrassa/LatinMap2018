@@ -19,3 +19,11 @@ MapPoint::MapPoint(const MapPoint& orig) {
 MapPoint::~MapPoint() {
     
 }
+
+std::string MapPoint::getName() const {
+    return name;
+}
+
+std::string MapPoint::getDescription() const {
+    return description;
+}
