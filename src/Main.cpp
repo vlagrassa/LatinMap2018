@@ -11,15 +11,25 @@
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
-    MapPoint test1(10, 10);
+    MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
     
     sf::Vector2f testVector(27, 42);
-    MapPoint test2(testVector);
+    MapPoint test2(testVector, "Test 1", "This is a test", 5, 5);
     
     std::cout << "Test 1: (" << test1.getPosition().x << ", " << test1.getPosition().y << ")\n";
     std::cout << "Test 2: (" << test2.getPosition().x << ", " << test2.getPosition().y << ")\n";
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
+    
+    sf::Texture defaultPoint;
+    defaultPoint.loadFromFile("res/x.jpg");
+    
+    test1.setTexture(defaultPoint);
+    test2.setTexture(defaultPoint);
+    
+    test1.setScale(0.05, 0.05);
+    test2.setScale(0.05, 0.05);
+    
     
     while (window.isOpen()) {
 
