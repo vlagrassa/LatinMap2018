@@ -6,7 +6,7 @@ public:
     Node<T>() {};
     Node<T>(T data) : data(data) {};
     Node<T>(const Node& orig) : data(orig.data), next(orig.next) {};
-    //virtual ~Node<T>();
+    virtual ~Node<T>() {};
     
     bool hasNext() {
         return next != 0;
