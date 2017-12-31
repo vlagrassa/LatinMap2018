@@ -1,6 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <cstdlib>
+
 template <class T> class Node {
 public:
     Node<T>() {};
@@ -14,6 +16,13 @@ public:
     
     T data;
     Node* next;
+    
+private:
+    friend std::ostream& operator<<(std::ostream &strm, const Node<T> &n) {
+        strm << "[" << n.data << "] -> " << n.next << "\n";
+        return strm;
+    };
+    
 };
 
 template <class T> class Stack {

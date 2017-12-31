@@ -16,6 +16,14 @@ public:
     
     //virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    operator std::string() const {
+        std::string temp;
+        temp += getName();
+        temp += ": ";
+        temp += getDescription();
+        return temp;
+    };
+    
 private:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The name of the location.
@@ -41,6 +49,10 @@ private:
      * Whether to render based on filters.
      */
     bool display;
+    
+    friend std::ostream& operator<<(std::ostream &strm, const MapPoint& p) {
+        return strm << p.operator std::string();
+    };
 };
 
 #endif /* MAPPOINT_H */
