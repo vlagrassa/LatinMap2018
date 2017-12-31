@@ -3,12 +3,14 @@
 
 template <class T> class Node {
 public:
-    Node();
-    Node(T data);
-    Node(const Node& orig);
-    virtual ~Node();
+    Node<T>() {};
+    Node<T>(T data) : data(data) {};
+    Node<T>(const Node& orig) : data(orig.data), next(orig.next) {};
+    //virtual ~Node<T>();
     
-    bool hasNext();
+    bool hasNext() {
+        return next != 0;
+    };
     
     T data;
     Node* next;
