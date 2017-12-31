@@ -1,6 +1,6 @@
 SRCDIR   ?= src
 OBJDIR   ?= obj
-BUILDDIR ?= bld
+BUILDDIR ?= build
 MAIN     ?= main
 
 RM        += -r
