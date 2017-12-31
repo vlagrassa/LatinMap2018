@@ -8,6 +8,8 @@
 #include <SFML/Window.hpp>
 
 #include "MapPoint.hpp"
+#include "Node.hpp"
+#include "Stack.hpp"
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
@@ -21,31 +23,37 @@ int main() {
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
-    sf::Texture defaultPoint;
-    defaultPoint.loadFromFile("res/x.jpg");
+    //sf::Texture defaultPoint;
+    //defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
     
-    test1.setTexture(defaultPoint);
-    test2.setTexture(defaultPoint);
+    //test1.setTexture(defaultPoint);
+    //test2.setTexture(defaultPoint);
     
     test1.setScale(0.05, 0.05);
     test2.setScale(0.05, 0.05);
     
+    Node<MapPoint> testNode1(test1);
+    Node<MapPoint> testNode2(test2);
+    testNode1.next = &testNode2;
+    Stack<MapPoint> testStack(testNode1);
+    testStack.push(testNode2);
     
-    while (window.isOpen()) {
-
-        sf::Event event;
-        
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-        
-        window.clear(sf::Color::White);
-        
-        window.draw(test1);
-        window.draw(test2);
-        
-        window.display();
-    }
+    
+//    while (window.isOpen()) {
+//
+//        sf::Event event;
+//        
+//        while (window.pollEvent(event)) {
+//            if (event.type == sf::Event::Closed) {
+//                window.close();
+//            }
+//        }
+//        
+//        window.clear(sf::Color::White);
+//        
+//        window.draw(test1);
+//        window.draw(test2);
+//        
+//        window.display();
+//    }
 }
