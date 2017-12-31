@@ -8,8 +8,7 @@
 #include <SFML/Window.hpp>
 
 #include "MapPoint.hpp"
-#include "Node.hpp"
-#include "Stack.hpp"
+#include "Utils.hpp"
 
 int main() {
     std::cout << "Salve, munde!" << "\n";

@@ -1,4 +1,20 @@
-#include "Node.hpp"
+#ifndef UTILS_H
+#define UTILS_H
+
+template <class T> class Node {
+public:
+    Node<T>() {};
+    Node<T>(T data) : data(data) {};
+    Node<T>(const Node& orig) : data(orig.data), next(orig.next) {};
+    //virtual ~Node<T>();
+    
+    bool hasNext() {
+        return next != 0;
+    };
+    
+    T data;
+    Node* next;
+};
 
 template <class T> class Stack {
 public:
@@ -33,3 +49,6 @@ public:
         return top == 0;
     }
 };
+
+
+#endif /* UTILS_H */
