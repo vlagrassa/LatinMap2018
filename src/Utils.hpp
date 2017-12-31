@@ -5,6 +5,9 @@
 
 template <class T> class Node {
 public:
+    T data;
+    Node* next;
+    
     Node<T>() {};
     Node<T>(T data) : data(data) {};
     Node<T>(const Node& orig) : data(orig.data), next(orig.next) {};
@@ -13,9 +16,6 @@ public:
     bool hasNext() {
         return next != 0;
     };
-    
-    T data;
-    Node* next;
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Node<T> &n) {
