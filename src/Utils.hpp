@@ -46,7 +46,7 @@ public:
      * 
      * @return Whether there is a next Node
      */
-    bool hasNext() {
+    bool hasNext() const {
         return next != 0;
     };
     
@@ -164,7 +164,7 @@ public:
      * 
      * @return Whether Stack is empty
      */
-    bool isEmpty() {
+    bool isEmpty() const {
         return top == 0;
     }
     
