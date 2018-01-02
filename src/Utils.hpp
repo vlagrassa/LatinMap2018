@@ -68,8 +68,9 @@ public:
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Stack<T> &s) {
-        for (Node<T>* n = s.top; n->hasNext(); n = n->next) {
-            strm << *n;
+        strm << "Stack " << &s << ":\n";
+        for (Node<T>* n = s.top; n != 0; n = n->next) {
+            strm << "  " << *n;
         }
         return strm;
     };
