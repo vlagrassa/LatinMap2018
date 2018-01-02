@@ -213,7 +213,7 @@ public:
             tail = 0;
         } else {
             for (Node<T>* n = s.top; n != 0; n = n->next) {
-                enqueue(n);
+                enqueue(*n);
             }
         }
     };

@@ -54,13 +54,13 @@ int main() {
     intStack.push(3);
     intStack.push(2);
     intStack.push(1);
-    std::cout << intStack.popData() << "\n";
-    std::cout << intStack.popData() << "\n";
-    std::cout << intStack.popData() << "\n";
+    //std::cout << intStack.popData() << "\n";
+    //std::cout << intStack.popData() << "\n";
+    //std::cout << intStack.popData() << "\n";
     
     
     
-    Queue<int> intQueue;
+    Queue<int> intQueue(intStack);
     
     intQueue.enqueue(*(new Node<int>(0)));
     std::cout << intQueue.dequeueData() << "\n";
