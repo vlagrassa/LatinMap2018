@@ -15,16 +15,42 @@ int main() {
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
     
     sf::Vector2f testVector(27, 42);
-    MapPoint test2(testVector, "Test 1", "This is a test", 5, 5);
+    MapPoint test2(testVector, "Test 2", "This is a test", 5, 5);
     
-    std::cout << "Test 1: (" << test1.getPosition().x << ", " << test1.getPosition().y << ")\n";
-    std::cout << "Test 2: (" << test2.getPosition().x << ", " << test2.getPosition().y << ")\n";
+    //std::cout << test1.getName() << ": " << test1.getDescription() << "; at (" << test1.getPosition().x << ", " << test1.getPosition().y << ")\n";
+    //std::cout << test2.getName() << ": " << test2.getDescription() << "; at (" << test2.getPosition().x << ", " << test2.getPosition().y << ")\n";
     
-    Stack<MapPoint> testStack;
-    testStack.push(test1);
-    testStack.push(test2);
+    //std::cout << test1 << "\n";
+    //std::cout << test1.operator std::string() << "\n";
     
-    std::cout << *testStack.top;
+    //Stack<MapPoint> testStack;
+    //testStack.push(test1);
+    //testStack.push(test2);
+    
+    //std::cout << "\nTop:\n" << *testStack.top << "\n";
+    //std::cout << "\nStack:\n" << testStack << "\n\n";
+    
+    //Node<MapPoint> topTemp = *testStack.top;
+    //std::cout << topTemp << "\n";
+    
+     Stack<int> intStack;
+    
+    intStack.push(*(new Node<int>(0)));
+    std::cout << intStack.popData() << "\n";
+    
+    intStack.push(*(new Node<int>(3)));
+    intStack.push(*(new Node<int>(2)));
+    intStack.push(*(new Node<int>(1)));
+    std::cout << intStack.popData() << "\n";
+    std::cout << intStack.popData() << "\n";
+    std::cout << intStack.popData() << "\n";
+    
+    intStack.push(3);
+    intStack.push(2);
+    intStack.push(1);
+    std::cout << intStack.popData() << "\n";
+    std::cout << intStack.popData() << "\n";
+    std::cout << intStack.popData() << "\n";
     
     //sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
