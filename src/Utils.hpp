@@ -5,7 +5,16 @@
 
 template <class T> class Node {
 public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The data of type T stored in the Node.
+     */
     T data;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * A pointer to the Node following the current Node.
+     */
     Node* next;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -49,6 +58,17 @@ public:
     bool hasNext() const {
         return next != 0;
     };
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Resets `next` value to not point to any Node. Equivalent
+     * to:
+     * 
+     *   next = 0;
+     */
+    void clearNext() {
+        next = 0;
+    }
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Node<T> &n) {
