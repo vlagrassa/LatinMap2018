@@ -148,7 +148,7 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Remove and return the top value from the Stack. Note that
+     * Remove and return the top item from the Stack. Note that
      * this method returns the Node itself.
      * 
      * @return The top Node
@@ -165,7 +165,7 @@ public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Remove and return the top value from the Stack. Note that
-     * this method returns the data not contained in a Node.
+     * this method returns the raw data, not contained in a Node.
      * 
      * @return The data of the top Node
      */
@@ -195,13 +195,65 @@ private:
 
 template <class T> class Queue {
 public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The front of the Queue.
+     */
     Node<T>* head;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The back of the Queue.
+     */
     Node<T>* tail;
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method. Initializes head & tail to 0.
+     */
     Queue<T>() : head(0), tail(0) {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Takes a Node which becomes the first
+     * entry into the Queue. Note that the type of the Node must
+     * match the type of the Queue.
+     * 
+     * @param start The first Node
+     */
     Queue<T>(Node<T>& start) : head(&start), tail(&start) {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Takes a pointer to a Node to be the
+     * first entry into the Queue. Note that the Node's type and
+     * the Queue's type must match.
+     * 
+     * @param start Pointer to the first Node
+     */
     Queue<T>(Node<T>* start) : head(start), tail(start) {};
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Takes a value which becomes the first
+     * entry into the Queue. Note that the type must match the
+     * type of the Queue.
+     * 
+     * @param start The first value to enter the Queue
+     */
+    Queue<T>(T start) : Queue<T>(new Node(start)) {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Copies a Stack into a Queue. Note the
+     * type of the Stack and type of the Queue must match.
+     * 
+     * Equivalent to enqueueing each value in the Stack in the
+     * order of removal, which means values will be dequeued in
+     * the same order they would be popped.
+     * 
+     * @param s The Stack to copy
+     */
     Queue<T>(const Stack<T>& s) {
         if (s.isEmpty()) {
             head = 0;
@@ -213,6 +265,13 @@ public:
         }
     };
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Copy constructor method. Note that Nodes are duplicated,
+     * as opposed to simply copying the head and tail. 
+     * 
+     * @param orig The Queue to be copied
+     */
     Queue<T>(const Queue<T>& orig) {
         if (orig.isEmpty()) {
             head = 0;
@@ -224,6 +283,12 @@ public:
         }
     };
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add a given Node to the end (tail) of the Queue.
+     * 
+     * @param next The Node to add
+     */
     void enqueue(Node<T>& next) {
         if (isEmpty()) {
             head = &next;
@@ -234,10 +299,25 @@ public:
         }
     };
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add a value to the end (tail) of the Queue. Equivalent to:
+     * 
+     *   enqueue(*(new Node<T>(data)));
+     * 
+     * @param data The value to add
+     */
     void enqueue(T data) {
         enqueue(*(new Node<T>(data)));
     }
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Remove and return the top item from the Queue. Note that
+     * this method returns the Node itself.
+     * 
+     * @return The top Node
+     */
     Node<T> dequeueNode() {
         if (isEmpty()) {
             return 0;
@@ -254,10 +334,23 @@ public:
         return temp;
     }
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Remove and return the top value from the Queue. Note that
+     * this method returns the raw data, not contained in a Node.
+     * 
+     * @return The data of the top Node
+     */
     T dequeue() {
         return dequeueNode().data;
     }
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Check whether the Stack contains any data.
+     * 
+     * @return Whether Stack is empty
+     */
     bool isEmpty() {
         return ((head == 0) && (tail == 0));
     }
