@@ -223,7 +223,7 @@ public:
             head = 0;
             tail = 0;
         } else {
-            for (Node<T>* n = orig.head; n != orig.tail; n = n->next) {
+            for (Node<T>* n = orig.head; n != 0; n = n->next) {
                 enqueue(n);
             }
         }
@@ -240,14 +240,14 @@ public:
     };
     
     void enqueue(T data) {
-        enqueue(*(new Node(data)));
+        enqueue(*(new Node<T>(data)));
     }
     
     Node<T> dequeueNode() {
         if (isEmpty()) {
             return 0;
         }
-        Node<T>* temp = head;
+        Node<T> temp = *head;
         
         if (head == tail) {
             head = 0;
@@ -266,6 +266,15 @@ public:
     bool isEmpty() {
         return ((head == 0) && (tail == 0));
     }
+    
+private:
+    friend std::ostream& operator<<(std::ostream &strm, const Queue<T> &q) {
+        strm << "Queue " << &q << ":\n";
+        for (Node<T>* n = q.head; n != 0; n = n->next) {
+            strm << "  " << *n;
+        }
+        return strm;
+    };
 };
     
 #endif /* UTILS_H */
