@@ -36,16 +36,11 @@ public:
     virtual ~Stack<T>() {};
     
     void push(Node<T>& next) {
-        std::cout << "Push Node:\n";
-        std::cout << "  New Node:\n  " << next << "\n";
         next.next = top;
         top = &next;
-        std::cout << "  Top/Next:   " << top << "\n  " << *top << "\n";
     }
     
     void push(T data) {
-        std::cout << "Push data:\n";
-        std::cout << "  Trying to add " << data << "\n";
         push(*(new Node<T>(data)));
     }
     
