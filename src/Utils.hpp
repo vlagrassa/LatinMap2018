@@ -169,13 +169,8 @@ public:
      * 
      * @return The data of the top Node
      */
-    T popData() {
-        if (isEmpty()) {
-            return 0;
-        }
-        Node<T> temp = *top;
-        top = top->next;
-        return temp.data;
+    T pop() {
+        return popNode().data;
     }
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -259,7 +254,7 @@ public:
         return temp;
     }
     
-    T dequeueData() {
+    T dequeue() {
         return dequeueNode().data;
     }
     
