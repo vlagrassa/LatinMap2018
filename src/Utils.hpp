@@ -8,8 +8,8 @@ public:
     T data;
     Node* next;
     
-    Node<T>() {};
-    Node<T>(T data) : data(data) {};
+    Node<T>() : next(0) {};
+    Node<T>(T data) : data(data), next(0) {};
     Node<T>(const Node& orig) : data(orig.data), next(orig.next) {};
     virtual ~Node<T>() {};
     
@@ -19,7 +19,7 @@ public:
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Node<T> &n) {
-        strm << "[" << n.data << "] -> " << n.next << "\n";
+        strm << &n << ": [" << n.data << "] -> " << n.next << "\n";
         return strm;
     };
     
@@ -35,14 +35,18 @@ public:
     Stack<T>(const Stack<T>& orig) : top(orig.top) {};
     virtual ~Stack<T>() {};
     
-    void push(Node<T> next) {
+    void push(Node<T>& next) {
+        std::cout << "Push Node:\n";
+        std::cout << "  New Node:\n  " << next << "\n";
         next.next = top;
         top = &next;
+        std::cout << "  Top/Next:   " << top << "\n  " << *top << "\n";
     }
     
     void push(T data) {
-        Node<T> temp(data);
-        push(temp);
+        std::cout << "Push data:\n";
+        std::cout << "  Trying to add " << data << "\n";
+        push(*(new Node<T>(data)));
     }
     
     Node<T> popNode() {
