@@ -198,5 +198,74 @@ private:
     };
 };
 
-
+template <class T> class Queue {
+public:
+    Node<T>* head;
+    Node<T>* tail;
+    
+    Queue<T>() : head(0), tail(0) {};
+    Queue<T>(Node<T>& start) : head(&start), tail(&start) {};
+    Queue<T>(Node<T>* start) : head(start), tail(start) {};
+    
+    Queue<T>(const Stack<T>& s) {
+        if (s.isEmpty()) {
+            head = 0;
+            tail = 0;
+        } else {
+            for (Node<T>* n = s.top; n != 0; n = n->next) {
+                enqueue(n);
+            }
+        }
+    };
+    
+    Queue<T>(const Queue<T>& orig) {
+        if (orig.isEmpty()) {
+            head = 0;
+            tail = 0;
+        } else {
+            for (Node<T>* n = orig.head; n != orig.tail; n = n->next) {
+                enqueue(n);
+            }
+        }
+    };
+    
+    void enqueue(Node<T>& next) {
+        if (isEmpty()) {
+            head = &next;
+            tail = &next;
+        } else {
+            tail->next = &next;
+            tail = &next;
+        }
+    };
+    
+    void enqueue(T data) {
+        enqueue(*(new Node(data)));
+    }
+    
+    Node<T> dequeueNode() {
+        if (isEmpty()) {
+            return 0;
+        }
+        Node<T>* temp = head;
+        
+        if (head == tail) {
+            head = 0;
+            tail = 0;
+        } else {
+            head = head->next;
+        }
+        
+        return temp;
+    }
+    
+    T dequeueData() {
+        return dequeueNode().data;
+    }
+    
+    bool isEmpty() {
+        return ((head == 0) && (tail == 0));
+    }
+};
+    
 #endif /* UTILS_H */
