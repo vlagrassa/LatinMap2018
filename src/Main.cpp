@@ -33,7 +33,7 @@ int main() {
     //Node<MapPoint> topTemp = *testStack.top;
     //std::cout << topTemp << "\n";
     
-     Stack<int> intStack;
+    Stack<int> intStack;
     
     intStack.push(*(new Node<int>(0)));
     std::cout << intStack.popData() << "\n";
@@ -57,6 +57,33 @@ int main() {
     std::cout << intStack.popData() << "\n";
     std::cout << intStack.popData() << "\n";
     std::cout << intStack.popData() << "\n";
+    
+    
+    
+    Queue<int> intQueue;
+    
+    intQueue.enqueue(*(new Node<int>(0)));
+    std::cout << intQueue.dequeueData() << "\n";
+    
+    intQueue.enqueue(*(new Node<int>(4)));
+    std::cout << intQueue << "\n";
+    intQueue.enqueue(*(new Node<int>(5)));
+    std::cout << intQueue << "\n";
+    intQueue.enqueue(*(new Node<int>(6)));
+    std::cout << intQueue << "\n";
+    intQueue.dequeueData();
+    std::cout << intQueue << "\n";
+    intQueue.dequeueData();
+    std::cout << intQueue << "\n";
+    intQueue.dequeueData();
+    std::cout << intQueue << "\n";
+    
+    intQueue.enqueue(4);
+    intQueue.enqueue(5);
+    intQueue.enqueue(6);
+    std::cout << intQueue.dequeueData() << "\n";
+    std::cout << intQueue.dequeueData() << "\n";
+    std::cout << intQueue.dequeueData() << "\n";
     
     //sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
