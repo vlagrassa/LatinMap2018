@@ -39,11 +39,17 @@ int main() {
     std::cout << intStack.popData() << "\n";
     
     intStack.push(*(new Node<int>(3)));
+    std::cout << intStack << "\n";
     intStack.push(*(new Node<int>(2)));
+    std::cout << intStack << "\n";
     intStack.push(*(new Node<int>(1)));
-    std::cout << intStack.popData() << "\n";
-    std::cout << intStack.popData() << "\n";
-    std::cout << intStack.popData() << "\n";
+    std::cout << intStack << "\n";
+    intStack.popData();
+    std::cout << intStack << "\n";
+    intStack.popData();
+    std::cout << intStack << "\n";
+    intStack.popData();
+    std::cout << intStack << "\n";
     
     intStack.push(3);
     intStack.push(2);
