@@ -110,11 +110,42 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Copy constructor method. Sets top of the new Stack to the
-     * same Node as the previous stack. Does not currently make
-     * a duplicate of any Node.
+     * Copy constructor method. Copies each Node in the original
+     * Stack into a new Stack, as opposed to simply copying top.
      */
-    Stack<T>(const Stack<T>& orig) : top(orig.top) {};
+    Stack<T>(const Stack<T>& orig) {
+        top = 0;
+        Stack<T> temp;
+        for (Node<T>* n = orig.top; n != 0; n = n->next) {
+            temp.push(*(new Node<T>(n)));
+        }
+        for (Node<T>* n = temp.top; n != 0; n = n->next) {
+            push(n);
+        }
+    };
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Copies a Queue into a Stack. Note the
+     * type of the Stack and type of the Queue must match.
+     * 
+     * Maintains the original order of removal, such that values
+     * will be popped in the same order they would be dequeued.
+     * 
+     * Note this creates a copy of each Node.
+     * 
+     * @param q The Queue to copy
+     */
+    Stack<T>(const Queue<T>& q) {
+        top = 0;
+        Stack<T> temp;
+        for (Node<T>* n = q.head; n != 0; n = n->next) {
+            temp.push(*(new Node<T>(n)));
+        }
+        for (Node<T>* n = temp.top; n != 0; n = n->next) {
+            push(n);
+        }
+    };
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -241,7 +272,7 @@ public:
      * 
      * @param start The first value to enter the Queue
      */
-    Queue<T>(T start) : Queue<T>(new Node(start)) {};
+    Queue<T>(T start) : Queue<T>(new Node<T>(start)) {};
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -252,6 +283,8 @@ public:
      * order of removal, which means values will be dequeued in
      * the same order they would be popped.
      * 
+     * Note this creates a copy of each Node.
+     * 
      * @param s The Stack to copy
      */
     Queue<T>(const Stack<T>& s) {
@@ -260,15 +293,16 @@ public:
             tail = 0;
         } else {
             for (Node<T>* n = s.top; n != 0; n = n->next) {
-                enqueue(*n);
+                enqueue(*(new Node<T>(*n)));
             }
         }
     };
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Copy constructor method. Note that Nodes are duplicated,
-     * as opposed to simply copying the head and tail. 
+     * Copy constructor method. Copies each Node in the original
+     * Queue into a new Queue, as opposed to simply copying head
+     * and tail.
      * 
      * @param orig The Queue to be copied
      */
@@ -278,7 +312,7 @@ public:
             tail = 0;
         } else {
             for (Node<T>* n = orig.head; n != 0; n = n->next) {
-                enqueue(n);
+                enqueue(new Node<T>(n));
             }
         }
     };
