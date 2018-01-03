@@ -404,7 +404,12 @@ private:
     };
 };
 
-template<class T> class ActiveVector : public std::vector<T> {
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * A specialized subclass of std::vector<T> which stores an
+ * active index.
+ */
+template <class T> class ActiveVector : public std::vector<T> {
 public:
     unsigned int activeIndex;
     
