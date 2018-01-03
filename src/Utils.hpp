@@ -6,6 +6,7 @@
 template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
+template <class T> class activeVector;
 
 template <class T> class Node {
 public:
@@ -402,5 +403,77 @@ private:
         return strm;
     };
 };
+
+template<class T> class ActiveVector : public std::vector<T> {
+public:
+    unsigned int activeIndex;
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method. Initializes activeIndex to 0.
+     */
+    ActiveVector() : activeIndex(0) {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Copy constructor method. Copies each item in orig as well
+     * as activeIndex. Note this utilizes the copy constructor
+     * of class T, which is not guaranteed to work as expected.
+     * 
+     * @param orig The ActiveVector to copy
+     */
+    ActiveVector(const ActiveVector& orig) : activeIndex(orig.getActiveIndex()) {
+        for (T x : orig) {
+            push_back(*(new T(x)));
+        }
+    };
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor.
+     */
+    virtual ~ActiveVector() {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the item at the active index. Equivalent to:
+     * 
+     *   return this->at(activeIndex);
+     * 
+     * @return The active item
+     */
+    T getActive() const {
+        return this->at(activeIndex);
+    };
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the active index.
+     * 
+     * @return The active index
+     */
+    unsigned int getActiveIndex() const {
+        return activeIndex;
+    };
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Set the active index.
+     * 
+     * @param The new active index
+     */
+    void setActiveIndex(unsigned int n) {
+        if (n > this->size()) {
+            std::string msg = "New active index ";
+            msg += n;
+            msg += " out of range (size ";
+            msg += this->size();
+            msg += ")";
+            throw std::out_of_range(msg);
+        } else {
+            activeIndex = n;
+        }
+    };
+};
+
 #endif /* UTILS_H */
