@@ -6,7 +6,7 @@
 template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
-template <class T> class activeVector;
+template <class T> class ActiveVector;
 
 template <class T> class Node {
 public:
@@ -464,12 +464,7 @@ public:
      */
     void setActiveIndex(unsigned int n) {
         if (n > this->size()) {
-            std::string msg = "New active index ";
-            msg += n;
-            msg += " out of range (size ";
-            msg += this->size();
-            msg += ")";
-            throw std::out_of_range(msg);
+            throw std::out_of_range(std::string("New activeIndex ") + std::to_string(n) + std::string(" out of range for size ") + std::to_string(this->size()) + std::string(" ActiveVector."));
         } else {
             activeIndex = n;
         }
