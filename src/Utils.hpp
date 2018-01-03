@@ -3,6 +3,10 @@
 
 #include <cstdlib>
 
+template <class T> class Node;
+template <class T> class Stack;
+template <class T> class Queue;
+
 template <class T> class Node {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
