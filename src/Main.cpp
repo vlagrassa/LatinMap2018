@@ -86,9 +86,6 @@ int main() {
     
     std::cout << intStack << "\n";
     
-    ActiveVector<int> testActiveVector;
-    testActiveVector.setActiveIndex(3);
-    
     //sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
     //sf::Texture defaultPoint;
