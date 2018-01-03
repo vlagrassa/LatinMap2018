@@ -84,6 +84,8 @@ int main() {
     std::cout << intQueue.dequeue() << "\n";
     std::cout << intQueue.dequeue() << "\n";
     
+    std::cout << intStack << "\n";
+    
     //sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
     //sf::Texture defaultPoint;
