@@ -20,10 +20,25 @@ int main() {
     MapPoint test2(27, 42, "Test 2", "This is a test", 5, 5);
     
     Stack<ScreenMode&> listOfScreens;
-    ScreenMode testScreen(window);
+    ScreenMode testScreen1(window);
+    ScreenMode testScreen2(window);
     
-    testScreen.createButton(new ScreenMode(window));
-    listOfScreens.push(testScreen);
+    testScreen1.createButton(testScreen2);
+    testScreen2.createButton(testScreen1);
+    
+    std::cout << "Test Screen 1: " << &testScreen1 << "\n";
+    std::cout << "Test Screen 2: " << &testScreen2 << "\n\n";
+    std::cout << "Test Button 1: " << &testScreen1.buttons.at(0).link << "\n";
+    std::cout << "Test Button 2: " << &testScreen2.buttons.at(0).link << "\n";
+    
+    
+    testScreen2.buttons.at(0).setFillColor(sf::Color::Cyan);
+    
+    listOfScreens.push(testScreen1);
+    std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
+    listOfScreens.push(listOfScreens.top->data.buttons.at(0).link);
+    std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
+    
     
     //sf::Texture defaultPoint;
     //defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
@@ -68,4 +83,6 @@ int main() {
         
         window.display();
     }
+    
+    std::cout << listOfScreens << "\n";
 }
