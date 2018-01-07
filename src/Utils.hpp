@@ -26,7 +26,7 @@ public:
      * 
      * Default constructor method. Initializes data & next to 0.
      */
-    Node<T>() : data(0), next(0) {};
+    Node<T>() : data(T()), next(0) {};
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -77,7 +77,7 @@ public:
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Node<T> &n) {
-        strm << &n << ": [" << n.data << "] -> " << n.next << "\n";
+        strm << &n << ": [" << typeid(n.data).name() << "] -> " << n.next << "\n";
         return strm;
     };
     
@@ -191,7 +191,7 @@ public:
      */
     Node<T> popNode() {
         if (isEmpty()) {
-            return 0;
+            return Node<T>();
         }
         Node<T> temp = *top;
         top = top->next;
