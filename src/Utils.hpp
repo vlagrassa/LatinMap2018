@@ -185,7 +185,7 @@ public:
      */
     Node<T> popNode() {
         if (isEmpty()) {
-            return Node<T>(T());
+            throw std::out_of_range("Trying to remove from empty Stack.");
         }
         Node<T> temp = *top;
         top = top->next;
@@ -353,7 +353,7 @@ public:
      */
     Node<T> dequeueNode() {
         if (isEmpty()) {
-            return 0;
+            throw std::out_of_range("Trying to remove from empty Queue.");
         }
         Node<T> temp = *head;
         
