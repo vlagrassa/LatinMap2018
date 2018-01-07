@@ -6,6 +6,7 @@
 template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
+template <class T> class LinkedList;
 template <class T> class ActiveVector;
 
 template <class T> class Node {
@@ -396,6 +397,88 @@ private:
         }
         return strm;
     };
+};
+
+template <class T> class LinkedList {
+public:
+    Node<T>* first;
+    Node<T>* last;
+    unsigned int size;
+    
+    LinkedList() {};
+    LinkedList(const LinkedList& orig) {};
+    virtual ~LinkedList();
+    
+    void addFirst(Node<T> next) {
+        next.next = first;
+        first = &next;
+        size++;
+    }
+    
+    void addFirst(T data) {
+        addFirst(*(new Node<T>(data)));
+    }
+    
+    Node<T> removeFirstNode() {
+        if (isEmpty()) {
+            throw std::out_of_range("Trying to remove first from empty LinkedList.");
+        }
+        Node<T> temp = *first;
+        
+        if (first == last) {
+            first = 0;
+            last = 0;
+        } else {
+            first = first->next;
+        }
+        size--;
+        
+        return temp;
+    }
+    
+    T removeFirst() {
+        return removeFirstNode().data;
+    }
+    
+    void addLast(Node<T> next) {
+        if (isEmpty()) {
+            first = &next;
+            last = &next;
+        } else {
+            last->next = &next;
+            last = &next;
+        }
+        size++;
+    }
+    
+    void addLast(T data) {
+        addLast(*(new Node<T>(data)));
+    }
+    
+    Node<T> removeLastNode() {
+        if (isEmpty()) {
+            throw std::out_of_range("Trying to remove last from empty LinkedList.");
+        }
+        
+        Node<T> temp = *last;
+        for (Node<T>* current = first; current != 0; current = current->next) {
+            if (current->next == last) {
+                last = current;
+                last->next = 0;
+                size--;
+                return temp;
+            }
+        }
+    }
+    
+    T removeLast() {
+        return removeLastNode().data;
+    }
+    
+    bool isEmpty() {
+        return first == 0 && last == 0;
+    }
+    
 };
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
