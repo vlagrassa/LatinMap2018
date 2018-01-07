@@ -11,7 +11,6 @@ class LinkedButton : public sf::Sprite {
 public:
     ScreenMode* link;
     
-    LinkedButton() {};
     LinkedButton(ScreenMode* link) : link(link) {};
     LinkedButton(const LinkedButton& orig) : link(orig.link) {};
     virtual ~LinkedButton() {};
