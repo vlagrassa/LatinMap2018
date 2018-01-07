@@ -33,9 +33,10 @@ public:
 class ScreenMode : public sf::Drawable {
 public:
     std::vector<LinkedButton> buttons;
+    sf::Window& window;
     
-    ScreenMode() {};
-    ScreenMode(const ScreenMode& orig) {};
+    ScreenMode(sf::Window& window) : window(window) {};
+    ScreenMode(const ScreenMode& orig) : window(orig.window) {};
     virtual ~ScreenMode() {};
     
     ScreenMode* run() {
@@ -50,7 +51,7 @@ public:
     };
     
     void createButton(ScreenMode* s) {
-        buttons.push_back(LinkedButton(s));
+        buttons.push_back(LinkedButton(s, window));
     }
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const {

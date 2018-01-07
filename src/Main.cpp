@@ -13,6 +13,9 @@
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
+    
+    sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
+    
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
     
     sf::Vector2f testVector(27, 42);
@@ -20,9 +23,9 @@ int main() {
     
     
     Stack<ScreenMode&> listOfScreens;
-    ScreenMode testScreen;
+    ScreenMode testScreen(window);
     
-    testScreen.createButton(new ScreenMode());
+    testScreen.createButton(new ScreenMode(window));
     listOfScreens.push(testScreen);
     
     std::cout << "Test Screen Address:  " << &testScreen << "\n";
@@ -34,7 +37,8 @@ int main() {
     //std::cout << test1 << "\n";
     //std::cout << test1.operator std::string() << "\n";
     
-    sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
+    LinkedButton testButton(&testScreen, window);
+    
     
     //sf::Texture defaultPoint;
     //defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
@@ -62,7 +66,7 @@ int main() {
         }
         
         ScreenMode* nextScreen = listOfScreens.top->data.run();
-        std::cout << "Next Screen: " << nextScreen << "\n";
+        //std::cout << "Next Screen: " << nextScreen << "\n";
         
         if (nextScreen == 0) {
             listOfScreens.pop();
@@ -76,11 +80,13 @@ int main() {
         
         window.draw(test1);
         window.draw(test2);
-        std::cout << listOfScreens << "\n\n";
-        std::cout << countdown << " runs left...\n";
+        if (!testButton.clicked()) window.draw(testButton);
+        
+        //std::cout << listOfScreens << "\n\n";
+        //std::cout << countdown << " runs left...\n";
         
         window.display();
         
-        countdown -= 1;
+        countdown = 1;
     }
 }
