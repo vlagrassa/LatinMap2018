@@ -34,7 +34,14 @@ public:
     virtual ~ScreenMode() {};
     
     ScreenMode* run() {
-        return 0;
+        if (buttons.size() > 0) {
+            for (LinkedButton b : buttons) {
+                if (b.clicked()) {
+                    return b.link;
+                }
+            }
+        }
+        return this;
     };
     
     void createButton(ScreenMode* s) {
