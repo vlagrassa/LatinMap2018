@@ -409,6 +409,18 @@ public:
     LinkedList(const LinkedList& orig) {};
     virtual ~LinkedList();
     
+    Node<T> getNode(unsigned int index) {
+        Node<T>* temp = first;
+        for (unsigned int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return temp;
+    }
+    
+    T get(unsigned int index) {
+        return getNode(index).data;
+    }
+    
     void addFirst(Node<T> next) {
         next.next = first;
         first = &next;
