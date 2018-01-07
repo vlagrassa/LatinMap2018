@@ -24,6 +24,7 @@ int main() {
     ScreenMode testScreen;
     
     listOfScreens.push(testScreen);
+    listOfScreens.top->data.addReference(new ScreenMode());
     
     
     //std::cout << test1.getName() << ": " << test1.getDescription() << "; at (" << test1.getPosition().x << ", " << test1.getPosition().y << ")\n";
@@ -43,6 +44,8 @@ int main() {
     //test1.setScale(0.05, 0.05);
     //test2.setScale(0.05, 0.05);
     
+    int countdown = 10;
+    
     while (window.isOpen()) {
 
         sf::Event event;
@@ -51,6 +54,10 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+        }
+        
+        if (countdown <= 0) {
+            window.close();
         }
         
         ScreenMode* nextScreen = listOfScreens.top->data.run();
@@ -69,7 +76,10 @@ int main() {
         window.draw(test1);
         window.draw(test2);
         std::cout << listOfScreens << "\n\n";
+        std::cout << countdown << " runs left...\n";
         
         window.display();
+        
+        countdown -= 1;
     }
 }
