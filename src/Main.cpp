@@ -80,8 +80,9 @@ int main() {
         
         window.draw(test1);
         window.draw(test2);
-        window.draw(testScreen.buttons.at(0));
-        //if (!testButton.clicked()) window.draw(testButton);
+        for (LinkedButton b : listOfScreens.top->data.buttons) {
+            window.draw(b);
+        }
         
         //std::cout << listOfScreens << "\n\n";
         //std::cout << countdown << " runs left...\n";
