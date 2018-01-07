@@ -55,7 +55,7 @@ public:
 
 class ScreenMode : public sf::Drawable {
 public:
-    std::vector<LinkedButton> buttons;
+    std::vector<std::reference_wrapper<LinkedButton>> buttons;
     sf::Window& window;
     
     ScreenMode(sf::Window& window) : window(window) {};
@@ -64,21 +64,27 @@ public:
     
     ScreenMode* run() {
         if (buttons.size() > 0) {
-            for (LinkedButton b : buttons) {
-                if (b.clicked()) {
-                    return &b.link;
+            for (auto& b : buttons) {
+                if (b.get().clicked()) {
+                    return &b.get().link;
                 }
             }
         }
         return this;
     };
     
+    void addButton(LinkedButton& b) {
+        buttons.push_back(b);
+    }
+    
     void createButton(ScreenMode& s) {
-        buttons.push_back(LinkedButton(s, window));
+        LinkedButton temp(s, window);
+        buttons.push_back(temp);
     }
     
     void createNullButton() {
-        buttons.push_back(LinkedButton(0, window));
+        LinkedButton temp(0, window);
+        buttons.push_back(temp);
     }
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const {

@@ -23,17 +23,23 @@ int main() {
     ScreenMode testScreen1(window);
     ScreenMode testScreen2(window);
     
-    testScreen1.createButton(testScreen2);
+    LinkedButton testButton1(testScreen2, window);
+    testButton1.setSize(sf::Vector2f(100, 50));
+    testButton1.setOutlineColor(sf::Color::Cyan);
+    testButton1.setOutlineThickness(5);
+    testButton1.setPosition(250, 250);
+    
+    testScreen1.addButton(testButton1);
     testScreen2.createNullButton();
     
     std::cout << "Test Screen 1: " << &testScreen1 << "\n";
     std::cout << "Test Screen 2: " << &testScreen2 << "\n\n";
-    std::cout << "Test Button 1: " << &testScreen1.buttons.at(0).link << "\n";
-    std::cout << "Test Button 2: " << &testScreen2.buttons.at(0).link << "\n";
+    std::cout << "Test Button 1: " << &testScreen1.buttons.at(0).get().link << "\n";
+    std::cout << "Test Button 2: " << &testScreen2.buttons.at(0).get().link << "\n";
     
     listOfScreens.push(testScreen1);
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
-    listOfScreens.push(listOfScreens.top->data.buttons.at(0).link);
+    listOfScreens.push(listOfScreens.top->data.buttons.at(0).get().link);
     std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
     
     
@@ -46,7 +52,7 @@ int main() {
     //test1.setScale(0.05, 0.05);
     //test2.setScale(0.05, 0.05);
     
-    int countdown = 10;
+//    int countdown = 10;
     
     while (window.isOpen()) {
 
@@ -76,6 +82,8 @@ int main() {
         
         window.draw(test1);
         window.draw(test2);
+        
+        //window.draw(testButton1);
         
         window.display();
     }
