@@ -14,7 +14,7 @@ public:
         if (references.size() > 0) {
             return references.at(0);
         } else {
-            return this;
+            return 0;
         }
     };
     
