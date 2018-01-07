@@ -71,7 +71,7 @@ public:
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Node<T> &n) {
-        strm << &n << ": [" << typeid(n.data).name() << "] -> " << n.next << "\n";
+        strm << &n << ": [" << typeid(n.data).name() << " @ " << &n.data << "] -> " << n.next << "\n";
         return strm;
     };
     
