@@ -24,12 +24,6 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Default constructor method. Initializes data & next to 0.
-     */
-    Node<T>() : data(T()), next(0) {};
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
      * Constructor method. Initializes data, sets next to 0.
      * 
      * @param data The data to store in Node
@@ -191,7 +185,7 @@ public:
      */
     Node<T> popNode() {
         if (isEmpty()) {
-            return Node<T>();
+            return Node<T>(T());
         }
         Node<T> temp = *top;
         top = top->next;
