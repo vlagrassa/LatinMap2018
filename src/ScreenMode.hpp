@@ -19,12 +19,21 @@ public:
         setOutlineThickness(5);
         setPosition(10, 20);
     };
+    
+    LinkedButton(ScreenMode* link, sf::Window& window) : link(*link), window(window) {
+        setSize(sf::Vector2f(100, 50));
+        setOutlineColor(sf::Color::Cyan);
+        setOutlineThickness(5);
+        setPosition(350, 20);
+    }
+    
     LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Green);
         setOutlineThickness(5);
         setPosition(10, 20);
     };
+    
     virtual ~LinkedButton() {};
     
     bool touchingMouse() {
@@ -66,6 +75,10 @@ public:
     
     void createButton(ScreenMode& s) {
         buttons.push_back(LinkedButton(s, window));
+    }
+    
+    void createNullButton() {
+        buttons.push_back(LinkedButton(0, window));
     }
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const {

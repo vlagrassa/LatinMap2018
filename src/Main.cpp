@@ -24,15 +24,12 @@ int main() {
     ScreenMode testScreen2(window);
     
     testScreen1.createButton(testScreen2);
-    testScreen2.createButton(testScreen1);
+    testScreen2.createNullButton();
     
     std::cout << "Test Screen 1: " << &testScreen1 << "\n";
     std::cout << "Test Screen 2: " << &testScreen2 << "\n\n";
     std::cout << "Test Button 1: " << &testScreen1.buttons.at(0).link << "\n";
     std::cout << "Test Button 2: " << &testScreen2.buttons.at(0).link << "\n";
-    
-    
-    testScreen2.buttons.at(0).setFillColor(sf::Color::Cyan);
     
     listOfScreens.push(testScreen1);
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
@@ -61,28 +58,27 @@ int main() {
             }
         }
         
-        if (countdown <= 0) {
-            window.close();
-        }
-        
-        ScreenMode* nextScreen = listOfScreens.top->data.run();
-        
-        if (nextScreen == 0) {
-            listOfScreens.pop();
-        } else if (nextScreen != &listOfScreens.top->data) {
-            listOfScreens.push(*nextScreen);
-        }
-        
         window.clear(sf::Color::White);
+        
+        if (!listOfScreens.isEmpty()) {
+            ScreenMode* nextScreen = listOfScreens.top->data.run();
+            
+            if (nextScreen == 0) {
+                listOfScreens.pop();
+            } else if (nextScreen != &listOfScreens.top->data) {
+                listOfScreens.push(*nextScreen);
+            }
+            
+            for (LinkedButton b : listOfScreens.top->data.buttons) {
+                window.draw(b);
+            }
+        }
         
         window.draw(test1);
         window.draw(test2);
-        for (LinkedButton b : listOfScreens.top->data.buttons) {
-            window.draw(b);
-        }
         
         window.display();
     }
     
-    std::cout << listOfScreens << "\n";
+    std::cout << "\n\n" << listOfScreens << "\n";
 }
