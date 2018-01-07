@@ -19,13 +19,14 @@ int main() {
     MapPoint test2(testVector, "Test 2", "This is a test", 5, 5);
     
     
-    Stack<ScreenMode> listOfScreens;
-    
+    Stack<ScreenMode&> listOfScreens;
     ScreenMode testScreen;
     
+    testScreen.addReference(new ScreenMode());
     listOfScreens.push(testScreen);
-    listOfScreens.top->data.addReference(new ScreenMode());
     
+    std::cout << "Test Screen Address:  " << &testScreen << "\n";
+    std::cout << "Top of Stack Address: " << &(listOfScreens.top->data) << "\n";
     
     //std::cout << test1.getName() << ": " << test1.getDescription() << "; at (" << test1.getPosition().x << ", " << test1.getPosition().y << ")\n";
     //std::cout << test2.getName() << ": " << test2.getDescription() << "; at (" << test2.getPosition().x << ", " << test2.getPosition().y << ")\n";
