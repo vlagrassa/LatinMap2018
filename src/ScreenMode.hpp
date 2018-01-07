@@ -4,28 +4,25 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
+class ScreenMode;
+class LinkedButton;
+
 class ScreenMode {
 public:
+    std::vector<LinkedButton> buttons;
+    
     ScreenMode() {};
-    ScreenMode(const ScreenMode& orig) {
-        for (ScreenMode* s : orig.references) {
-            references.push_back(s);
-        }
-    };
+    ScreenMode(const ScreenMode& orig) {};
     virtual ~ScreenMode() {};
     
     ScreenMode* run() {
-        if (references.size() > 0) {
-            return references.at(0);
-        } else {
-            return 0;
-        }
+        return 0;
     };
     
-    void addReference(ScreenMode* s) {
-        references.push_back(s);
+    void createButton(ScreenMode* s) {
+        buttons.push_back(LinkedButton(s));
     }
-    std::vector<ScreenMode*> references;
+    
 private:
     
 };
@@ -35,6 +32,7 @@ public:
     ScreenMode* link;
     
     LinkedButton() {};
+    LinkedButton(ScreenMode* link) : link(link) {};
     LinkedButton(const LinkedButton& orig) : link(orig.link) {};
     virtual ~LinkedButton() {};
     

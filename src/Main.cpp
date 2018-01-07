@@ -22,7 +22,7 @@ int main() {
     Stack<ScreenMode&> listOfScreens;
     ScreenMode testScreen;
     
-    testScreen.addReference(new ScreenMode());
+    testScreen.createButton(new ScreenMode());
     listOfScreens.push(testScreen);
     
     std::cout << "Test Screen Address:  " << &testScreen << "\n";
