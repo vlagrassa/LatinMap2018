@@ -9,10 +9,11 @@ class ScreenMode;
 
 class LinkedButton : public sf::RectangleShape {
 public:
-    ScreenMode* link;
+    ScreenMode& link;
     sf::Window& window;
+    bool pressed;
     
-    LinkedButton(ScreenMode* link, sf::Window& window) : link(link), window(window) {
+    LinkedButton(ScreenMode& link, sf::Window& window) : link(link), window(window) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Red);
         setOutlineThickness(5);
@@ -31,7 +32,15 @@ public:
     }
     
     bool clicked() {
-        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left);
+        if (touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left)) {
+            if (!pressed) {
+                pressed = true;
+                return true;
+            }
+        } else {
+            pressed = false;
+        }
+        return false;
     }
 };
 
@@ -48,14 +57,14 @@ public:
         if (buttons.size() > 0) {
             for (LinkedButton b : buttons) {
                 if (b.clicked()) {
-                    return b.link;
+                    return &b.link;
                 }
             }
         }
         return this;
     };
     
-    void createButton(ScreenMode* s) {
+    void createButton(ScreenMode& s) {
         buttons.push_back(LinkedButton(s, window));
     }
     
