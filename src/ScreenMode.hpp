@@ -7,7 +7,11 @@
 class ScreenMode {
 public:
     ScreenMode() {};
-    ScreenMode(const ScreenMode& orig) {};
+    ScreenMode(const ScreenMode& orig) {
+        for (ScreenMode* s : orig.references) {
+            references.push_back(s);
+        }
+    };
     virtual ~ScreenMode() {};
     
     ScreenMode* run() {
