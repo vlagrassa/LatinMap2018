@@ -4,8 +4,26 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
-class ScreenMode;
 class LinkedButton;
+class ScreenMode;
+
+class LinkedButton : public sf::Sprite {
+public:
+    ScreenMode* link;
+    
+    LinkedButton() {};
+    LinkedButton(ScreenMode* link) : link(link) {};
+    LinkedButton(const LinkedButton& orig) : link(orig.link) {};
+    virtual ~LinkedButton() {};
+    
+    bool touchingMouse() {
+        return getGlobalBounds().contains(sf::Mouse().getPosition().x, sf::Mouse().getPosition().y);
+    }
+    
+    bool clicked() {
+        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left);
+    }
+};
 
 class ScreenMode {
 public:
@@ -25,24 +43,6 @@ public:
     
 private:
     
-};
-
-class LinkedButton : public sf::Sprite {
-public:
-    ScreenMode* link;
-    
-    LinkedButton() {};
-    LinkedButton(ScreenMode* link) : link(link) {};
-    LinkedButton(const LinkedButton& orig) : link(orig.link) {};
-    virtual ~LinkedButton() {};
-    
-    bool touchingMouse() {
-        return getGlobalBounds().contains(sf::Mouse().getPosition().x, sf::Mouse().getPosition().y);
-    }
-    
-    bool clicked() {
-        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left);
-    }
 };
 
 #endif /* SCREENMODE_H */
