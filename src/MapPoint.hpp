@@ -11,7 +11,7 @@ public:
         setPosition(x, y);
     };
     
-    MapPoint(sf::Vector2f pos, std::string n, std::string d, float lon, float lat) : MapPoint(pos.x, pos.y, d, lon, lat) {};
+    MapPoint(sf::Vector2f pos, std::string n, std::string d, float lon, float lat) : MapPoint(pos.x, pos.y, n, d, lon, lat) {};
     
     MapPoint(const MapPoint& orig) : name(orig.name), description(orig.description), coordLon(orig.coordLon), coordLat(orig.coordLat) {};
     
