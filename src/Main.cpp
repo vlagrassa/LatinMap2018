@@ -89,9 +89,9 @@ int main() {
         window.clear(sf::Color::White);
         
         if (!listOfScreens.isEmpty()) {
-            std::cout << "Hi\n";
+            //std::cout << "Hi\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run();
-            std::cout << "Hi\n";
+            //std::cout << "Hi\n";
             
             if (nextScreen == 0) {
                 listOfScreens.pop();
