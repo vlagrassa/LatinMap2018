@@ -485,13 +485,6 @@ public:
         addLast(data);
     }
     
-    void addEmpty(Node<T> next) {
-        first = &next;
-        last = &next;
-        next.next = 0;
-        size++;
-    }
-    
     Node<T> removeNode(unsigned int index) {
         if (index >= size) {
             throw std::out_of_range("Removing from LinkedList.");
@@ -571,6 +564,13 @@ public:
     }
     
 private:
+    void addEmpty(Node<T> next) {
+        first = &next;
+        last = &next;
+        next.next = 0;
+        size++;
+    }
+    
     friend std::ostream& operator<<(std::ostream &strm, const LinkedList<T> &l) {
         strm << "LinkedList " << &l << ":\n";
         for (Node<T>* n = l.first; n != 0; n = n->next) {
