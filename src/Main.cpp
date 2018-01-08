@@ -19,6 +19,10 @@ int main() {
     
     buildMapPoints("res/map_points/Montes");
     
+    std::vector<std::string> tempStringVector;
+    
+    MapPoint(sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
     sf::Texture backTexture;
@@ -119,8 +123,7 @@ std::vector<MapPoint> buildMapPoints(std::string filename) {
     std::string                 tempName;
     std::vector<std::string>    tempAltNames;
     sf::Vector2f                tempPos;
-    float                       tempLon;
-    float                       tempLat;
+    std::string                 tempCoords;
     std::string                 tempDescription;
     std::vector<std::string>    tempEvents;
     
@@ -129,11 +132,14 @@ std::vector<MapPoint> buildMapPoints(std::string filename) {
             if (line.at(0) == '*') {
                 std::cout << line.substr(2, std::string::npos) << "\n";
                 tempName = line.substr(2, std::string::npos);
+            } else if (line.compare(0, std::string("Location: ").size(), "Location: ")) {
+                //tempPos.x = std::stof(line.substr(std::string("Location: ").size(), line.find(",")));
+                //std::cout << "TempPos = " << tempPos.x << "\n";
             }
         }
         
     }
-    listOfPoints.push_back(MapPoint(tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempLon, tempLat));
+    listOfPoints.push_back(MapPoint(tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempCoords));
     
     return std::vector<MapPoint>();
 }

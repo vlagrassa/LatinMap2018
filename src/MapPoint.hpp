@@ -13,9 +13,8 @@ public:
             std::vector<std::string>    altnames,
             std::string                 desc,
             std::vector<std::string>    events,
-            float                       lon,
-            float                       lat
-    ) : name(name), altNames(altnames), description(desc), events(events), coordLon(lon), coordLat(lat) {
+            std::string                 coords
+    ) : name(name), altNames(altnames), description(desc), events(events), coords("") {
         setPosition(x, y);
     };
     
@@ -24,11 +23,10 @@ public:
             std::vector<std::string>    altnames,
             std::string                 desc,
             std::vector<std::string>    events,
-            float                       lon,
-            float                       lat
-    ) : MapPoint(pos.x, pos.y, name, altnames, desc, events, lon, lat) {};
+            std::string                 coords
+    ) : MapPoint(pos.x, pos.y, name, altnames, desc, events, coords) {};
     
-    MapPoint(const MapPoint& orig) : name(orig.name), description(orig.description), coordLon(orig.coordLon), coordLat(orig.coordLat) {};
+    MapPoint(const MapPoint& orig) : name(orig.name), description(orig.description), coords(orig.coords) {};
     
     virtual ~MapPoint() {};
     
@@ -64,14 +62,10 @@ public:
     const std::vector<std::string> events;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * The real-world longitude coordinate.
+     * The real-world longitude and latitude
+     * coordinates.
      */
-    const float coordLon;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * The real-world latitude coordinate.
-     */
-    const float coordLat;
+    const std::string coords;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * Whether to render based on filters.
