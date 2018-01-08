@@ -19,6 +19,14 @@ int main() {
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
     MapPoint test2(27, 42, "Test 2", "This is a test", 5, 5);
     
+    LinkedList<int> testList;
+    testList.add(1);
+    testList.add(2);
+    testList.add(0, 3);
+    testList.add(3, 4);
+    std::cout << testList << "\n";
+    
+    
     Stack<ScreenMode&> listOfScreens;
     ScreenMode testScreen1(window);
     ScreenMode testScreen2(window);
