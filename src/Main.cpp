@@ -68,12 +68,26 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Left) {
+                    screenCoords.x -= 10;
+                }
+                if (event.key.code == sf::Keyboard::Right) {
+                    screenCoords.x += 10;
+                }
+                if (event.key.code == sf::Keyboard::Up) {
+                    screenCoords.y -= 10;
+                }
+                if (event.key.code == sf::Keyboard::Down) {
+                    screenCoords.y += 10;
+                }
+            }
         }
         
         window.clear(sf::Color::White);
         
-        screenCoords.x = sf::Mouse::getPosition(window).x;
-        screenCoords.y = sf::Mouse::getPosition(window).y;
+        //screenCoords.x = sf::Mouse::getPosition(window).x;
+        //screenCoords.y = sf::Mouse::getPosition(window).y;
         background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, 1366, 768));
         window.draw(background);
         
