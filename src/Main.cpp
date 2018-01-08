@@ -16,6 +16,12 @@ int main() {
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
+    sf::Texture backTexture;
+    backTexture.loadFromFile("res/Blank_Roman_Empire.png");
+    sf::Sprite background;
+    background.setTexture(backTexture);
+    background.setTextureRect(sf::IntRect(0, 0, 1300, 700));
+    
     std::cout << "Window is " << &window << "\n";
     
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
@@ -63,6 +69,7 @@ int main() {
         }
         
         window.clear(sf::Color::White);
+        window.draw(background);
         
         if (!listOfScreens.isEmpty()) {
             ScreenMode* nextScreen = listOfScreens.top->data.run();
