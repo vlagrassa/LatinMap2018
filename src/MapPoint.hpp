@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "Utils.hpp"
 
 class MapPoint : public sf::Sprite {
 public:
@@ -31,9 +32,20 @@ private:
     const std::string name;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * The main text decription to display.
+     * Alternate names for the location.
+     */
+    const std::vector<std::string> altNames;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * The main text description to display.
      */
     const std::string description;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * List of notable events involving the
+     * location.
+     */
+    const std::vector<std::string> events;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The real-world longitude coordinate.
