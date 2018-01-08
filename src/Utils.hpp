@@ -445,7 +445,7 @@ public:
         }
     }
     
-    void add(unsigned int index, T& data) {
+    void add(unsigned int index, T const& data) {
         add(*(new Node<T>(data)));
     }
     
@@ -459,7 +459,7 @@ public:
         }
     }
     
-    void addFirst(T& data) {
+    void addFirst(T const& data) {
         addFirst(*(new Node<T>(data)));
     }
     
@@ -473,7 +473,7 @@ public:
         }
     }
     
-    void addLast(T& data) {
+    void addLast(T const& data) {
         addLast(*(new Node<T>(data)));
     }
     
@@ -481,7 +481,7 @@ public:
         addLast(next);
     }
     
-    void add(T& data) {
+    void add(T const& data) {
         addLast(data);
     }
     
