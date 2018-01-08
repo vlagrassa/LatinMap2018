@@ -84,6 +84,9 @@ int main() {
             }
         }
         
+        screenCoords.x -= 2 * ((event.mouseWheelScroll.wheel == sf::Mouse::HorizontalWheel) ? event.mouseWheelScroll.delta : 0);
+        screenCoords.y -= 2 * ((event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)   ? event.mouseWheelScroll.delta : 0);
+        
         window.clear(sf::Color::White);
         
         //screenCoords.x = sf::Mouse::getPosition(window).x;
