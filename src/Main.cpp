@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <ctime>
+#include <fstream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -11,8 +12,12 @@
 #include "Utils.hpp"
 #include "ScreenMode.hpp"
 
+std::vector<MapPoint> buildMapPoints(std::string filename);
+
 int main() {
     std::cout << "Salve, munde!" << "\n";
+    
+    buildMapPoints("res/map_points/Montes");
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
@@ -116,4 +121,14 @@ int main() {
     }
     
     std::cout << "\n\n" << listOfScreens << "\n";
+}
+
+std::vector<MapPoint> buildMapPoints(std::string filename) {
+    std::fstream file(filename);
+    std::string line;
+    
+    while (std::getline(file, line)) {
+        std::cout << line << "\n";
+    }
+    return std::vector<MapPoint>();
 }
