@@ -47,12 +47,12 @@ int main() {
     
     std::cout << "Test Screen 1: " << &testScreen1 << "\n";
     std::cout << "Test Screen 2: " << &testScreen2 << "\n\n";
-    std::cout << "Test Button 1: " << &testScreen1.buttons.at(0).get().link << "\n";
-    std::cout << "Test Button 2: " << &testScreen2.buttons.at(0).get().link << "\n";
+    std::cout << "Test Button 1: " << &testScreen1.buttons.head->data.link << "\n";
+    std::cout << "Test Button 2: " << &testScreen2.buttons.head->data.link << "\n";
     
     listOfScreens.push(testScreen1);
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
-    listOfScreens.push(listOfScreens.top->data.buttons.at(0).get().link);
+    listOfScreens.push(listOfScreens.top->data.buttons.head->data.link);
     std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
     
     
@@ -80,7 +80,9 @@ int main() {
         window.clear(sf::Color::White);
         
         if (!listOfScreens.isEmpty()) {
+            std::cout << "Hi\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run();
+            std::cout << "Hi\n";
             
             if (nextScreen == 0) {
                 listOfScreens.pop();
@@ -88,8 +90,8 @@ int main() {
                 listOfScreens.push(*nextScreen);
             }
             
-            for (LinkedButton b : listOfScreens.top->data.buttons) {
-                window.draw(b);
+            for (Node<LinkedButton&>* n = listOfScreens.top->data.buttons.head; n != 0; n = n->next) {
+                window.draw(n->data);
             }
         }
         

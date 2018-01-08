@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
+#include "Utils.hpp"
+
 class LinkedButton;
 class ScreenMode;
 
@@ -55,7 +57,7 @@ public:
 
 class ScreenMode : public sf::Drawable {
 public:
-    std::vector<std::reference_wrapper<LinkedButton>> buttons;
+    Queue<LinkedButton&> buttons;
     sf::Window& window;
     
     ScreenMode(sf::Window& window) : window(window) {};
@@ -63,10 +65,10 @@ public:
     virtual ~ScreenMode() {};
     
     ScreenMode* run() {
-        if (buttons.size() > 0) {
-            for (auto& b : buttons) {
-                if (b.get().clicked()) {
-                    return &b.get().link;
+        if (!buttons.isEmpty()) {
+            for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+                if (n->data.clicked()) {
+                    return &n->data.link;
                 }
             }
         }
@@ -74,22 +76,22 @@ public:
     };
     
     void addButton(LinkedButton& b) {
-        buttons.push_back(b);
+        buttons.enqueue(b);
     }
     
     void createButton(ScreenMode& s) {
         LinkedButton temp(s, window);
-        buttons.push_back(temp);
+        buttons.enqueue(temp);
     }
     
     void createNullButton() {
         LinkedButton temp(0, window);
-        buttons.push_back(temp);
+        buttons.enqueue(temp);
     }
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-        for (LinkedButton b : buttons) {
-            target.draw(b);
+        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+            target.draw(n->data);
         }
     }
     
