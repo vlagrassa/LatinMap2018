@@ -21,27 +21,8 @@ int main() {
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
     MapPoint test2(27, 42, "Test 2", "This is a test", 5, 5);
     
-    
-    ScreenMode testScreen(window);
-    LinkedButton testButton(testScreen, window);
-    testScreen.addButton(testButton);
-    std::cout << "Test Button from main:   " << &testButton << "\n";
-    std::cout << "Test Button from screen: " << &testScreen.buttons.head->data << "\n";
-    std::cout << "Test Button from main window:   " << &testButton.window << "\n";
-    std::cout << "Test Button from screen window: " << &testScreen.buttons.head->data.window << "\n";
-    
-    Node<LinkedButton&> testButtonNode(testButton);
-    Queue<LinkedButton&> testQueue(testButtonNode);
-    testQueue.enqueue(*new LinkedButton(testScreen, window));
-    
-    for (Node<LinkedButton&>* thing = testQueue.head; thing != 0; thing = thing->next) {
-        std::cout << "Clicked: " << testQueue.head->data.clicked() << "\n";
-    }
-    
-    std::cout << "Relative Mouse position: " << sf::Mouse().getPosition(window).x << "\n";
-    
-    
     Stack<ScreenMode&> listOfScreens;
+    
     ScreenMode testScreen1(window);
     ScreenMode testScreen2(window);
     
@@ -60,9 +41,9 @@ int main() {
 //    std::cout << "Test Button 2: " << &testScreen2.buttons.head->data.link << "\n";
 //    
     listOfScreens.push(testScreen1);
-//    std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
-//    listOfScreens.push(listOfScreens.top->data.buttons.head->data.link);
-//    std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
+    std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
+    listOfScreens.push(testScreen2);
+    std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
     
     
     //sf::Texture defaultPoint;
