@@ -20,11 +20,16 @@ int main() {
     MapPoint test2(27, 42, "Test 2", "This is a test", 5, 5);
     
     LinkedList<int> testList;
+    std::cout << testList << "\n";
     testList.add(1);
     testList.add(2);
     testList.add(0, 3);
     testList.add(3, 4);
     std::cout << testList << "\n";
+    for (Node<int>* n = testList.first; n != 0; n = n->next) {
+        std::cout << n->data << "\n";
+    }
+    std::cout << "\n\n";
     
     
     Stack<ScreenMode&> listOfScreens;
