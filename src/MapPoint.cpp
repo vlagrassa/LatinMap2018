@@ -12,7 +12,7 @@ MapPoint::MapPoint(sf::Vector2f pos, std::string n, std::string d, float lon, fl
     setPosition(pos);
 }
 
-MapPoint::MapPoint(const MapPoint& orig) : name(orig.getName()), description(orig.getDescription()), coordLon(5), coordLat(5) {
+MapPoint::MapPoint(const MapPoint& orig) : name(orig.name), description(orig.description), coordLon(5), coordLat(5) {
     setPosition(orig.getPosition().x, orig.getPosition().y);
 }
 
