@@ -479,6 +479,39 @@ public:
         addLast(*(new Node<T>(data)));
     }
     
+    Node<T> removeNode(unsigned int index) {
+        if (index >= size) {
+            throw std::out_of_range("Removing from LinkedList.");
+        }
+        else if (first == last) {
+            Node<T> temp = *first;
+            first = 0;
+            last = 0;
+            size--;
+            return temp;
+        }
+        else if (index == 0) {
+            return removeFirstNode();
+        }
+        else if (index == size-1) {
+            return removeLastNode();
+        }
+        else {
+            Node<T>* temp = first;
+            for (unsigned int i = 0; i < index-1; i++) {
+                temp = temp->next;
+            }
+            Node<T> result = *temp->next;
+            temp->next = temp->next->next;
+            size--;
+            return result;
+        }
+    }
+    
+    T remove(unsigned int index) {
+        return removeNode(index).data;
+    }
+    
     Node<T> removeFirstNode() {
         if (isEmpty()) {
             throw std::out_of_range("Trying to remove first from empty LinkedList.");
