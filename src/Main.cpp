@@ -22,6 +22,8 @@ int main() {
     background.setTexture(backTexture);
     background.setTextureRect(sf::IntRect(0, 0, 1300, 700));
     
+    sf::Vector2i screenCoords(300, 50);
+    
     std::cout << "Window is " << &window << "\n";
     
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
@@ -70,8 +72,9 @@ int main() {
         
         window.clear(sf::Color::White);
         
-        //background.setTextureRect(sf::IntRect(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, 100, 100));
-        background.setTextureRect(sf::IntRect(0, 0, sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y));
+        screenCoords.x = sf::Mouse::getPosition(window).x;
+        screenCoords.y = sf::Mouse::getPosition(window).y;
+        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, 1366, 768));
         window.draw(background);
         
         if (!listOfScreens.isEmpty()) {
