@@ -12,20 +12,16 @@ public:
     MapPoint(const MapPoint& orig);
     virtual ~MapPoint();
     
-    std::string getName() const;
-    std::string getDescription() const;
-    
     //virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
     operator std::string() const {
         std::string temp;
-        temp += getName();
+        temp += name;
         temp += ": ";
-        temp += getDescription();
+        temp += description;
         return temp;
     };
     
-private:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The name of the location.
      */
@@ -62,6 +58,7 @@ private:
      */
     bool display;
     
+private:
     friend std::ostream& operator<<(std::ostream &strm, const MapPoint& p) {
         return strm << p.operator std::string();
     };
