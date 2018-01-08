@@ -74,8 +74,6 @@ int main() {
     //test1.setScale(0.05, 0.05);
     //test2.setScale(0.05, 0.05);
     
-//    int countdown = 10;
-    
     while (window.isOpen()) {
 
         sf::Event event;
@@ -89,9 +87,7 @@ int main() {
         window.clear(sf::Color::White);
         
         if (!listOfScreens.isEmpty()) {
-            //std::cout << "Hi\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run();
-            //std::cout << "Hi\n";
             
             if (nextScreen == 0) {
                 listOfScreens.pop();
@@ -106,8 +102,6 @@ int main() {
         
         window.draw(test1);
         window.draw(test2);
-        
-        //window.draw(testButton1);
         
         window.display();
     }

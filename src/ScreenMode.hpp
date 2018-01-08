@@ -39,9 +39,6 @@ public:
     virtual ~LinkedButton() {};
     
     bool touchingMouse() {
-//        std::cout << "\nWindow is:" << &window << "\n";
-//        std::cout << "Relative mouse x is " << sf::Mouse::getPosition().x << "\n";
-//        std::cout << "Made it here...\n";
         return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
     }
     
@@ -71,11 +68,6 @@ public:
     ScreenMode* run() {
         if (!buttons.isEmpty()) {
             for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
-                n->data;
-//                std::cout << "Trying Button " << &n->data;
-//                std::cout << " @ node " << &n << "\n";
-//                std::cout << "Link is " << &n->data.link;
-//                std::cout << "\nClicked is " << n->data.clicked();
                 if (n->data.clicked()) {
                     return &n->data.link;
                 }
