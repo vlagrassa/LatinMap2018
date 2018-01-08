@@ -69,6 +69,9 @@ int main() {
         }
         
         window.clear(sf::Color::White);
+        
+        //background.setTextureRect(sf::IntRect(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, 100, 100));
+        background.setTextureRect(sf::IntRect(0, 0, sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y));
         window.draw(background);
         
         if (!listOfScreens.isEmpty()) {
