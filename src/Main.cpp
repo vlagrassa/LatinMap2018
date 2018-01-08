@@ -26,7 +26,9 @@ int main() {
     LinkedButton testButton(testScreen, window);
     testScreen.addButton(testButton);
     std::cout << "Test Button from main:   " << &testButton << "\n";
-    std::cout << "Test Button from screen: " << &testScreen.buttons.head << "\n";
+    std::cout << "Test Button from screen: " << &testScreen.buttons.head->data << "\n";
+    std::cout << "Test Button from main window:   " << &testButton.window << "\n";
+    std::cout << "Test Button from screen window: " << &testScreen.buttons.head->data.window << "\n";
     
     Node<LinkedButton&> testButtonNode(testButton);
     Queue<LinkedButton&> testQueue(testButtonNode);
@@ -37,19 +39,6 @@ int main() {
     }
     
     std::cout << "Relative Mouse position: " << sf::Mouse().getPosition(window).x << "\n";
-    
-    
-    LinkedList<int> testList;
-    std::cout << testList << "\n";
-    testList.add(1);
-    testList.add(2);
-    testList.add(0, 3);
-    testList.add(3, 4);
-    std::cout << testList << "\n";
-    for (Node<int>* n = testList.first; n != 0; n = n->next) {
-        std::cout << n->data << "\n";
-    }
-    std::cout << "\n\n";
     
     
     Stack<ScreenMode&> listOfScreens;

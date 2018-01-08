@@ -52,4 +52,16 @@ int main() {
     std::cout << intQueue.dequeue() << "\n";
     
     std::cout << intStack << "\n";
+    
+    LinkedList<int> testList;
+    std::cout << testList << "\n";
+    testList.add(1);
+    testList.add(2);
+    testList.add(0, 3);
+    testList.add(3, 4);
+    std::cout << testList << "\n";
+    for (Node<int>* n = testList.first; n != 0; n = n->next) {
+        std::cout << n->data << "\n";
+    }
+    std::cout << "\n\n";
 }
