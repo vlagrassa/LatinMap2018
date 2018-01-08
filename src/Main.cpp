@@ -54,15 +54,15 @@ int main() {
     testScreen1.addButton(testButton1);
     testScreen2.createNullButton();
     
-    std::cout << "Test Screen 1: " << &testScreen1 << "\n";
-    std::cout << "Test Screen 2: " << &testScreen2 << "\n\n";
-    std::cout << "Test Button 1: " << &testScreen1.buttons.head->data.link << "\n";
-    std::cout << "Test Button 2: " << &testScreen2.buttons.head->data.link << "\n";
-    
+//    std::cout << "Test Screen 1: " << &testScreen1 << "\n";
+//    std::cout << "Test Screen 2: " << &testScreen2 << "\n\n";
+//    std::cout << "Test Button 1: " << &testScreen1.buttons.head->data.link << "\n";
+//    std::cout << "Test Button 2: " << &testScreen2.buttons.head->data.link << "\n";
+//    
     listOfScreens.push(testScreen1);
-    std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
-    listOfScreens.push(listOfScreens.top->data.buttons.head->data.link);
-    std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
+//    std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
+//    listOfScreens.push(listOfScreens.top->data.buttons.head->data.link);
+//    std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
     
     
     //sf::Texture defaultPoint;
