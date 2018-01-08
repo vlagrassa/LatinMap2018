@@ -421,6 +421,36 @@ public:
         return getNode(index).data;
     }
     
+    void add(unsigned int index, Node<T> next) {
+        if (index > size) {
+            throw std::out_of_range("Adding to LinkedList.");
+        }
+        else if (isEmpty()) {
+            first = &next;
+            last = &next;
+            size++;
+        }
+        else if (index == 0) {
+            addFirst(next);
+        }
+        else if (index == size) {
+            addLast(next);
+        }
+        else {
+            Node<T>* temp = first;
+            for (unsigned int i = 0; i < index-1; i++) {
+                temp = temp->next;
+            }
+            next->next = temp->next;
+            temp->next = next;
+            size++;
+        }
+    }
+    
+    void add(unsigned int index, T data) {
+        add(*(new Node<T>(data)));
+    }
+    
     void addFirst(Node<T> next) {
         next.next = first;
         first = &next;
