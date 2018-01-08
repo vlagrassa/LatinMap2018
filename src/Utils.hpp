@@ -407,7 +407,7 @@ public:
     
     LinkedList() {};
     LinkedList(const LinkedList& orig) {};
-    virtual ~LinkedList();
+    virtual ~LinkedList() {};
     
     Node<T> getNode(unsigned int index) {
         Node<T>* temp = first;
@@ -426,9 +426,7 @@ public:
             throw std::out_of_range("Adding to LinkedList.");
         }
         else if (isEmpty()) {
-            first = &next;
-            last = &next;
-            size++;
+            addEmpty(next);
         }
         else if (index == 0) {
             addFirst(next);
@@ -453,11 +451,12 @@ public:
     
     void addFirst(Node<T> next) {
         if (isEmpty()) {
-            last = &next;
+            addEmpty(next);
+        } else {
+            next.next = first;
+            first = &next;
+            size++;
         }
-        next.next = first;
-        first = &next;
-        size++;
     }
     
     void addFirst(T data) {
@@ -466,13 +465,12 @@ public:
     
     void addLast(Node<T> next) {
         if (isEmpty()) {
-            first = &next;
-            last = &next;
+            addEmpty(next);
         } else {
             last->next = &next;
             last = &next;
+            size++;
         }
-        size++;
     }
     
     void addLast(T data) {
@@ -484,7 +482,14 @@ public:
     }
     
     void add(T data) {
-        addLast(T);
+        addLast(data);
+    }
+    
+    void addEmpty(Node<T> next) {
+        first = &next;
+        last = &next;
+        next.next = 0;
+        size++;
     }
     
     Node<T> removeNode(unsigned int index) {
@@ -565,6 +570,15 @@ public:
         return first == 0 && last == 0;
     }
     
+private:
+    friend std::ostream& operator<<(std::ostream &strm, const LinkedList<T> &l) {
+        strm << "LinkedList " << &l << ":\n";
+        for (Node<T>* n = l.first; n != 0; n = n->next) {
+            strm << "  " << *n;
+        }
+        strm << "[End of LinkedList]\n";
+        return strm;
+    };
 };
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
