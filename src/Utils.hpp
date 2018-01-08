@@ -479,6 +479,14 @@ public:
         addLast(*(new Node<T>(data)));
     }
     
+    void add(Node<T> next) {
+        addLast(next);
+    }
+    
+    void add(T data) {
+        addLast(T);
+    }
+    
     Node<T> removeNode(unsigned int index) {
         if (index >= size) {
             throw std::out_of_range("Removing from LinkedList.");
