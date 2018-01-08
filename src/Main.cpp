@@ -125,9 +125,11 @@ std::vector<MapPoint> buildMapPoints(std::string filename) {
     std::vector<std::string>    tempEvents;
     
     while (std::getline(file, line)) {
-        if (line.size() > 0 && line.at(0) == '*') {
-            std::cout << line.substr(2, std::string::npos) << "\n";
-            tempName = line.substr(2, std::string::npos);
+        if (line.size() > 0) {
+            if (line.at(0) == '*') {
+                std::cout << line.substr(2, std::string::npos) << "\n";
+                tempName = line.substr(2, std::string::npos);
+            }
         }
         
     }
