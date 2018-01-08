@@ -16,8 +16,28 @@ int main() {
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
+    std::cout << "Window is " << &window << "\n";
+    
     MapPoint test1(10, 10, "Test 1", "This is a test", 5, 5);
     MapPoint test2(27, 42, "Test 2", "This is a test", 5, 5);
+    
+    
+    ScreenMode testScreen(window);
+    LinkedButton testButton(testScreen, window);
+    testScreen.addButton(testButton);
+    std::cout << "Test Button from main:   " << &testButton << "\n";
+    std::cout << "Test Button from screen: " << &testScreen.buttons.head << "\n";
+    
+    Node<LinkedButton&> testButtonNode(testButton);
+    Queue<LinkedButton&> testQueue(testButtonNode);
+    testQueue.enqueue(*new LinkedButton(testScreen, window));
+    
+    for (Node<LinkedButton&>* thing = testQueue.head; thing != 0; thing = thing->next) {
+        std::cout << "Clicked: " << testQueue.head->data.clicked() << "\n";
+    }
+    
+    std::cout << "Relative Mouse position: " << sf::Mouse().getPosition(window).x << "\n";
+    
     
     LinkedList<int> testList;
     std::cout << testList << "\n";
