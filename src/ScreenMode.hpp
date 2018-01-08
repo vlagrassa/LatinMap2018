@@ -70,24 +70,11 @@ public:
         buttons.enqueue(b);
     }
     
-    void createButton(ScreenMode& s) {
-        LinkedButton temp(s, window);
-        buttons.enqueue(temp);
-    }
-    
-    void createNullButton() {
-        LinkedButton temp(0, window);
-        buttons.enqueue(temp);
-    }
-    
     void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
             target.draw(n->data);
         }
     }
-    
-private:
-    
 };
 
 #endif /* SCREENMODE_H */

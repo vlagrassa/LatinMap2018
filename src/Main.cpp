@@ -36,7 +36,7 @@ int main() {
     
     testScreen1.addButton(testButton1);
     testScreen2.addButton(testButton2);
-//    
+    
     listOfScreens.push(testScreen1);
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
     listOfScreens.push(testScreen2);
