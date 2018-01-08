@@ -13,23 +13,22 @@ class LinkedButton : public sf::RectangleShape {
 public:
     ScreenMode& link;
     sf::Window& window;
-    bool pressed;
     
-    LinkedButton(ScreenMode& link, sf::Window& window) : link(link), window(window), pressed(0) {
+    LinkedButton(ScreenMode& link, sf::Window& window) : link(link), window(window) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Red);
         setOutlineThickness(5);
         setPosition(10, 20);
     };
     
-    LinkedButton(ScreenMode* link, sf::Window& window) : link(*link), window(window), pressed(0) {
+    LinkedButton(ScreenMode* link, sf::Window& window) : link(*link), window(window) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Cyan);
         setOutlineThickness(5);
         setPosition(350, 20);
     }
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), pressed(0) {
+    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Green);
         setOutlineThickness(5);
@@ -44,15 +43,6 @@ public:
     
     bool clicked() {
         return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left);
-//        if (touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left)) {
-//            if (!pressed) {
-//                pressed = true;
-//                return true;
-//            }
-//        } else {
-//            pressed = false;
-//        }
-//        return false;
     }
 };
 
