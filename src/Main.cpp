@@ -32,7 +32,7 @@ int main() {
     testButton1.setOutlineThickness(5);
     testButton1.setPosition(250, 250);
     
-    LinkedButton testButton2(testScreen1, window);
+    LinkedButton testButton2(0, window);
     
     testScreen1.addButton(testButton1);
     testScreen2.addButton(testButton2);
@@ -73,9 +73,10 @@ int main() {
             ScreenMode* nextScreen = listOfScreens.top->data.run();
             if (nextScreen == 0) {
                 listOfScreens.pop();
+                std::cout << "Removed screen:\n" << listOfScreens << "\n";
             } else if (nextScreen != &listOfScreens.top->data) {
                 listOfScreens.push(*nextScreen);
-                std::cout << listOfScreens << "\n";
+                std::cout << "Added screen:\n" << listOfScreens << "\n";
             }
             
             for (Node<LinkedButton&>* n = listOfScreens.top->data.buttons.head; n != 0; n = n->next) {
