@@ -421,7 +421,7 @@ public:
         return getNode(index).data;
     }
     
-    void add(unsigned int index, Node<T> next) {
+    void add(unsigned int index, Node<T>& next) {
         if (index > size) {
             throw std::out_of_range("Adding to LinkedList.");
         }
@@ -445,11 +445,11 @@ public:
         }
     }
     
-    void add(unsigned int index, T data) {
+    void add(unsigned int index, T& data) {
         add(*(new Node<T>(data)));
     }
     
-    void addFirst(Node<T> next) {
+    void addFirst(Node<T>& next) {
         if (isEmpty()) {
             addEmpty(next);
         } else {
@@ -459,11 +459,11 @@ public:
         }
     }
     
-    void addFirst(T data) {
+    void addFirst(T& data) {
         addFirst(*(new Node<T>(data)));
     }
     
-    void addLast(Node<T> next) {
+    void addLast(Node<T>& next) {
         if (isEmpty()) {
             addEmpty(next);
         } else {
@@ -473,15 +473,15 @@ public:
         }
     }
     
-    void addLast(T data) {
+    void addLast(T& data) {
         addLast(*(new Node<T>(data)));
     }
     
-    void add(Node<T> next) {
+    void add(Node<T>& next) {
         addLast(next);
     }
     
-    void add(T data) {
+    void add(T& data) {
         addLast(data);
     }
     
@@ -564,7 +564,7 @@ public:
     }
     
 private:
-    void addEmpty(Node<T> next) {
+    void addEmpty(Node<T>& next) {
         first = &next;
         last = &next;
         next.next = 0;
@@ -576,7 +576,7 @@ private:
         for (Node<T>* n = l.first; n != 0; n = n->next) {
             strm << "  " << *n;
         }
-        strm << "[End of LinkedList]\n";
+        strm << "[End of LinkedList " <<&l << "]\n";
         return strm;
     };
 };
