@@ -464,6 +464,21 @@ public:
         addFirst(*(new Node<T>(data)));
     }
     
+    void addLast(Node<T> next) {
+        if (isEmpty()) {
+            first = &next;
+            last = &next;
+        } else {
+            last->next = &next;
+            last = &next;
+        }
+        size++;
+    }
+    
+    void addLast(T data) {
+        addLast(*(new Node<T>(data)));
+    }
+    
     Node<T> removeFirstNode() {
         if (isEmpty()) {
             throw std::out_of_range("Trying to remove first from empty LinkedList.");
@@ -483,21 +498,6 @@ public:
     
     T removeFirst() {
         return removeFirstNode().data;
-    }
-    
-    void addLast(Node<T> next) {
-        if (isEmpty()) {
-            first = &next;
-            last = &next;
-        } else {
-            last->next = &next;
-            last = &next;
-        }
-        size++;
-    }
-    
-    void addLast(T data) {
-        addLast(*(new Node<T>(data)));
     }
     
     Node<T> removeLastNode() {
