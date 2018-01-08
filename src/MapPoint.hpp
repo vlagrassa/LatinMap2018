@@ -7,10 +7,15 @@
 
 class MapPoint : public sf::Sprite {
 public:
-    MapPoint(int x, int y, std::string n, std::string d, float lon, float lat);
-    MapPoint(sf::Vector2f pos, std::string n, std::string d, float lon, float lat);
-    MapPoint(const MapPoint& orig);
-    virtual ~MapPoint();
+    MapPoint(int x, int y, std::string n, std::string d, float lon, float lat) : name(n), description(d), coordLon(lon), coordLat(lat) {
+        setPosition(x, y);
+    };
+    
+    MapPoint(sf::Vector2f pos, std::string n, std::string d, float lon, float lat) : MapPoint(pos.x, pos.y, d, lon, lat) {};
+    
+    MapPoint(const MapPoint& orig) : name(orig.name), description(orig.description), coordLon(orig.coordLon), coordLat(orig.coordLat) {};
+    
+    virtual ~MapPoint() {};
     
     //virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
