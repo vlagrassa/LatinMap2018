@@ -452,6 +452,9 @@ public:
     }
     
     void addFirst(Node<T> next) {
+        if (isEmpty()) {
+            last = &next;
+        }
         next.next = first;
         first = &next;
         size++;
