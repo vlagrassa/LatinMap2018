@@ -125,7 +125,9 @@ std::vector<MapPoint> buildMapPoints(std::string filename) {
     std::vector<std::string>    tempEvents;
     
     while (std::getline(file, line)) {
-        std::cout << line << "\n";
+        if (line.size() > 0 && line.at(0) == '*') {
+            std::cout << line << "\n";
+        }
         
     }
     listOfPoints.push_back(MapPoint(tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempLon, tempLat));
