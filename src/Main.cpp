@@ -124,11 +124,23 @@ int main() {
 }
 
 std::vector<MapPoint> buildMapPoints(std::string filename) {
-    std::fstream file(filename);
-    std::string line;
+    std::fstream                file(filename);
+    std::string                 line;
+    std::vector<MapPoint>       listOfPoints();
+    
+    std::string                 tempName;
+    std::vector<std::string>    tempAltNames;
+    sf::Vector2f                tempPos;
+    float                       tempLon;
+    float                       tempLat;
+    std::string                 tempDescription;
+    std::vector<std::string>    tempEvents;
     
     while (std::getline(file, line)) {
         std::cout << line << "\n";
+        
     }
+    listOfPoints.push_back(MapPoint(tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempLon, tempLat));
+    
     return std::vector<MapPoint>();
 }
