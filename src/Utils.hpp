@@ -604,11 +604,21 @@ public:
             std::cout << "Adding to empty\n";
             bottom = &next;
             next.next = &next;
+            active = &next;
         } else {
             std::cout << "Not adding to empty\n";
             next.next = bottom->next;
             bottom->next = &next;
         }
+    }
+    
+    Node<T> shiftNode() {
+        active = active->next;
+        return *active;
+    }
+    
+    T shift() {
+        return shiftNode().data;
     }
     
     void append(T const& data) {

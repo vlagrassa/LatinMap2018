@@ -31,16 +31,18 @@ int main() {
     Loop<int> testLoop;
     std::cout << "Add to test Loop\n";
     testLoop.append(1);
-    std::cout << "Printing test Loop\n";
-    std::cout << testLoop << "\n";
-    std::cout << "Add to test Loop\n";
     testLoop.append(2);
-    std::cout << "Printing test Loop\n";
-    std::cout << testLoop << "\n";
-    std::cout << "Add to test Loop\n";
     testLoop.append(3);
     std::cout << "Printing test Loop\n";
     std::cout << testLoop << "\n";
+    
+    std::cout << testLoop.shift() << "\n";
+    std::cout << testLoop.shift() << "\n";
+    std::cout << testLoop.shift() << "\n";
+    std::cout << testLoop.shift() << "\n";
+    std::cout << testLoop.shift() << "\n";
+    std::cout << "Active: " << testLoop.active->data << "\n";
+    std::cout << "Bottom: " << testLoop.bottom->data << "\n";
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
