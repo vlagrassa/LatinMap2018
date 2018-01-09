@@ -17,11 +17,30 @@ std::vector<MapPoint> buildMapPoints(std::string filename);
 int main() {
     std::cout << "Salve, munde!" << "\n";
     
-    buildMapPoints("res/map_points/Montes");
+    std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes").at(0).coords << "\n";
     
     std::vector<std::string> tempStringVector;
+    MapPoint cithaeron(sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
-    MapPoint(sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    sf::Texture defaultPoint;
+    defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
+    cithaeron.setTexture(defaultPoint);
+    cithaeron.scale(0.05, 0.05);
+    
+    std::cout << "Init test Loop\n";
+    Loop<int> testLoop;
+    std::cout << "Add to test Loop\n";
+    testLoop.append(1);
+    std::cout << "Printing test Loop\n";
+    std::cout << testLoop << "\n";
+    std::cout << "Add to test Loop\n";
+    testLoop.append(2);
+    std::cout << "Printing test Loop\n";
+    std::cout << testLoop << "\n";
+    std::cout << "Add to test Loop\n";
+    testLoop.append(3);
+    std::cout << "Printing test Loop\n";
+    std::cout << testLoop << "\n";
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
@@ -55,10 +74,6 @@ int main() {
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
     listOfScreens.push(testScreen2);
     std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
-    
-    
-    //sf::Texture defaultPoint;
-    //defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
     
     while (window.isOpen()) {
 
@@ -109,6 +124,8 @@ int main() {
             }
         }
         
+        window.draw(cithaeron);
+        
         window.display();
     }
     
@@ -130,16 +147,16 @@ std::vector<MapPoint> buildMapPoints(std::string filename) {
     while (std::getline(file, line)) {
         if (line.size() > 0) {
             if (line.at(0) == '*') {
-                std::cout << line.substr(2, std::string::npos) << "\n";
+                //std::cout << line.substr(2, std::string::npos) << "\n";
                 tempName = line.substr(2, std::string::npos);
-            } else if (line.compare(0, std::string("Location: ").size(), "Location: ")) {
-                //tempPos.x = std::stof(line.substr(std::string("Location: ").size(), line.find(",")));
-                //std::cout << "TempPos = " << tempPos.x << "\n";
+            } else if (line.compare(0, std::string("Coords: ").size(), "Coords: ")) {
+                tempCoords = line.substr(line.find(":")+1, std::string::npos);
             }
         }
         
     }
     listOfPoints.push_back(MapPoint(tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempCoords));
+    std::cout << tempCoords << ", are ";
     
-    return std::vector<MapPoint>();
+    return listOfPoints;
 }

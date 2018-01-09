@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <cstdlib>
+#include <iostream>
 
 template <class T> class Node;
 template <class T> class Stack;
@@ -577,6 +578,55 @@ private:
             strm << "  " << *n;
         }
         strm << "[End of LinkedList " <<&l << "]\n";
+        return strm;
+    };
+};
+
+template <class T> class Loop {
+public:
+    Node<T>* bottom;
+    Node<T>* active;
+    
+    Loop<T>(): bottom(0), active(0) {};
+    Loop<T>(const Loop<T>& orig) : bottom(orig.bottom), active(orig.active) {};
+    virtual ~Loop() {};
+    
+    void insert(Node<T>& next) {
+        
+    }
+    
+    void insert(T const& data) {
+        insert(*new Node<T>(data));
+    }
+    
+    void append(Node<T>& next) {
+        if (isEmpty()) {
+            std::cout << "Adding to empty\n";
+            bottom = &next;
+            next.next = &next;
+        } else {
+            std::cout << "Not adding to empty\n";
+            next.next = bottom->next;
+            bottom->next = &next;
+        }
+    }
+    
+    void append(T const& data) {
+        append(*new Node<T>(data));
+    }
+    
+    bool isEmpty() {
+        return bottom == 0;
+    }
+    
+private:
+    friend std::ostream& operator<<(std::ostream &strm, const Loop<T> &l) {
+        strm << "Loop " << &l << ":\n";
+        for (Node<T>* n = l.bottom->next; n != 0; n = n->next) {
+            strm << "  " << *n;
+            if (n->next == l.bottom->next) break;
+        }
+        strm << "[End of Loop " << &l << "]\n";
         return strm;
     };
 };
