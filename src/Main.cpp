@@ -43,6 +43,7 @@ int main() {
     std::cout << testLoop.shift() << "\n";
     std::cout << "Active: " << testLoop.active->data << "\n";
     std::cout << "Bottom: " << testLoop.bottom->data << "\n";
+    std::cout << testLoop << "\n";
     
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     

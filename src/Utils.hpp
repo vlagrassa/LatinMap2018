@@ -609,6 +609,10 @@ public:
         }
     }
     
+    void append(T const& data) {
+        append(*new Node<T>(data));
+    }
+    
     Node<T> shiftNode() {
         active = active->next;
         return *active;
@@ -618,8 +622,8 @@ public:
         return shiftNode().data;
     }
     
-    void append(T const& data) {
-        append(*new Node<T>(data));
+    void reset() {
+        active = bottom->next;
     }
     
     bool isEmpty() {
@@ -630,7 +634,7 @@ private:
     friend std::ostream& operator<<(std::ostream &strm, const Loop<T> &l) {
         strm << "Loop " << &l << ":\n";
         for (Node<T>* n = l.bottom->next; n != 0; n = n->next) {
-            strm << "  " << *n;
+            strm << ((n == l.active) ? " *" : "  ") << *n;
             if (n->next == l.bottom->next) break;
         }
         strm << "[End of Loop " << &l << "]\n";
