@@ -2,7 +2,6 @@
 #define UTILS_H
 
 #include <cstdlib>
-#include <iostream>
 
 template <class T> class Node;
 template <class T> class Stack;
@@ -601,12 +600,10 @@ public:
     
     void append(Node<T>& next) {
         if (isEmpty()) {
-            std::cout << "Adding to empty\n";
             bottom = &next;
             next.next = &next;
             active = &next;
         } else {
-            std::cout << "Not adding to empty\n";
             next.next = bottom->next;
             bottom->next = &next;
         }
