@@ -69,14 +69,12 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed) {
-                testMapScreen.moveArrows(event); //This should be folded into run or something
                 if (event.key.code == sf::Keyboard::Q) {
                     if (listOfScreens.top->hasNext()) listOfScreens.pop();
                 }
             }
+            listOfScreens.top->data.update(event);
         }
-        
-        testMapScreen.moveScroll(event); //This should be folded into run
         
         window.clear(sf::Color::White);
         

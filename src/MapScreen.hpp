@@ -28,9 +28,14 @@ public:
     }
     
     virtual ScreenMode* run(sf::Event event) {
+        moveScroll(event);
         background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, window.getSize().x, window.getSize().y));
         return checkButtons();
     };
+    
+    virtual void update(sf::Event event) {
+        if (event.type == sf::Event::KeyPressed) moveArrows(event);
+    }
     
     void moveArrows(sf::Event event) {
         if (event.key.code == sf::Keyboard::Left) {
