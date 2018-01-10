@@ -14,6 +14,9 @@
 
 std::vector<MapPoint> buildMapPoints(std::string filename);
 
+const unsigned int WINDOW_X = 1366;
+const unsigned int WINDOW_Y = 768;
+
 int main() {
     std::cout << "Salve, munde!" << "\n";
     
@@ -27,13 +30,12 @@ int main() {
     cithaeron.setTexture(defaultPoint);
     cithaeron.scale(0.05, 0.05);
     
-    sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
     
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
     sf::Sprite background;
     background.setTexture(backTexture);
-    background.setTextureRect(sf::IntRect(0, 0, 1300, 700));
     
     sf::Vector2i screenCoords(300, 50);
     
@@ -87,11 +89,15 @@ int main() {
         screenCoords.x -= 2 * ((event.mouseWheelScroll.wheel == sf::Mouse::HorizontalWheel) ? event.mouseWheelScroll.delta : 0);
         screenCoords.y -= 2 * ((event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)   ? event.mouseWheelScroll.delta : 0);
         
+        if (screenCoords.x < 0) screenCoords.x = 0;
+        if (screenCoords.y < 0) screenCoords.y = 0;
+        
+        if (screenCoords.x > backTexture.getSize().x - WINDOW_X) screenCoords.x = backTexture.getSize().x - WINDOW_X;
+        if (screenCoords.y > backTexture.getSize().y - WINDOW_Y) screenCoords.y = backTexture.getSize().y - WINDOW_Y;
+        
         window.clear(sf::Color::White);
         
-        //screenCoords.x = sf::Mouse::getPosition(window).x;
-        //screenCoords.y = sf::Mouse::getPosition(window).y;
-        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, 1366, 768));
+        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, WINDOW_X, WINDOW_Y));
         window.draw(background);
         
         if (!listOfScreens.isEmpty()) {
