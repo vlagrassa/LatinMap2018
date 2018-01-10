@@ -625,9 +625,9 @@ public:
             end = 0;
             active = 0;
         } else {
-            for (Node<T>* n = orig.end->next; n != 0; n = n->next) {
+            for (Node<T>* n = orig.getStartNode(); n != 0; n = n->next) {
                 append(new Node<T>(n));
-                if (n->next == orig.end->next) break;
+                if (n == orig.end) break;
             }
         }
     };
@@ -660,7 +660,7 @@ public:
         return shiftNode().data;
     }
     
-    Node<T> getStartNode() {
+    Node<T>& getStartNode() const {
         return *end->next;
     }
     
@@ -687,9 +687,9 @@ public:
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Loop<T> &l) {
         strm << "Loop " << &l << ":\n";
-        for (Node<T>* n = l.end->next; n != 0; n = n->next) {
+        for (Node<T>* n = &l.getStartNode(); n != 0; n = n->next) {
             strm << ((n == l.active) ? " *" : "  ") << *n;
-            if (n->next == l.end->next) break;
+            if (n == l.end) break;
         }
         strm << "[End of Loop " << &l << "]\n";
         return strm;
