@@ -33,13 +33,17 @@ int main() {
     testLoop.append(1);
     testLoop.append(2);
     testLoop.append(3);
+    testLoop.append(4);
+    testLoop.append(5);
+    testLoop.append(6);
     std::cout << "Printing test Loop\n";
     std::cout << testLoop << "\n";
     
     std::cout << testLoop.shift() << "\n";
-    std::cout << testLoop.shift() << "\n";
-    std::cout << testLoop.shift() << "\n";
-    std::cout << testLoop.shift() << "\n";
+    std::cout << "Active: " << testLoop.active->data << "\n";
+    std::cout << "Bottom: " << testLoop.bottom->data << "\n";
+    std::cout << testLoop << "\n";
+    
     std::cout << testLoop.shift() << "\n";
     std::cout << "Active: " << testLoop.active->data << "\n";
     std::cout << "Bottom: " << testLoop.bottom->data << "\n";

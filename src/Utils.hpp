@@ -606,6 +606,7 @@ public:
         } else {
             next.next = bottom->next;
             bottom->next = &next;
+            bottom = &next;
         }
     }
     
