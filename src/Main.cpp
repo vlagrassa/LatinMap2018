@@ -31,10 +31,6 @@ int main() {
     
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
-    sf::Sprite background;
-    background.setTexture(backTexture);
-    
-    sf::Vector2i screenCoords(300, 50);
     
     std::cout << "Window is " << &window << "\n";
     
@@ -42,7 +38,7 @@ int main() {
     
     ScreenMode testScreen1(window);
     ScreenMode testScreen2(window);
-    MapScreen testMapScreen(window);
+    MapScreen testMapScreen(window, &backTexture);
     
     LinkedButton testButton1(testScreen2, window);
     testButton1.setSize(sf::Vector2f(100, 50));
@@ -73,37 +69,16 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Left) {
-                    screenCoords.x -= 10;
-                }
-                if (event.key.code == sf::Keyboard::Right) {
-                    screenCoords.x += 10;
-                }
-                if (event.key.code == sf::Keyboard::Up) {
-                    screenCoords.y -= 10;
-                }
-                if (event.key.code == sf::Keyboard::Down) {
-                    screenCoords.y += 10;
-                }
+                testMapScreen.moveArrows(event); //This should be folded into run or something
                 if (event.key.code == sf::Keyboard::Q) {
                     if (listOfScreens.top->hasNext()) listOfScreens.pop();
                 }
             }
         }
         
-        screenCoords.x -= 2 * ((event.mouseWheelScroll.wheel == sf::Mouse::HorizontalWheel) ? event.mouseWheelScroll.delta : 0);
-        screenCoords.y -= 2 * ((event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)   ? event.mouseWheelScroll.delta : 0);
-        
-        if (screenCoords.x < 0) screenCoords.x = 0;
-        if (screenCoords.y < 0) screenCoords.y = 0;
-        
-        if (screenCoords.x > backTexture.getSize().x - WINDOW_X) screenCoords.x = backTexture.getSize().x - WINDOW_X;
-        if (screenCoords.y > backTexture.getSize().y - WINDOW_Y) screenCoords.y = backTexture.getSize().y - WINDOW_Y;
+        testMapScreen.moveScroll(event); //This should be folded into run
         
         window.clear(sf::Color::White);
-        
-        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, WINDOW_X, WINDOW_Y));
-        window.draw(background);
         
         if (!listOfScreens.isEmpty()) {
             ScreenMode* nextScreen = listOfScreens.top->data.run();
