@@ -660,6 +660,22 @@ public:
         return shiftNode().data;
     }
     
+    Node<T> getStartNode() {
+        return *end->next;
+    }
+    
+    T getStart() {
+        return getStartNode().data;
+    }
+    
+    T getEnd() {
+        return end->data;
+    }
+    
+    T getActive() {
+        return active->data;
+    }
+    
     void reset() {
         active = end->next;
     }
