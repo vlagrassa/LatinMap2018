@@ -55,7 +55,11 @@ public:
     ScreenMode(const ScreenMode& orig) : window(orig.window) {};
     virtual ~ScreenMode() {};
     
-    ScreenMode* run() {
+    virtual ScreenMode* run() {
+        return checkButtons;
+    };
+    
+    ScreenMode* checkButtons() {
         if (!buttons.isEmpty()) {
             for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
                 if (n->data.clicked()) {
@@ -70,7 +74,7 @@ public:
         buttons.enqueue(b);
     }
     
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
             target.draw(n->data);
         }
