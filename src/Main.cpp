@@ -14,8 +14,8 @@
 
 std::vector<MapPoint> buildMapPoints(std::string filename);
 
-const unsigned int WINDOW_X = 1366;
-const unsigned int WINDOW_Y = 768;
+const unsigned int WINDOW_X = 1300; //1366;
+const unsigned int WINDOW_Y = 650;  //768;
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
