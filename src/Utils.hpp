@@ -584,10 +584,19 @@ private:
 
 template <class T> class Loop {
 public:
-    Node<T>* bottom;
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The last Node to be added to the Loop.
+     */
+    Node<T>* end;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The current active Node in the Loop.
+     */
     Node<T>* active;
     
-    Loop<T>() : bottom(0), active(0) {};
+    Loop<T>() : end(0), active(0) {};
     
     Loop<T>(const Stack<T>& orig) {
         if (orig.isEmpty()) {
@@ -627,13 +636,13 @@ public:
     
     void append(Node<T>& next) {
         if (isEmpty()) {
-            bottom = &next;
+            end = &next;
             next.next = &next;
             active = &next;
         } else {
-            next.next = bottom->next;
-            bottom->next = &next;
-            bottom = &next;
+            next.next = end->next;
+            end->next = &next;
+            end = &next;
         }
     }
     
@@ -652,19 +661,19 @@ public:
     }
     
     void reset() {
-        active = bottom->next;
+        active = end->next;
     }
     
     bool isEmpty() {
-        return bottom == 0;
+        return end == 0;
     }
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Loop<T> &l) {
         strm << "Loop " << &l << ":\n";
-        for (Node<T>* n = l.bottom->next; n != 0; n = n->next) {
+        for (Node<T>* n = l.end->next; n != 0; n = n->next) {
             strm << ((n == l.active) ? " *" : "  ") << *n;
-            if (n->next == l.bottom->next) break;
+            if (n->next == l.end->next) break;
         }
         strm << "[End of Loop " << &l << "]\n";
         return strm;
