@@ -586,17 +586,43 @@ public:
     Node<T>* bottom;
     Node<T>* active;
     
-    Loop<T>(): bottom(0), active(0) {};
-    Loop<T>(const Loop<T>& orig) : bottom(orig.bottom), active(orig.active) {};
+    Loop<T>() : bottom(0), active(0) {};
+    
+    Loop<T>(const Stack<T>& orig) {
+        if (orig.isEmpty()) {
+            bottom = 0;
+            active = 0;
+        } else {
+            for (Node<T>* n = orig.top; n != 0; n = n->next) {
+                append(new Node<T>(n));
+            }
+        }
+    }
+    
+    Loop<T>(const Queue<T>& orig) {
+        if (orig.isEmpty()) {
+            bottom = 0;
+            active = 0;
+        } else {
+            for (Node<T>* n = orig.head; n != 0; n = n->next) {
+                append(new Node<T>(n));
+            }
+        }
+    }
+    
+    Loop<T>(const Loop<T>& orig) {
+        if (orig.isEmpty()) {
+            bottom = 0;
+            active = 0;
+        } else {
+            for (Node<T>* n = orig.bottom->next; n != 0; n = n->next) {
+                append(new Node<T>(n));
+                if (n->next == orig.bottom->next) break;
+            }
+        }
+    };
+    
     virtual ~Loop() {};
-    
-    void insert(Node<T>& next) {
-        
-    }
-    
-    void insert(T const& data) {
-        insert(*new Node<T>(data));
-    }
     
     void append(Node<T>& next) {
         if (isEmpty()) {
