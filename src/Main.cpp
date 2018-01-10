@@ -27,11 +27,6 @@ int main() {
     std::vector<std::string> tempStringVector;
     MapPoint cithaeron(window, sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
-    sf::Texture defaultPoint;
-    defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
-    cithaeron.setTexture(&defaultPoint);
-    cithaeron.scale(0.05, 0.05);
-    
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
     sf::Sprite background;
