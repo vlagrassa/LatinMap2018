@@ -600,7 +600,7 @@ public:
     
     Loop<T>(const Stack<T>& orig) {
         if (orig.isEmpty()) {
-            bottom = 0;
+            end = 0;
             active = 0;
         } else {
             for (Node<T>* n = orig.top; n != 0; n = n->next) {
@@ -611,7 +611,7 @@ public:
     
     Loop<T>(const Queue<T>& orig) {
         if (orig.isEmpty()) {
-            bottom = 0;
+            end = 0;
             active = 0;
         } else {
             for (Node<T>* n = orig.head; n != 0; n = n->next) {
@@ -622,12 +622,12 @@ public:
     
     Loop<T>(const Loop<T>& orig) {
         if (orig.isEmpty()) {
-            bottom = 0;
+            end = 0;
             active = 0;
         } else {
-            for (Node<T>* n = orig.bottom->next; n != 0; n = n->next) {
+            for (Node<T>* n = orig.end->next; n != 0; n = n->next) {
                 append(new Node<T>(n));
-                if (n->next == orig.bottom->next) break;
+                if (n->next == orig.end->next) break;
             }
         }
     };
