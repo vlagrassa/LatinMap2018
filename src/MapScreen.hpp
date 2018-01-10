@@ -27,7 +27,7 @@ public:
         ScreenMode::draw(target, states);
     }
     
-    virtual ScreenMode* run() {
+    virtual ScreenMode* run(sf::Event event) {
         background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, window.getSize().x, window.getSize().y));
         return checkButtons();
     };

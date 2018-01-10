@@ -55,8 +55,8 @@ public:
     ScreenMode(const ScreenMode& orig) : window(orig.window) {};
     virtual ~ScreenMode() {};
     
-    virtual ScreenMode* run() {
-        return checkButtons;
+    virtual ScreenMode* run(sf::Event event) {
+        return checkButtons();
     };
     
     ScreenMode* checkButtons() {

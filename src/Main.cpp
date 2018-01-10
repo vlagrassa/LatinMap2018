@@ -81,7 +81,7 @@ int main() {
         window.clear(sf::Color::White);
         
         if (!listOfScreens.isEmpty()) {
-            ScreenMode* nextScreen = listOfScreens.top->data.run();
+            ScreenMode* nextScreen = listOfScreens.top->data.run(event);
             if (nextScreen == 0) {
                 listOfScreens.pop();
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";
