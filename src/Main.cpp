@@ -12,7 +12,7 @@
 #include "Utils.hpp"
 #include "ScreenMode.hpp"
 
-std::vector<MapPoint> buildMapPoints(std::string filename);
+std::vector<MapPoint> buildMapPoints(std::string filename, sf::Window& window);
 
 const unsigned int WINDOW_X = 1300; //1366;
 const unsigned int WINDOW_Y = 650;  //768;
@@ -20,17 +20,17 @@ const unsigned int WINDOW_Y = 650;  //768;
 int main() {
     std::cout << "Salve, munde!" << "\n";
     
-    std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes").at(0).coords << "\n";
+    sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
+    
+    std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
     std::vector<std::string> tempStringVector;
-    MapPoint cithaeron(sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    MapPoint cithaeron(window, sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
     sf::Texture defaultPoint;
     defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
     cithaeron.setTexture(&defaultPoint);
     cithaeron.scale(0.05, 0.05);
-    
-    sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
     
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
@@ -123,7 +123,7 @@ int main() {
     std::cout << "\n\n" << listOfScreens << "\n";
 }
 
-std::vector<MapPoint> buildMapPoints(std::string filename) {
+std::vector<MapPoint> buildMapPoints(std::string filename, sf::Window& window) {
     std::fstream                file(filename);
     std::string                 line;
     std::vector<MapPoint>       listOfPoints;
@@ -146,7 +146,7 @@ std::vector<MapPoint> buildMapPoints(std::string filename) {
         }
         
     }
-    listOfPoints.push_back(MapPoint(tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempCoords));
+    listOfPoints.push_back(MapPoint(window, tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempCoords));
     std::cout << tempCoords << ", are ";
     
     return listOfPoints;

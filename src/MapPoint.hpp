@@ -19,27 +19,29 @@ public:
 
 class MapPoint : public LinkedButton {
 public:
-    MapPoint(int                        x,
+    MapPoint(sf::Window&                window,
+            int                         x,
             int                         y,
             std::string                 name,
             std::vector<std::string>    altnames,
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : LinkedButton(*new ScreenMode(PointScreen(*new sf::Window())), *new sf::Window()), //This needs an actual window - probably passed as parameters
+    ) : LinkedButton(*new ScreenMode(PointScreen(window)), window),
             name(name), altNames(altnames), description(desc), events(events), coords("") {
         setPosition(x, y);
     };
     
-    MapPoint(sf::Vector2f               pos,
+    MapPoint(sf::Window&                window,
+            sf::Vector2f                pos,
             std::string                 name,
             std::vector<std::string>    altnames,
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : MapPoint(pos.x, pos.y, name, altnames, desc, events, coords) {};
+    ) : MapPoint(window, pos.x, pos.y, name, altnames, desc, events, coords) {};
     
-    MapPoint(const MapPoint& orig) : LinkedButton(*new ScreenMode(PointScreen(*new sf::Window())), *new sf::Window()), //Same as above, this needs a window
+    MapPoint(const MapPoint& orig) : LinkedButton(*new ScreenMode(PointScreen(orig.window)), orig.window),
     name(orig.name), description(orig.description), coords(orig.coords) {};
     
     virtual ~MapPoint() {};
