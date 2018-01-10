@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "Utils.hpp"
 #include "ScreenMode.hpp"
-#include "MapScreens.hpp"
+#include "MapScreen.hpp"
 
 class PointScreen;
 class MapPoint;

@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 
-#include "MapScreens.hpp"
+#include "MapScreen.hpp"
 #include "MapPoint.hpp"
 #include "Utils.hpp"
