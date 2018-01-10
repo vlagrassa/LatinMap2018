@@ -7,6 +7,7 @@ template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
 template <class T> class LinkedList;
+template <class T> class Loop;
 template <class T> class ActiveVector;
 
 template <class T> class Node {
