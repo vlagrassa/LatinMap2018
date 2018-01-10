@@ -4,8 +4,20 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "Utils.hpp"
+#include "ScreenMode.hpp"
+#include "MapScreens.hpp"
 
-class MapPoint : public sf::Sprite {
+class PointScreen;
+class MapPoint;
+
+class PointScreen : public ScreenMode {
+public:
+    PointScreen(sf::Window& window) : ScreenMode(window) {};
+    PointScreen(const PointScreen& orig) : ScreenMode(orig) {};
+    virtual ~PointScreen() {};
+};
+
+class MapPoint : public LinkedButton {
 public:
     MapPoint(int                        x,
             int                         y,
@@ -14,7 +26,8 @@ public:
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : name(name), altNames(altnames), description(desc), events(events), coords("") {
+    ) : LinkedButton(*new ScreenMode(PointScreen(*new sf::Window())), *new sf::Window()), //This needs an actual window - probably passed as parameters
+            name(name), altNames(altnames), description(desc), events(events), coords("") {
         setPosition(x, y);
     };
     
@@ -26,7 +39,8 @@ public:
             std::string                 coords
     ) : MapPoint(pos.x, pos.y, name, altnames, desc, events, coords) {};
     
-    MapPoint(const MapPoint& orig) : name(orig.name), description(orig.description), coords(orig.coords) {};
+    MapPoint(const MapPoint& orig) : LinkedButton(*new ScreenMode(PointScreen(*new sf::Window())), *new sf::Window()), //Same as above, this needs a window
+    name(orig.name), description(orig.description), coords(orig.coords) {};
     
     virtual ~MapPoint() {};
     

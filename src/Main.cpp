@@ -27,7 +27,7 @@ int main() {
     
     sf::Texture defaultPoint;
     defaultPoint.loadFromFile("res/x.jpg"); //Image from https://www.freepik.com/free-icon/x-circle_692346.htm
-    cithaeron.setTexture(defaultPoint);
+    cithaeron.setTexture(&defaultPoint);
     cithaeron.scale(0.05, 0.05);
     
     sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
