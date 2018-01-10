@@ -8,6 +8,7 @@
 #include "ScreenMode.hpp"
 
 class MapScreen : public ScreenMode {
+public:
     MapScreen(sf::Window& window) : ScreenMode(window) {};
     MapScreen(const MapScreen& orig) : ScreenMode(orig) {};
     virtual ~MapScreen() {};
