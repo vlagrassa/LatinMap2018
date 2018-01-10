@@ -27,25 +27,6 @@ int main() {
     cithaeron.setTexture(defaultPoint);
     cithaeron.scale(0.05, 0.05);
     
-    std::cout << "Init test Loop\n";
-    Loop<int> testLoop;
-    std::cout << "Add to test Loop\n";
-    testLoop.append(1);
-    testLoop.append(2);
-    testLoop.append(3);
-    testLoop.append(4);
-    testLoop.append(5);
-    testLoop.append(6);
-    std::cout << "Printing test Loop\n";
-    std::cout << testLoop << "\n";
-    
-    std::cout << testLoop.shift() << "\n";
-    std::cout << testLoop.shift() << "\n";
-    std::cout << testLoop.shift() << "\n";
-    testLoop.reset();
-    std::cout << testLoop.active->data << "\n";
-    
-    
     sf::RenderWindow window(sf::VideoMode(1366, 768), "Latin Map Project");
     
     sf::Texture backTexture;
