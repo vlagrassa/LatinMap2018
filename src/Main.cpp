@@ -11,6 +11,7 @@
 #include "MapPoint.hpp"
 #include "Utils.hpp"
 #include "ScreenMode.hpp"
+#include "MapScreen.hpp"
 
 std::vector<MapPoint> buildMapPoints(std::string filename, sf::Window& window);
 
@@ -40,6 +41,7 @@ int main() {
     
     ScreenMode testScreen1(window);
     ScreenMode testScreen2(window);
+    MapScreen testMapScreen(window);
     
     LinkedButton testButton1(testScreen2, window);
     testButton1.setSize(sf::Vector2f(100, 50));
@@ -52,10 +54,13 @@ int main() {
     testScreen1.addButton(testButton1);
     testScreen2.addButton(testButton2);
     
+    testMapScreen.addButton(cithaeron);
+    
     listOfScreens.push(testScreen1);
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
     listOfScreens.push(testScreen2);
     std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
+    listOfScreens.push(testMapScreen);
     
     while (window.isOpen()) {
 
@@ -109,8 +114,6 @@ int main() {
                 window.draw(n->data);
             }
         }
-        
-        window.draw(cithaeron);
         
         window.display();
     }
