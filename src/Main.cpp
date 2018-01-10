@@ -26,7 +26,8 @@ int main() {
     std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
     std::vector<std::string> tempStringVector;
-    MapPoint cithaeron(window, sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    MapPoint cithaeron1(window, sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    MapPoint cithaeron2(window, sf::Vector2f(350, 100), "Cithaeron 2.0", tempStringVector, "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
@@ -54,7 +55,8 @@ int main() {
     testScreen1.addButton(testButton1);
     testScreen2.addButton(testButton2);
     
-    testMapScreen.addButton(cithaeron);
+    testMapScreen.addButton(cithaeron1);
+    testMapScreen.addButton(cithaeron2);
     
     listOfScreens.push(testScreen1);
     std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
@@ -82,6 +84,9 @@ int main() {
                 }
                 if (event.key.code == sf::Keyboard::Down) {
                     screenCoords.y += 10;
+                }
+                if (event.key.code == sf::Keyboard::Q) {
+                    if (listOfScreens.top->hasNext()) listOfScreens.pop();
                 }
             }
         }
