@@ -642,8 +642,9 @@ public:
     }
     
     Node<T> shiftNode() {
+        Node<T> temp = *active;
         active = active->next;
-        return *active;
+        return temp;
     }
     
     T shift() {
