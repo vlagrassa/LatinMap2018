@@ -51,9 +51,10 @@ class ScreenMode : public sf::Drawable {
 public:
     Queue<LinkedButton&> buttons;
     sf::Window& window;
+    bool showPrevious;
     
-    ScreenMode(sf::Window& window) : window(window) {};
-    ScreenMode(const ScreenMode& orig) : window(orig.window) {};
+    ScreenMode(sf::Window& window) : window(window), showPrevious(false) {};
+    ScreenMode(const ScreenMode& orig) : window(orig.window), showPrevious(false) {};
     virtual ~ScreenMode() {};
     
     virtual ScreenMode* run(sf::Event event) {

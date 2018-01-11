@@ -45,6 +45,12 @@ int main() {
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
     
+//    sf::Font courier;
+//    courier.loadFromFile("res/Courier.dfont");
+//    sf::Text testText;
+//    testText.setFont(courier);
+//    testText.setColor(sf::Color::Red);
+    
     while (window.isOpen()) {
 
         sf::Event event;
@@ -73,8 +79,20 @@ int main() {
                 std::cout << "Added screen:\n" << listOfScreens << "\n";
             }
             
+            /*
+            Stack<ScreenMode&> drawStack(listOfScreens.top);
+            for (Node<ScreenMode&>* tempNode = listOfScreens.top; tempNode != 0 && tempNode->data.showPrevious; tempNode = tempNode->next) {
+                drawStack.push(*tempNode);
+                tempNode = tempNode->next;
+            }
+            while (!drawStack.isEmpty()) {
+                window.draw(drawStack.pop());
+            }
+            */
             window.draw(*nextScreen);
         }
+        
+        //window.draw(testText);
         
         window.display();
     }

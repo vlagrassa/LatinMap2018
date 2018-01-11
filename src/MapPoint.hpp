@@ -12,8 +12,14 @@ class MapPoint;
 
 class PointScreen : public ScreenMode {
 public:
-    PointScreen(sf::Window& window) : ScreenMode(window) {};
-    PointScreen(const PointScreen& orig) : ScreenMode(orig) {};
+    PointScreen(sf::Window& window) : ScreenMode(window) {
+        showPrevious = true;
+    };
+    
+    PointScreen(const PointScreen& orig) : ScreenMode(orig) {
+        showPrevious = true;
+    };
+    
     virtual ~PointScreen() {};
 };
 
