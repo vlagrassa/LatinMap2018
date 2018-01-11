@@ -50,6 +50,7 @@ public:
 class ScreenMode : public sf::Drawable {
 public:
     Queue<LinkedButton&> buttons;
+    std::vector<sf::Text> displayText;
     sf::Window& window;
     bool showPrevious;
     
@@ -76,7 +77,17 @@ public:
         buttons.enqueue(b);
     }
     
+    void addText(std::string text, sf::Font& font) {
+        sf::Text temp(text, font);
+        temp.setColor(sf::Color::Green);
+        displayText.push_back(temp);
+        
+    }
+    
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        for (sf::Text t : displayText) {
+            target.draw(t);
+        }
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
             target.draw(n->data);
         }

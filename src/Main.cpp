@@ -30,6 +30,13 @@ int main() {
     std::cout << "The first one @ (" << cithaeron1.getPosition().x << ", " << cithaeron1.getPosition().y << ")\n";
     MapPoint cithaeron2(window, sf::Vector2f(350, 100), "Cithaeron 2.0", tempStringVector, "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
+    sf::Font courier;
+    courier.loadFromFile("res/Courier.dfont");
+    sf::Text testText("test", courier);
+    testText.setColor(sf::Color::Red);
+    
+    cithaeron1.link.addText(cithaeron1.name, courier);
+    
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
     
@@ -44,12 +51,6 @@ int main() {
     
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
-    
-//    sf::Font courier;
-//    courier.loadFromFile("res/Courier.dfont");
-//    sf::Text testText;
-//    testText.setFont(courier);
-//    testText.setColor(sf::Color::Red);
     
     while (window.isOpen()) {
 
