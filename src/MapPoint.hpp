@@ -21,6 +21,11 @@ public:
     };
     
     virtual ~PointScreen() {};
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        ScreenMode::draw(target, states);
+    };
+
 };
 
 class MapPoint : public LinkedButton {
