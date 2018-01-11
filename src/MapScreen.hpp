@@ -38,17 +38,21 @@ public:
     }
     
     void moveArrows(sf::Event event) {
-        if (event.key.code == sf::Keyboard::Left) {
-            moveX(-10);
-        }
-        if (event.key.code == sf::Keyboard::Right) {
-            moveX(10);
-        }
-        if (event.key.code == sf::Keyboard::Up) {
-            moveY(-10);
-        }
-        if (event.key.code == sf::Keyboard::Down) {
-            moveY(10);
+        switch (event.key.code) {
+            case (sf::Keyboard::Left):
+                moveX(-10);
+                break;
+            case (sf::Keyboard::Right):
+                moveX(10);
+                break;
+            case (sf::Keyboard::Up):
+                moveY(-10);
+                break;
+            case (sf::Keyboard::Down):
+                moveY(10);
+                break;
+            default:
+                break;
         }
     }
     
