@@ -67,9 +67,14 @@ public:
     }
     
     void moveX(int dist) {
-        screenCoords.x += dist;
-        if (screenCoords.x < 0) screenCoords.x = 0;
-        if (screenCoords.x > background.getTexture()->getSize().x - window.getSize().x) screenCoords.x = background.getTexture()->getSize().x - window.getSize().x;
+        int temp = dist;
+        if (screenCoords.x + temp < 0) temp = screenCoords.x;
+        if (screenCoords.x + temp > background.getTexture()->getSize().x - window.getSize().x) temp = (background.getTexture()->getSize().x - window.getSize().x) - screenCoords.x;
+        
+        screenCoords.x += temp;
+        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+            n->data.move(-temp, 0);
+        }
     }
     
     void moveY(int dist) {
