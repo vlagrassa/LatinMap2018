@@ -36,10 +36,10 @@ public:
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : LinkedButton(pos, *new ScreenMode(PointScreen(window)), window),
+    ) : LinkedButton(pos, *new PointScreen(window), window),
         name(name), altNames(altnames), description(desc), events(events), coords("") {};
     
-    MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new ScreenMode(PointScreen(orig.window)), orig.window),
+    MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen(orig.window), orig.window),
     name(orig.name), description(orig.description), coords(orig.coords) {};
     
     virtual ~MapPoint() {};
