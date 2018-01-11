@@ -59,9 +59,7 @@ public:
         return checkButtons();
     };
     
-    virtual void update(sf::Event) {
-        
-    };
+    virtual void update(sf::Event) {};
     
     ScreenMode* checkButtons() {
         if (!buttons.isEmpty()) {
