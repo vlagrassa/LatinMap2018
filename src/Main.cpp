@@ -32,25 +32,9 @@ int main() {
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
     
-    std::cout << "Window is " << &window << "\n";
-    
     Stack<ScreenMode&> listOfScreens;
     
-    ScreenMode testScreen1(window);
-    ScreenMode testScreen2(window);
     MapScreen testMapScreen(window, &backTexture);
-    
-    LinkedButton testButton1(testScreen2, window);
-    testButton1.setSize(sf::Vector2f(100, 50));
-    testButton1.setOutlineColor(sf::Color::Cyan);
-    testButton1.setOutlineThickness(5);
-    testButton1.setPosition(250, 250);
-    
-    LinkedButton testButton2(0, window);
-    
-    testScreen1.addButton(testButton1);
-    testScreen2.addButton(testButton2);
-    
     testMapScreen.addButton(cithaeron1);
     testMapScreen.addButton(cithaeron2);
     
