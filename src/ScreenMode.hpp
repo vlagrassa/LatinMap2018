@@ -14,28 +14,29 @@ public:
     ScreenMode& link;
     sf::Window& window;
     
-    LinkedButton(ScreenMode& link, sf::Window& window) : link(link), window(window) {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Red);
-        setOutlineThickness(5);
-        setPosition(10, 20);
+    LinkedButton(sf::Vector2f location, ScreenMode& link, sf::Window& window) : link(link), window(window) {
+        setPosition(location);
     };
     
-    LinkedButton(ScreenMode* link, sf::Window& window) : link(*link), window(window) {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Cyan);
-        setOutlineThickness(5);
-        setPosition(350, 20);
-    }
+    LinkedButton(sf::RectangleShape& orig, ScreenMode& link, sf::Window& window) : sf::RectangleShape(orig), link(link), window(window) {};
+    
+    LinkedButton(sf::Vector2f location, ScreenMode* link, sf::Window& window) : link(*link), window(window) {
+        setPosition(location);
+    };
+    
+    LinkedButton(sf::RectangleShape& orig, ScreenMode* link, sf::Window& window) : sf::RectangleShape(orig), link(*link), window(window) {};
     
     LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window) {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Green);
-        setOutlineThickness(5);
-        setPosition(10, 20);
+        setPosition(orig.getPosition());
     };
     
     virtual ~LinkedButton() {};
+    
+    void setDefaultLook() {
+        setSize(sf::Vector2f(100, 50));
+        setOutlineColor(sf::Color::Green);
+        setOutlineThickness(5);
+    }
     
     bool touchingMouse() {
         return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);

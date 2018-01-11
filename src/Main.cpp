@@ -27,7 +27,11 @@ int main() {
     
     std::vector<std::string> tempStringVector;
     MapPoint cithaeron1(window, sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    std::cout << "The first one @ (" << cithaeron1.getPosition().x << ", " << cithaeron1.getPosition().y << ")\n";
     MapPoint cithaeron2(window, sf::Vector2f(350, 100), "Cithaeron 2.0", tempStringVector, "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    
+    cithaeron1.setDefaultLook();
+    cithaeron2.setDefaultLook();
     
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");

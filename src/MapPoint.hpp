@@ -27,10 +27,7 @@ public:
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : LinkedButton(*new ScreenMode(PointScreen(window)), window),
-            name(name), altNames(altnames), description(desc), events(events), coords("") {
-        setPosition(x, y);
-    };
+    ) : MapPoint(window, sf::Vector2f(x, y), name, altnames, desc, events, coords) {};
     
     MapPoint(sf::Window&                window,
             sf::Vector2f                pos,
@@ -39,9 +36,10 @@ public:
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : MapPoint(window, pos.x, pos.y, name, altnames, desc, events, coords) {};
+    ) : LinkedButton(pos, *new ScreenMode(PointScreen(window)), window),
+        name(name), altNames(altnames), description(desc), events(events), coords("") {};
     
-    MapPoint(const MapPoint& orig) : LinkedButton(*new ScreenMode(PointScreen(orig.window)), orig.window),
+    MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new ScreenMode(PointScreen(orig.window)), orig.window),
     name(orig.name), description(orig.description), coords(orig.coords) {};
     
     virtual ~MapPoint() {};
