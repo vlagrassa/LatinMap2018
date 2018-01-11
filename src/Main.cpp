@@ -56,13 +56,17 @@ int main() {
         sf::Event event;
         
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Q) {
-                    if (listOfScreens.top->hasNext()) listOfScreens.pop();
-                }
+            switch (event.type) {
+                case (sf::Event::Closed):
+                    window.close();
+                    break;
+                case (sf::Event::KeyPressed):
+                    if (event.key.code == sf::Keyboard::Q) {
+                        if (listOfScreens.top->hasNext()) listOfScreens.pop();
+                    }
+                    break;
+                default:
+                    break;
             }
             listOfScreens.top->data.update(event);
         }
