@@ -54,11 +54,8 @@ int main() {
     testMapScreen.addButton(cithaeron1);
     testMapScreen.addButton(cithaeron2);
     
-    listOfScreens.push(testScreen1);
-    std::cout << "Pushing screen 1:\n" << listOfScreens << "\n";
-    listOfScreens.push(testScreen2);
-    std::cout << "Pushing screen 2:\n" << listOfScreens << "\n";
     listOfScreens.push(testMapScreen);
+    std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
     
     while (window.isOpen()) {
 
@@ -88,9 +85,7 @@ int main() {
                 std::cout << "Added screen:\n" << listOfScreens << "\n";
             }
             
-            for (Node<LinkedButton&>* n = listOfScreens.top->data.buttons.head; n != 0; n = n->next) {
-                window.draw(n->data);
-            }
+            window.draw(*nextScreen);
         }
         
         window.display();
