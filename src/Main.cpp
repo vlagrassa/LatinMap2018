@@ -32,10 +32,8 @@ int main() {
     
     sf::Font courier;
     courier.loadFromFile("res/Courier.dfont");
-    sf::Text testText("test", courier);
-    testText.setColor(sf::Color::Red);
     
-    cithaeron1.link.addText(cithaeron1.name, courier);
+    cithaeron1.link.addText(cithaeron1.name, courier, sf::Vector2f(100, 100), sf::Color::Green);
     
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
