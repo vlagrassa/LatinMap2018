@@ -77,8 +77,9 @@ public:
         buttons.enqueue(b);
     }
     
-    void addText(std::string text, sf::Font& font, sf::Vector2f pos, sf::Color color) {
+    void addText(std::string text, sf::Font& font, sf::Vector2f pos, unsigned int size = 35, sf::Color color = sf::Color::Black) {
         sf::Text temp(text, font);
+        temp.setCharacterSize(size);
         temp.setPosition(pos);
         temp.setColor(color);
         displayText.push_back(temp);
