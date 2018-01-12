@@ -46,10 +46,10 @@ public:
                 moveX(10);
                 break;
             case (sf::Keyboard::Up):
-                moveY(-10);
+                moveY(-20);
                 break;
             case (sf::Keyboard::Down):
-                moveY(10);
+                moveY(20);
                 break;
             default:
                 break;
@@ -60,7 +60,7 @@ public:
         moveX(-2 * ((event.mouseWheelScroll.wheel == sf::Mouse::HorizontalWheel) ? event.mouseWheelScroll.delta : 0));
         moveY(-2 * ((event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)   ? event.mouseWheelScroll.delta : 0));
     }
-    
+        
     void move(int x, int y) {
         moveX(x);
         moveY(y);
