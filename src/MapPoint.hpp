@@ -30,18 +30,12 @@ public:
 
 class MapPoint : public LinkedButton {
 public:
-    MapPoint(sf::Window&                window,
+    MapPoint(std::string                name,
+            sf::Window&                 window,
             sf::Font&                   font,
-            sf::Vector2f                pos,
-            std::string                 names,
-            std::string                 desc,
-            std::vector<std::string>    events,
-            std::string                 coords
-    ) : LinkedButton(pos, *new PointScreen(window), window),
-        name(names.substr(0, names.find('|'))),
-        altNames(names.substr(names.find('|')+1, std::string::npos)),
-        description(desc), events(events), coords(coords)
-    {
+            sf::Vector2f                pos
+            
+    ) : LinkedButton(pos, *new PointScreen(window), window), name(name) {
         this->link.addText(name, font, sf::Vector2f(100, 200), sf::Color::Blue);
     };
     
@@ -73,24 +67,24 @@ public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * Alternate names for the location.
      */
-    const std::string altNames;
+    std::string altNames;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The main text description to display.
      */
-    const std::string description;
+    std::string description;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * List of notable events involving the
      * location.
      */
-    const std::vector<std::string> events;
+    std::vector<std::string> events;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The real-world longitude and latitude
      * coordinates.
      */
-    const std::string coords;
+    std::string coords;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * Whether to render based on filters.

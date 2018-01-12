@@ -28,11 +28,8 @@ int main() {
     
     //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
-    std::vector<std::string> tempStringVector;
-    tempStringVector.push_back("hi");
-    
-    MapPoint cithaeron1(window, courier, sf::Vector2f(20, 20), "Mons Cithaeron | Mount Cithaeron | Mount Kithairon | Κιθαιρών", "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
-    MapPoint cithaeron2(window, courier, sf::Vector2f(350, 100), "Mons Cithaeron 2.0 | Mount Cithaeron | Mount Kithairon | Κιθαιρών", "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    MapPoint cithaeron1("Mons Cithaeron", window, courier, sf::Vector2f(20, 20));
+    MapPoint cithaeron2("Mount Kithairon", window, courier, sf::Vector2f(350, 100));
     
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
