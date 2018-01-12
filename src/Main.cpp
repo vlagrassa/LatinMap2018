@@ -28,8 +28,8 @@ int main() {
     
     //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
-    MapPoint cithaeron1("Mons Cithaeron", window, courier, sf::Vector2f(20, 20));
-    MapPoint cithaeron2("Mount Kithairon", window, courier, sf::Vector2f(1200, 600));
+    MapPoint cithaeron1("Mons Cithaeron", window, courier, sf::Vector2f(20, 20), mons);
+    MapPoint cithaeron2("Mount Kithairon", window, courier, sf::Vector2f(1200, 600), mons);
     
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();

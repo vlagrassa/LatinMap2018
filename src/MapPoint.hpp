@@ -17,6 +17,17 @@ struct MapPointNames {
     std::string alternate;
 };
 
+enum MapPointType {
+    flumen,
+    insula,
+    mare,
+    mons,
+    provincia,
+    regio,
+    urbs,
+    via
+};
+
 class PointScreen : public ScreenMode {
 public:
     sf::RectangleShape popup;
@@ -53,7 +64,8 @@ public:
     MapPoint(std::string                name,
             sf::Window&                 window,
             sf::Font&                   font,
-            sf::Vector2f                pos
+            sf::Vector2f                pos,
+            MapPointType                type
             
     ) : LinkedButton(pos, *new PointScreen(window), window) {
         names.latin = name;
@@ -106,6 +118,8 @@ public:
      * Whether to render based on filters.
      */
     bool display;
+    
+    MapPointType type;
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const MapPoint& p) {
