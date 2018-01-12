@@ -29,7 +29,7 @@ int main() {
     //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
     MapPoint cithaeron1("Mons Cithaeron", window, courier, sf::Vector2f(20, 20));
-    MapPoint cithaeron2("Mount Kithairon", window, courier, sf::Vector2f(350, 100));
+    MapPoint cithaeron2("Mount Kithairon", window, courier, sf::Vector2f(1200, 600));
     
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
@@ -81,13 +81,16 @@ int main() {
             /*
             Stack<ScreenMode&> drawStack(listOfScreens.top);
             for (Node<ScreenMode&>* tempNode = listOfScreens.top; tempNode != 0 && tempNode->data.showPrevious; tempNode = tempNode->next) {
-                drawStack.push(*tempNode);
-                tempNode = tempNode->next;
+                drawStack.push(*new Node<ScreenMode&>(*tempNode));
+                std::cout << drawStack << "\n";
+                break;
+                
             }
             while (!drawStack.isEmpty()) {
                 window.draw(drawStack.pop());
             }
             */
+            if (nextScreen->showPrevious) {window.draw(listOfScreens.top->next->data);}
             window.draw(*nextScreen);
         }
         
