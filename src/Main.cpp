@@ -34,9 +34,6 @@ int main() {
     MapPoint cithaeron1(window, courier, sf::Vector2f(20, 20), "Mons Cithaeron | Mount Cithaeron | Mount Kithairon | Κιθαιρών", "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     MapPoint cithaeron2(window, courier, sf::Vector2f(350, 100), "Mons Cithaeron 2.0 | Mount Cithaeron | Mount Kithairon | Κιθαιρών", "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
-    cithaeron1.link.addText(cithaeron1.name, courier, sf::Vector2f(100, 100), sf::Color::Green);
-    cithaeron2.link.addText(cithaeron2.name, courier, sf::Vector2f(100, 100), sf::Color::Green);
-    
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
     

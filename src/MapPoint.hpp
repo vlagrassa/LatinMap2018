@@ -31,7 +31,7 @@ public:
 class MapPoint : public LinkedButton {
 public:
     MapPoint(sf::Window&                window,
-            sf::Font                    font,
+            sf::Font&                   font,
             int                         x,
             int                         y,
             std::string                 names,
@@ -41,7 +41,7 @@ public:
     ) : MapPoint(window, font, sf::Vector2f(x, y), names, desc, events, coords) {};
     
     MapPoint(sf::Window&                window,
-            sf::Font                    font,
+            sf::Font&                   font,
             sf::Vector2f                pos,
             std::string                 names,
             std::string                 desc,
@@ -52,7 +52,7 @@ public:
         altNames(names.substr(names.find('|')+1, std::string::npos)),
         description(desc), events(events), coords(coords)
     {
-        
+        this->link.addText(name, font, sf::Vector2f(100, 200), sf::Color::Blue);
     };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen(orig.window), orig.window),
