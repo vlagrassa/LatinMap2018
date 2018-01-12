@@ -81,7 +81,7 @@ public:
         sf::Text temp(text, font);
         temp.setCharacterSize(size);
         temp.setPosition(pos);
-        temp.setColor(color);
+        temp.setFillColor(color);
         displayText.push_back(temp);
         
     }
