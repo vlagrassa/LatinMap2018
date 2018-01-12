@@ -118,10 +118,10 @@ public:
         top = 0;
         Stack<T> temp;
         for (Node<T>* n = orig.top; n != 0; n = n->next) {
-            temp.push(*(new Node<T>(n)));
+            temp.push(*(new Node<T>(*n)));
         }
         for (Node<T>* n = temp.top; n != 0; n = n->next) {
-            push(n);
+            push(*n);
         }
     };
     
