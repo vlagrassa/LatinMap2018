@@ -19,19 +19,32 @@ struct MapPointNames {
 
 class PointScreen : public ScreenMode {
 public:
+    sf::RectangleShape popup;
+    
     PointScreen(sf::Window& window) : ScreenMode(window) {
+        initPopup();
         showPrevious = true;
     };
     
     PointScreen(const PointScreen& orig) : ScreenMode(orig) {
+        initPopup();
         showPrevious = true;
     };
     
     virtual ~PointScreen() {};
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        target.draw(popup);
         ScreenMode::draw(target, states);
     };
+    
+private:
+    void initPopup() {
+        popup.setPosition(105, 105);
+        popup.setSize(sf::Vector2f(window.getSize().x - 205, window.getSize().y - 205));
+        popup.setOutlineColor(sf::Color::Black);
+        popup.setOutlineThickness(5);
+    }
 
 };
 
