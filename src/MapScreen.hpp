@@ -29,7 +29,7 @@ public:
     
     virtual ScreenMode* run(sf::Event event) {
         moveScroll(event);
-        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, window.getSize().x, window.getSize().y));
+        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, static_cast<signed>(window.getSize().x), static_cast<signed>(window.getSize().y)));
         return checkButtons();
     };
     
@@ -68,8 +68,10 @@ public:
     
     void moveX(int dist) {
         int temp = dist;
-        if (screenCoords.x + temp <= 0) temp = 0 - screenCoords.x;
-        if (screenCoords.x + temp > background.getTexture()->getSize().x - window.getSize().x) temp = (background.getTexture()->getSize().x - window.getSize().x) - screenCoords.x;
+        if (screenCoords.x + temp <= 0)
+            temp = 0 - screenCoords.x;
+        if (screenCoords.x + temp > static_cast<signed>(background.getTexture()->getSize().x - window.getSize().x))
+            temp = static_cast<signed>(background.getTexture()->getSize().x - window.getSize().x) - screenCoords.x;
         
         screenCoords.x += temp;
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
@@ -79,8 +81,10 @@ public:
     
     void moveY(int dist) {
         int temp = dist;
-        if (screenCoords.y + temp < 0) temp = 0 - screenCoords.y;
-        if (screenCoords.y + temp > background.getTexture()->getSize().y - window.getSize().y) temp = (background.getTexture()->getSize().y - window.getSize().y) - screenCoords.y;
+        if (screenCoords.y + temp < 0)
+            temp = 0 - screenCoords.y;
+        if (screenCoords.y + temp > static_cast<signed>(background.getTexture()->getSize().y - window.getSize().y))
+            temp = static_cast<signed>(background.getTexture()->getSize().y - window.getSize().y) - screenCoords.y;
         
         screenCoords.y += temp;
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
