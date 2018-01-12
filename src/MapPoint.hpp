@@ -40,8 +40,8 @@ public:
     
 private:
     void initPopup() {
-        popup.setPosition(105, 105);
-        popup.setSize(sf::Vector2f(window.getSize().x - 205, window.getSize().y - 205));
+        popup.setPosition(205, 105);
+        popup.setSize(sf::Vector2f(window.getSize().x - 410, window.getSize().y - 210));
         popup.setOutlineColor(sf::Color::Black);
         popup.setOutlineThickness(5);
     }
@@ -57,7 +57,7 @@ public:
             
     ) : LinkedButton(pos, *new PointScreen(window), window) {
         names.latin = name;
-        link.addText(name, font, sf::Vector2f(110, 100), 60);
+        link.addText(name, font, sf::Vector2f(215, 100), 60);
     };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen(orig.window), orig.window),
