@@ -62,8 +62,6 @@ public:
         return checkButtons();
     };
     
-    virtual void update(sf::Event) {};
-    
     ScreenMode* checkButtons() {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
             if (n->data.clicked()) {

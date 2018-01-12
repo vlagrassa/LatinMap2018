@@ -63,7 +63,6 @@ int main() {
                 default:
                     break;
             }
-            listOfScreens.top->data.update(event);
         }
         
         window.clear(sf::Color::White);
