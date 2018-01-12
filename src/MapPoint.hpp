@@ -32,16 +32,6 @@ class MapPoint : public LinkedButton {
 public:
     MapPoint(sf::Window&                window,
             sf::Font&                   font,
-            int                         x,
-            int                         y,
-            std::string                 names,
-            std::string                 desc,
-            std::vector<std::string>    events,
-            std::string                 coords
-    ) : MapPoint(window, font, sf::Vector2f(x, y), names, desc, events, coords) {};
-    
-    MapPoint(sf::Window&                window,
-            sf::Font&                   font,
             sf::Vector2f                pos,
             std::string                 names,
             std::string                 desc,
