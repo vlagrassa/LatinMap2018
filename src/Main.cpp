@@ -23,15 +23,16 @@ int main() {
     
     sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
     
-    std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
+     sf::Font courier;
+    courier.loadFromFile("res/Courier.dfont");
+    
+    //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
     std::vector<std::string> tempStringVector;
-    MapPoint cithaeron1(window, sf::Vector2f(20, 20), "Cithaeron", tempStringVector, "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
-    std::cout << "The first one @ (" << cithaeron1.getPosition().x << ", " << cithaeron1.getPosition().y << ")\n";
-    MapPoint cithaeron2(window, sf::Vector2f(350, 100), "Cithaeron 2.0", tempStringVector, "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    tempStringVector.push_back("hi");
     
-    sf::Font courier;
-    courier.loadFromFile("res/Courier.dfont");
+    MapPoint cithaeron1(window, courier, sf::Vector2f(20, 20), "Mons Cithaeron | Mount Cithaeron | Mount Kithairon | Κιθαιρών", "This is a mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
+    MapPoint cithaeron2(window, courier, sf::Vector2f(350, 100), "Mons Cithaeron 2.0 | Mount Cithaeron | Mount Kithairon | Κιθαιρών", "This is another mountain in Greece", tempStringVector, "38°11′03″N 23°14′57″E" );
     
     cithaeron1.link.addText(cithaeron1.name, courier, sf::Vector2f(100, 100), sf::Color::Green);
     cithaeron2.link.addText(cithaeron2.name, courier, sf::Vector2f(100, 100), sf::Color::Green);
@@ -127,7 +128,7 @@ std::vector<MapPoint> buildMapPoints(std::string filename, sf::Window& window) {
         }
         
     }
-    listOfPoints.push_back(MapPoint(window, tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempCoords));
+    //listOfPoints.push_back(MapPoint(window, tempPos, tempName, tempAltNames, tempDescription, tempEvents, tempCoords));
     std::cout << tempCoords << ", are ";
     
     return listOfPoints;

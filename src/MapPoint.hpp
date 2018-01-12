@@ -31,27 +31,37 @@ public:
 class MapPoint : public LinkedButton {
 public:
     MapPoint(sf::Window&                window,
+            sf::Font                    font,
             int                         x,
             int                         y,
-            std::string                 name,
-            std::vector<std::string>    altnames,
+            std::string                 names,
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
-    ) : MapPoint(window, sf::Vector2f(x, y), name, altnames, desc, events, coords) {};
+    ) : MapPoint(window, font, sf::Vector2f(x, y), names, desc, events, coords) {};
     
     MapPoint(sf::Window&                window,
+            sf::Font                    font,
             sf::Vector2f                pos,
-            std::string                 name,
-            std::vector<std::string>    altnames,
+            std::string                 names,
             std::string                 desc,
             std::vector<std::string>    events,
             std::string                 coords
     ) : LinkedButton(pos, *new PointScreen(window), window),
-        name(name), altNames(altnames), description(desc), events(events), coords("") {};
+        name(names.substr(0, names.find('|'))),
+        altNames(names.substr(names.find('|')+1, std::string::npos)),
+        description(desc), events(events), coords(coords)
+    {
+        
+    };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen(orig.window), orig.window),
     name(orig.name), description(orig.description), coords(orig.coords) {};
+    
+//    MapPoint(sf::Window& window, sf::Vector2f pos, std::vector<std::string> strings, sf::Font font) :
+//    LinkedButton(pos, *new PointScreen(window), window),
+//    name(strings.at(0)), description(strings.at(1)), coords(strings.at(2))
+//    {};
     
     virtual ~MapPoint() {};
     
@@ -73,7 +83,7 @@ public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * Alternate names for the location.
      */
-    const std::vector<std::string> altNames;
+    const std::string altNames;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The main text description to display.
