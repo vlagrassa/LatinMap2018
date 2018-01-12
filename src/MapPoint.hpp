@@ -7,8 +7,15 @@
 #include "ScreenMode.hpp"
 #include "MapScreen.hpp"
 
+struct MapPointNames;
 class PointScreen;
 class MapPoint;
+
+struct MapPointNames {
+    std::string latin;
+    std::string english;
+    std::string alternate;
+};
 
 class PointScreen : public ScreenMode {
 public:
@@ -35,12 +42,13 @@ public:
             sf::Font&                   font,
             sf::Vector2f                pos
             
-    ) : LinkedButton(pos, *new PointScreen(window), window), name(name) {
+    ) : LinkedButton(pos, *new PointScreen(window), window) {
+        names.latin = name;
         this->link.addText(name, font, sf::Vector2f(100, 200), sf::Color::Blue);
     };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen(orig.window), orig.window),
-    name(orig.name), description(orig.description), coords(orig.coords) {};
+    description(orig.description), coords(orig.coords) {};
     
 //    MapPoint(sf::Window& window, sf::Vector2f pos, std::vector<std::string> strings, sf::Font font) :
 //    LinkedButton(pos, *new PointScreen(window), window),
@@ -53,21 +61,16 @@ public:
     
     operator std::string() const {
         std::string temp;
-        temp += name;
+        temp += names.latin;
         temp += ": ";
         temp += description;
         return temp;
     };
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * The name of the location.
+     * Struct to hold names of the location.
      */
-    const std::string name;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * Alternate names for the location.
-     */
-    std::string altNames;
+    MapPointNames names;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * The main text description to display.
