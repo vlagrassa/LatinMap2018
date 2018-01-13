@@ -22,6 +22,8 @@ int main() {
     std::cout << "Salve, munde!" << "\n";
     
     sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
+    window.setFramerateLimit(0);
+    window.setVerticalSyncEnabled(true);
     
      sf::Font courier;
     courier.loadFromFile("res/Courier.dfont");
