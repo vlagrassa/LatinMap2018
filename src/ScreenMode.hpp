@@ -44,7 +44,7 @@ public:
 
 class ScreenMode : public sf::Drawable {
 public:
-    Queue<LinkedButton&> buttons;
+    LinkedList<LinkedButton&> buttons;
     std::vector<sf::Text> displayText;
     bool showPrevious;
     
@@ -59,7 +59,7 @@ public:
     };
     
     ScreenMode* checkButtons() {
-        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             if (n->data.clicked()) {
                 return &n->data.link;
             }
@@ -68,7 +68,7 @@ public:
     };
     
     void addButton(LinkedButton& b) {
-        buttons.enqueue(b);
+        buttons.add(b);
     }
     
     void addText(std::string text, sf::Vector2f pos, unsigned int size = 35, sf::Color color = sf::Color::Black) {
@@ -84,7 +84,7 @@ public:
         for (sf::Text t : displayText) {
             target.draw(t);
         }
-        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             target.draw(n->data);
         }
     }

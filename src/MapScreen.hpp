@@ -75,7 +75,7 @@ public:
             temp = static_cast<signed>(background.getTexture()->getSize().x - DEFAULT_WINDOW.getSize().x) - screenCoords.x;
         
         screenCoords.x += temp;
-        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             n->data.outline.move(-temp, 0);
         }
     }
@@ -88,7 +88,7 @@ public:
             temp = static_cast<signed>(background.getTexture()->getSize().y - DEFAULT_WINDOW.getSize().y) - screenCoords.y;
         
         screenCoords.y += temp;
-        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             n->data.outline.move(0, -temp);
         }
     }
