@@ -13,7 +13,7 @@
 #include "ScreenMode.hpp"
 #include "MapScreen.hpp"
 
-void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination);
+void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapPoint&>& destination);
 
 const unsigned int WINDOW_X = 1300; //1366;
 const unsigned int WINDOW_Y = 650;  //768;
@@ -37,7 +37,7 @@ int main() {
     MapScreen testMapScreen(&backTexture);
     
     LinkedList<MapPoint&> testList;
-    buildMapPoints("res/map_points/Montes", testList);
+    buildMapPoints("res/map_points/Montes", mons, testList);
     
     for (Node<MapPoint&>* n = testList.first; n != NULL; n = n->next) {
         testMapScreen.addButton(n->data);
@@ -105,7 +105,7 @@ int main() {
     std::cout << "\n\n" << listOfScreens << "\n";
 }
 
-void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
+void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapPoint&>& destination) {
     std::fstream                file(filename);
     std::string                 line;
     std::string tempName;
@@ -122,7 +122,7 @@ void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
                     std::getline(file, line);
                     tempCoords.y = std::stoi(line);
                     std::cout << "Adding " << tempName << " at " << tempCoords.x << ", " << tempCoords.y << "\n";
-                    tempPoint = new MapPoint(tempName, tempCoords, mons);
+                    tempPoint = new MapPoint(tempName, tempCoords, filetype);
                     break;
                 case ('E'):
                     tempPoint->names.english = line.substr(3, std::string::npos);
