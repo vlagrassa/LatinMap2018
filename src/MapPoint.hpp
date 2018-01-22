@@ -87,6 +87,12 @@ public:
         return temp;
     };
     
+    void setText() {
+        link.addText(std::string("AKA ") + names.alternate, sf::Vector2f(215, 175));
+        link.addText(coords, sf::Vector2f(215, 225), 25);
+        link.addText(description, sf::Vector2f(250, 265));
+    }
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * Struct to hold names of the location.
      */

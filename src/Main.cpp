@@ -150,6 +150,7 @@ void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapP
                     tempPoint->events.push_back(line.substr(1, std::string::npos));
                     break;
                 case ('#'):
+                    tempPoint->setText();
                     destination.add(*tempPoint);
                     break;
                 default:
