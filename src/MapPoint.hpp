@@ -160,6 +160,12 @@ private:
             case (urbs):
                 break;
             case (via):
+                tempCircle.setRotation(180);
+                tempCircle.setPointCount(3);
+                tempCircle.setOutlineThickness(3);
+                tempCircle.setOutlineColor(sf::Color(102, 0, 0));
+                tempCircle.setFillColor(sf::Color(204, 0, 102));
+                outline = tempCircle;
                 break;
         }
     }
