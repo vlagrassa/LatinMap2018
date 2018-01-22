@@ -130,21 +130,21 @@ private:
         tempCircle.setPosition(outline.getPosition());
         switch (type) {
             case (flumen):
-                tempCircle.setPointCount(20);
-                tempCircle.setOutlineThickness(2);
-                outline = tempCircle;
-                outline.setOutlineColor(0, 0, 51);
-                outline.setFillColor(51, 153, 255);
-                break;
-            case (insula):
-                break;
-            case (mare):
                 tempCircle.setRotation(180);
                 tempCircle.setPointCount(3);
                 tempCircle.setOutlineThickness(3);
                 tempCircle.setOutlineColor(sf::Color(0, 0, 51));
                 tempCircle.setFillColor(sf::Color(51, 153, 255));
                 outline = tempCircle;
+                break;
+            case (insula):
+                break;
+            case (mare):
+                tempCircle.setPointCount(20);
+                tempCircle.setOutlineThickness(2);
+                outline = tempCircle;
+                outline.setOutlineColor(sf::Color(0, 0, 51));
+                outline.setFillColor(sf::Color(51, 153, 255));
                 break;
             case (mons):
                 tempCircle.setPointCount(3);
