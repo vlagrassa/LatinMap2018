@@ -112,31 +112,35 @@ int main() {
 void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
     std::fstream                file(filename);
     std::string                 line;
+    std::string tempName;
+    sf::Vector2f tempCoords;
     MapPoint* tempPoint;
     
     while (std::getline(file, line)) {
         if (line.size() > 0) {
-            if (line.at(0) == '*') {
-                std::string tempName = line.substr(2, line.find(":")-1);
-                std::getline(file, line);
-                float tempx = std::stoi(line);
-                std::getline(file, line);
-                float tempy = std::stoi(line);
-                std::cout << "Adding " << tempName << " at " << tempx << ", " << tempy << "\n";
-                tempPoint = new MapPoint(tempName, sf::Vector2f(tempx, tempy), mons);
-            }
-            else if (line.at(0) == '-') {
-                tempPoint->events.push_back(line.substr(1, std::string::npos));
-            }
-            else if (line.at(0) == 'D') {
-                tempPoint->description = line.substr(3, std::string::npos);
-            }
-            else if (line.at(0) == '#') {
-                destination.add(*tempPoint);
+            switch (line.at(0)) {
+                case ('*'):
+                    tempName = line.substr(2, line.find(":")-1);
+                    std::getline(file, line);
+                    tempCoords.x = std::stoi(line);
+                    std::getline(file, line);
+                    tempCoords.y = std::stoi(line);
+                    std::cout << "Adding " << tempName << " at " << tempCoords.x << ", " << tempCoords.y << "\n";
+                    tempPoint = new MapPoint(tempName, tempCoords, mons);
+                    break;
+                case ('-'):
+                    tempPoint->events.push_back(line.substr(1, std::string::npos));
+                    break;
+                case ('D'):
+                    tempPoint->description = line.substr(3, std::string::npos);
+                    break;
+                case ('#'):
+                    destination.add(*tempPoint);
+                    break;
+                default:
+                    break;
             }
         }
-        
-        
     }
     std::cout << "At the end\n" << destination << "\n";
 }
