@@ -133,12 +133,18 @@ private:
                 tempCircle.setPointCount(20);
                 tempCircle.setOutlineThickness(2);
                 outline = tempCircle;
-                outline.setOutlineColor(sf::Color::Blue);
-                outline.setFillColor(sf::Color::Cyan);
+                outline.setOutlineColor(0, 0, 51);
+                outline.setFillColor(51, 153, 255);
                 break;
             case (insula):
                 break;
             case (mare):
+                tempCircle.setRotation(180);
+                tempCircle.setPointCount(3);
+                tempCircle.setOutlineThickness(3);
+                tempCircle.setOutlineColor(sf::Color(0, 0, 51));
+                tempCircle.setFillColor(sf::Color(51, 153, 255));
+                outline = tempCircle;
                 break;
             case (mons):
                 tempCircle.setPointCount(3);
