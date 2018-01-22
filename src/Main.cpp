@@ -128,9 +128,9 @@ void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapP
                 case ('*'):
                     tempName = line.substr(2, line.find(":")-1);
                     std::getline(file, line);
-                    tempCoords.x = std::stoi(line);
+                    tempCoords.x = std::stoi(line)-10;
                     std::getline(file, line);
-                    tempCoords.y = std::stoi(line);
+                    tempCoords.y = std::stoi(line)-10;
                     std::cout << "Adding " << tempName << " at " << tempCoords.x << ", " << tempCoords.y << "\n";
                     tempPoint = new MapPoint(tempName, tempCoords, filetype);
                     break;
