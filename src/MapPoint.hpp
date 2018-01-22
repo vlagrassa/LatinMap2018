@@ -137,6 +137,7 @@ private:
         switch (type) {
             case (flumen):
                 tempCircle.setRotation(180);
+                tempCircle.move(20, 0);
                 tempCircle.setPointCount(3);
                 tempCircle.setOutlineThickness(3);
                 tempCircle.setOutlineColor(sf::Color(0, 0, 51));
