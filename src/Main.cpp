@@ -18,20 +18,21 @@ std::vector<MapPoint> buildMapPoints(std::string filename, sf::Window& window);
 const unsigned int WINDOW_X = 1300; //1366;
 const unsigned int WINDOW_Y = 650;  //768;
 
+sf::Font DEFAULT_FONT;
+sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
+
 int main() {
     std::cout << "Salve, munde!" << "\n";
     
-    sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
-    window.setFramerateLimit(0);
-    window.setVerticalSyncEnabled(true);
+    DEFAULT_WINDOW.setFramerateLimit(0);
+    DEFAULT_WINDOW.setVerticalSyncEnabled(true);
     
-     sf::Font courier;
-    courier.loadFromFile("res/Courier.dfont");
+    DEFAULT_FONT.loadFromFile("res/Courier.dfont");
     
     //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
-    MapPoint cithaeron1("Mons Cithaeron", window, courier, sf::Vector2f(20, 20), mons);
-    MapPoint cithaeron2("Mount Kithairon", window, courier, sf::Vector2f(1200, 600), mons);
+    MapPoint cithaeron1("Mons Cithaeron", DEFAULT_WINDOW, DEFAULT_FONT, sf::Vector2f(20, 20), mons);
+    MapPoint cithaeron2("Mount Kithairon", DEFAULT_WINDOW, DEFAULT_FONT, sf::Vector2f(1200, 600), mons);
     
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
@@ -41,21 +42,21 @@ int main() {
     
     Stack<ScreenMode&> listOfScreens;
     
-    MapScreen testMapScreen(window, &backTexture);
+    MapScreen testMapScreen(DEFAULT_WINDOW, &backTexture);
     testMapScreen.addButton(cithaeron1);
     testMapScreen.addButton(cithaeron2);
     
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
     
-    while (window.isOpen()) {
+    while (DEFAULT_WINDOW.isOpen()) {
 
         sf::Event event;
         
-        while (window.pollEvent(event)) {
+        while (DEFAULT_WINDOW.pollEvent(event)) {
             switch (event.type) {
                 case (sf::Event::Closed):
-                    window.close();
+                    DEFAULT_WINDOW.close();
                     break;
                 case (sf::Event::KeyPressed):
                     if (event.key.code == sf::Keyboard::Q) {
@@ -67,7 +68,7 @@ int main() {
             }
         }
         
-        window.clear(sf::Color::White);
+        DEFAULT_WINDOW.clear(sf::Color::White);
         
         if (!listOfScreens.isEmpty()) {
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
@@ -88,16 +89,16 @@ int main() {
                 
             }
             while (!drawStack.isEmpty()) {
-                window.draw(drawStack.pop());
+                DEFAULT_WINDOW.draw(drawStack.pop());
             }
             */
-            if (nextScreen->showPrevious) {window.draw(listOfScreens.top->next->data);}
-            window.draw(*nextScreen);
+            if (nextScreen->showPrevious) {DEFAULT_WINDOW.draw(listOfScreens.top->next->data);}
+            DEFAULT_WINDOW.draw(*nextScreen);
         }
         
         //window.draw(testText);
         
-        window.display();
+        DEFAULT_WINDOW.display();
     }
     
     std::cout << "\n\n" << listOfScreens << "\n";
