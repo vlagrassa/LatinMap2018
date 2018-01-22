@@ -69,7 +69,7 @@ public:
     ) : LinkedButton(pos, *new PointScreen()), type(type) {
         names.latin = name;
         link.addText(name, sf::Vector2f(215, 100), 60);
-        setDefaultLook();
+        setAppearance(type);
     };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen()),
@@ -120,6 +120,28 @@ private:
     friend std::ostream& operator<<(std::ostream &strm, const MapPoint& p) {
         return strm << p.operator std::string();
     };
+    
+    void setAppearance(MapPointType type) {
+        switch (type) {
+            case (flumen):
+                setOutlineColor(sf::Color::Cyan);
+                break;
+            case (insula):
+                break;
+            case (mare):
+                break;
+            case (mons):
+                break;
+            case (provincia):
+                break;
+            case (regio):
+                break;
+            case (urbs):
+                break;
+            case (via):
+                break;
+        }
+    }
 };
 
 #endif /* MAPPOINT_H */
