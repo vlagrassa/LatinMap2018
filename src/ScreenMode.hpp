@@ -33,12 +33,6 @@ public:
     
     virtual ~LinkedButton() {};
     
-    void setDefaultLook() {
-        //outline.setSize(sf::Vector2f(100, 50));
-        outline.setOutlineColor(sf::Color::Green);
-        outline.setOutlineThickness(5);
-    }
-    
     bool touchingMouse() {
         return outline.getGlobalBounds().contains(sf::Mouse().getPosition(DEFAULT_WINDOW).x, sf::Mouse().getPosition(DEFAULT_WINDOW).y);
     }

@@ -32,9 +32,6 @@ int main() {
     MapPoint cithaeron1("Mons Cithaeron", sf::Vector2f(20, 20), mons);
     MapPoint cithaeron2("Mount Kithairon", sf::Vector2f(1200, 600), mons);
     
-    cithaeron1.setDefaultLook();
-    cithaeron2.setDefaultLook();
-    
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
     
