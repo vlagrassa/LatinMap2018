@@ -27,7 +27,7 @@ int main() {
     DEFAULT_WINDOW.setFramerateLimit(0);
     DEFAULT_WINDOW.setVerticalSyncEnabled(true);
     
-    DEFAULT_FONT.loadFromFile("res/Courier.dfont");
+    DEFAULT_FONT.loadFromFile("res/Cochin.ttc");
     
     //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
