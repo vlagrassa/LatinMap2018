@@ -47,6 +47,10 @@ int main() {
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
     
+    sf::Text mouseCoords;
+    mouseCoords.setFont(DEFAULT_FONT);
+    mouseCoords.setFillColor(sf::Color::Black);
+    
     while (DEFAULT_WINDOW.isOpen()) {
 
         sf::Event event;
@@ -98,6 +102,12 @@ int main() {
         }
         
         //window.draw(testText);
+        mouseCoords.setString(
+            std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).x + testMapScreen.screenCoords.x)
+          + std::string(", ")
+          + std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).y + testMapScreen.screenCoords.y)
+        );
+        DEFAULT_WINDOW.draw(mouseCoords);
         
         DEFAULT_WINDOW.display();
     }
