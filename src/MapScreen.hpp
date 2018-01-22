@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include "Utils.hpp"
+#include "Defaults.hpp"
 #include "ScreenMode.hpp"
 
 class MapScreen : public ScreenMode {
@@ -12,13 +13,13 @@ public:
     sf::Sprite background;
     sf::Vector2i screenCoords;
     
-    MapScreen(sf::Window& window, const sf::Texture* texture) : ScreenMode(window) {
+    MapScreen(const sf::Texture* texture) : ScreenMode() {
         background.setTexture(*texture);
         screenCoords.x = 0;
         screenCoords.y = 0;
     };
     
-    MapScreen(const MapScreen& orig) : MapScreen(orig.window, orig.background.getTexture()) {};
+    MapScreen(const MapScreen& orig) : MapScreen(orig.background.getTexture()) {};
     
     virtual ~MapScreen() {};
     
@@ -30,7 +31,7 @@ public:
     virtual ScreenMode* run(sf::Event event) {
         moveArrows(event);
         moveScroll(event);
-        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, static_cast<signed>(window.getSize().x), static_cast<signed>(window.getSize().y)));
+        background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, static_cast<signed>(DEFAULT_WINDOW.getSize().x), static_cast<signed>(DEFAULT_WINDOW.getSize().y)));
         return checkButtons();
     };
     
@@ -67,8 +68,8 @@ public:
         int temp = dist;
         if (screenCoords.x + temp <= 0)
             temp = 0 - screenCoords.x;
-        if (screenCoords.x + temp > static_cast<signed>(background.getTexture()->getSize().x - window.getSize().x))
-            temp = static_cast<signed>(background.getTexture()->getSize().x - window.getSize().x) - screenCoords.x;
+        if (screenCoords.x + temp > static_cast<signed>(background.getTexture()->getSize().x - DEFAULT_WINDOW.getSize().x))
+            temp = static_cast<signed>(background.getTexture()->getSize().x - DEFAULT_WINDOW.getSize().x) - screenCoords.x;
         
         screenCoords.x += temp;
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
@@ -80,8 +81,8 @@ public:
         int temp = dist;
         if (screenCoords.y + temp < 0)
             temp = 0 - screenCoords.y;
-        if (screenCoords.y + temp > static_cast<signed>(background.getTexture()->getSize().y - window.getSize().y))
-            temp = static_cast<signed>(background.getTexture()->getSize().y - window.getSize().y) - screenCoords.y;
+        if (screenCoords.y + temp > static_cast<signed>(background.getTexture()->getSize().y - DEFAULT_WINDOW.getSize().y))
+            temp = static_cast<signed>(background.getTexture()->getSize().y - DEFAULT_WINDOW.getSize().y) - screenCoords.y;
         
         screenCoords.y += temp;
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {

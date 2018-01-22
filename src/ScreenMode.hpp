@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include "Utils.hpp"
+#include "Defaults.hpp"
 
 class LinkedButton;
 class ScreenMode;
@@ -12,21 +13,20 @@ class ScreenMode;
 class LinkedButton : public sf::RectangleShape {
 public:
     ScreenMode& link;
-    sf::Window& window;
     
-    LinkedButton(sf::Vector2f location, ScreenMode& link, sf::Window& window) : link(link), window(window) {
+    LinkedButton(sf::Vector2f location, ScreenMode& link) : link(link) {
         setPosition(location);
     };
     
-    LinkedButton(sf::RectangleShape& orig, ScreenMode& link, sf::Window& window) : sf::RectangleShape(orig), link(link), window(window) {};
+    LinkedButton(sf::RectangleShape& orig, ScreenMode& link) : sf::RectangleShape(orig), link(link) {};
     
-    LinkedButton(sf::Vector2f location, ScreenMode* link, sf::Window& window) : link(*link), window(window) {
+    LinkedButton(sf::Vector2f location, ScreenMode* link) : link(*link) {
         setPosition(location);
     };
     
-    LinkedButton(sf::RectangleShape& orig, ScreenMode* link, sf::Window& window) : sf::RectangleShape(orig), link(*link), window(window) {};
+    LinkedButton(sf::RectangleShape& orig, ScreenMode* link) : sf::RectangleShape(orig), link(*link) {};
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window) {
+    LinkedButton(const LinkedButton& orig) : link(orig.link) {
         setPosition(orig.getPosition());
     };
     
@@ -39,7 +39,7 @@ public:
     }
     
     bool touchingMouse() {
-        return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
+        return getGlobalBounds().contains(sf::Mouse().getPosition(DEFAULT_WINDOW).x, sf::Mouse().getPosition(DEFAULT_WINDOW).y);
     }
     
     bool clicked() {
@@ -51,11 +51,10 @@ class ScreenMode : public sf::Drawable {
 public:
     Queue<LinkedButton&> buttons;
     std::vector<sf::Text> displayText;
-    sf::Window& window;
     bool showPrevious;
     
-    ScreenMode(sf::Window& window) : window(window), showPrevious(false) {};
-    ScreenMode(const ScreenMode& orig) : window(orig.window), showPrevious(false) {};
+    ScreenMode() : showPrevious(false) {};
+    ScreenMode(const ScreenMode& orig) : showPrevious(false) {};
     virtual ~ScreenMode() {};
     
     virtual ScreenMode* run(sf::Event event) {
@@ -75,8 +74,8 @@ public:
         buttons.enqueue(b);
     }
     
-    void addText(std::string text, sf::Font& font, sf::Vector2f pos, unsigned int size = 35, sf::Color color = sf::Color::Black) {
-        sf::Text temp(text, font);
+    void addText(std::string text, sf::Vector2f pos, unsigned int size = 35, sf::Color color = sf::Color::Black) {
+        sf::Text temp(text, DEFAULT_FONT);
         temp.setCharacterSize(size);
         temp.setPosition(pos);
         temp.setFillColor(color);

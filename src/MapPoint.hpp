@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "Utils.hpp"
+#include "Defaults.hpp"
 #include "ScreenMode.hpp"
 #include "MapScreen.hpp"
 
@@ -32,7 +33,7 @@ class PointScreen : public ScreenMode {
 public:
     sf::RectangleShape popup;
     
-    PointScreen(sf::Window& window) : ScreenMode(window) {
+    PointScreen() : ScreenMode() {
         initPopup();
         showPrevious = true;
     };
@@ -52,7 +53,7 @@ public:
 private:
     void initPopup() {
         popup.setPosition(205, 105);
-        popup.setSize(sf::Vector2f(window.getSize().x - 410, window.getSize().y - 210));
+        popup.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().x - 410, DEFAULT_WINDOW.getSize().y - 210));
         popup.setOutlineColor(sf::Color::Black);
         popup.setOutlineThickness(5);
     }
@@ -62,17 +63,15 @@ private:
 class MapPoint : public LinkedButton {
 public:
     MapPoint(std::string                name,
-            sf::Window&                 window,
-            sf::Font&                   font,
             sf::Vector2f                pos,
             MapPointType                type
             
-    ) : LinkedButton(pos, *new PointScreen(window), window) {
+    ) : LinkedButton(pos, *new PointScreen()) {
         names.latin = name;
-        link.addText(name, font, sf::Vector2f(215, 100), 60);
+        link.addText(name, sf::Vector2f(215, 100), 60);
     };
     
-    MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen(orig.window), orig.window),
+    MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen()),
     description(orig.description), coords(orig.coords) {};
     
 //    MapPoint(sf::Window& window, sf::Vector2f pos, std::vector<std::string> strings, sf::Font font) :

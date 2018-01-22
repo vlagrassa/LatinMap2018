@@ -31,8 +31,8 @@ int main() {
     
     //std::cout << "Coords of the thing should be " << buildMapPoints("res/map_points/Montes", window).at(0).coords << "\n";
     
-    MapPoint cithaeron1("Mons Cithaeron", DEFAULT_WINDOW, DEFAULT_FONT, sf::Vector2f(20, 20), mons);
-    MapPoint cithaeron2("Mount Kithairon", DEFAULT_WINDOW, DEFAULT_FONT, sf::Vector2f(1200, 600), mons);
+    MapPoint cithaeron1("Mons Cithaeron", sf::Vector2f(20, 20), mons);
+    MapPoint cithaeron2("Mount Kithairon", sf::Vector2f(1200, 600), mons);
     
     cithaeron1.setDefaultLook();
     cithaeron2.setDefaultLook();
@@ -42,7 +42,7 @@ int main() {
     
     Stack<ScreenMode&> listOfScreens;
     
-    MapScreen testMapScreen(DEFAULT_WINDOW, &backTexture);
+    MapScreen testMapScreen(&backTexture);
     testMapScreen.addButton(cithaeron1);
     testMapScreen.addButton(cithaeron2);
     
