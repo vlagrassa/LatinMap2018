@@ -13,7 +13,7 @@
 #include "ScreenMode.hpp"
 #include "MapScreen.hpp"
 
-std::vector<MapPoint> buildMapPoints(std::string filename);
+void buildMapPoints(std::string filename, LinkedList<MapPoint&> destination);
 
 const unsigned int WINDOW_X = 1300; //1366;
 const unsigned int WINDOW_Y = 650;  //768;
@@ -29,10 +29,6 @@ int main() {
     
     DEFAULT_FONT.loadFromFile("res/Cochin.ttc");
     
-    std::cout << std::stoi(" 420") << "\n";
-    
-    buildMapPoints("res/map_points/Montes");
-    
     MapPoint cithaeron1("Mons Cithaeron", sf::Vector2f(20, 20), mons);
     MapPoint cithaeron2("Mount Kithairon", sf::Vector2f(1200, 600), mons);
     
@@ -47,6 +43,18 @@ int main() {
     MapScreen testMapScreen(&backTexture);
     testMapScreen.addButton(cithaeron1);
     testMapScreen.addButton(cithaeron2);
+    
+    LinkedList<MapPoint&> mapPoints;
+    mapPoints.add(cithaeron1);
+    buildMapPoints("res/map_points/Montes", mapPoints);
+    std::cout << mapPoints.size << "\n";
+    std::cout << mapPoints << "\n";
+    
+    for (Node<MapPoint&>* n = mapPoints.first; n != NULL; n = n->next) {
+        std::cout << n->data << "\n";
+        n->data.setDefaultLook();
+        testMapScreen.addButton(n->data);
+    }
     
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
@@ -106,30 +114,24 @@ int main() {
     std::cout << "\n\n" << listOfScreens << "\n";
 }
 
-std::vector<MapPoint> buildMapPoints(std::string filename) {
+void buildMapPoints(std::string filename, LinkedList<MapPoint&> destination) {
     std::fstream                file(filename);
     std::string                 line;
-    std::vector<MapPoint>       listOfPoints;
-    
-    std::string                 tempName;
-    MapPoint*                   tempPoint;
     
     while (std::getline(file, line)) {
         if (line.size() > 0) {
             if (line.at(0) == '*') {
-                
-                tempName = line.substr(2, line.find(":")-1);
+                std::string tempName = line.substr(2, line.find(":")-1);
                 std::getline(file, line);
                 float tempx = std::stoi(line);
                 std::getline(file, line);
                 float tempy = std::stoi(line);
-                tempPoint = new MapPoint(tempName, sf::Vector2f(tempx, tempy), mons);
-                
-                std::cout << "Creating MapPoint:\n" << *tempPoint << "\n";
-                listOfPoints.push_back(*tempPoint);
+                std::cout << "Adding " << tempName << " at " << tempx << ", " << tempy << "\n";
+                destination.add(*new MapPoint(tempName, sf::Vector2f(tempx, tempy), mons));
+                std::cout << destination << "\n";
             }
         }
         
     }
-    return listOfPoints;
+    std::cout << "At the end\n" << destination << "\n";
 }

@@ -406,8 +406,8 @@ public:
     Node<T>* last;
     unsigned int size;
     
-    LinkedList() {};
-    LinkedList(const LinkedList& orig) {};
+    LinkedList() : first(NULL), last(NULL), size(0) {};
+    LinkedList(const LinkedList& orig) : first(NULL), last(NULL), size(0) {};
     virtual ~LinkedList() {};
     
     Node<T> getNode(unsigned int index) {
@@ -415,7 +415,7 @@ public:
         for (unsigned int i = 0; i < index; i++) {
             temp = temp->next;
         }
-        return temp;
+        return *temp;
     }
     
     T get(unsigned int index) {
@@ -440,14 +440,14 @@ public:
             for (unsigned int i = 0; i < index-1; i++) {
                 temp = temp->next;
             }
-            next->next = temp->next;
-            temp->next = next;
+            next.next = temp->next;
+            temp->next = &next;
             size++;
         }
     }
     
     void add(unsigned int index, T const& data) {
-        add(*(new Node<T>(data)));
+        add(index, *(new Node<T>(data)));
     }
     
     void addFirst(Node<T>& next) {
