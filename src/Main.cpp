@@ -64,6 +64,9 @@ int main() {
                 default:
                     break;
             }
+            if (!listOfScreens.isEmpty()) {
+                listOfScreens.top->data.update(event);
+            }
         }
         
         DEFAULT_WINDOW.clear(sf::Color::White);

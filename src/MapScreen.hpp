@@ -28,8 +28,11 @@ public:
         ScreenMode::draw(target, states);
     }
     
-    virtual ScreenMode* run(sf::Event event) {
+    virtual void update(sf::Event event) {
         moveArrows(event);
+    }
+    
+    virtual ScreenMode* run(sf::Event event) {
         moveScroll(event);
         background.setTextureRect(sf::IntRect(screenCoords.x, screenCoords.y, static_cast<signed>(DEFAULT_WINDOW.getSize().x), static_cast<signed>(DEFAULT_WINDOW.getSize().y)));
         return checkButtons();
