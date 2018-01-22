@@ -43,6 +43,7 @@ int main() {
     
     testMapScreen.addButton(*new MapPoint("Mons Parnassus", sf::Vector2f(100, 150), mons));
     
+    testMapScreen.move(200, 250);
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
     
