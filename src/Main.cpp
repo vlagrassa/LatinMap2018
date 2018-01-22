@@ -19,7 +19,7 @@ const unsigned int WINDOW_X = 1300; //1366;
 const unsigned int WINDOW_Y = 650;  //768;
 
 sf::Font DEFAULT_FONT;
-sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(WINDOW_X, WINDOW_Y), "Latin Map Project");
+sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(WINDOW_X, WINDOW_Y), "Orbis Romanus");
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
@@ -44,12 +44,13 @@ int main() {
     buildMapPoints("res/map_points/Insulae", insula, testList);
     buildMapPoints("res/map_points/Regiones", regio, testList);
     buildMapPoints("res/map_points/Provinciae", provincia, testList);
+    buildMapPoints("res/map_points/Urbes", urbs, testList);
     
     for (Node<MapPoint&>* n = testList.first; n != NULL; n = n->next) {
         testMapScreen.addButton(n->data);
     }
     
-    testMapScreen.move(200, 250);
+    testMapScreen.move(590, 530);
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";
     
