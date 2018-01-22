@@ -407,7 +407,11 @@ public:
     unsigned int size;
     
     LinkedList() : first(NULL), last(NULL), size(0) {};
-    LinkedList(const LinkedList& orig) : first(NULL), last(NULL), size(0) {};
+    LinkedList(const LinkedList& orig) : first(NULL), last(NULL), size(0) {
+        for (Node<T>* n = orig.first; n != 0; n = n->next) {
+            add(*new Node<T>(n->data));
+        }
+    };
     virtual ~LinkedList() {};
     
     Node<T> getNode(unsigned int index) {
