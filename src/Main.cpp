@@ -112,6 +112,7 @@ int main() {
 void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
     std::fstream                file(filename);
     std::string                 line;
+    MapPoint* tempPoint;
     
     while (std::getline(file, line)) {
         if (line.size() > 0) {
@@ -122,9 +123,19 @@ void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
                 std::getline(file, line);
                 float tempy = std::stoi(line);
                 std::cout << "Adding " << tempName << " at " << tempx << ", " << tempy << "\n";
-                destination.add(*new MapPoint(tempName, sf::Vector2f(tempx, tempy), mons));
+                tempPoint = new MapPoint(tempName, sf::Vector2f(tempx, tempy), mons);
+            }
+            else if (line.at(0) == '-') {
+                tempPoint->events.push_back(line.substr(1, std::string::npos));
+            }
+            else if (line.at(0) == 'D') {
+                tempPoint->description = line.substr(3, std::string::npos);
+            }
+            else if (line.at(0) == '#') {
+                destination.add(*tempPoint);
             }
         }
+        
         
     }
     std::cout << "At the end\n" << destination << "\n";
