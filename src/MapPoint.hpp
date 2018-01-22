@@ -183,6 +183,10 @@ private:
                 outline = tempCircle;
                 break;
             case (urbs):
+                tempCircle.setPointCount(4);
+                 tempCircle.setRadius(5);
+                tempCircle.move(5, 5);
+                tempCircle.setOutlineThickness(2);
                 tempCircle.setOutlineColor(sf::Color(102, 0, 0));
                 tempCircle.setFillColor(sf::Color(204, 0, 102));
                 outline = tempCircle;
