@@ -38,6 +38,7 @@ int main() {
     
     LinkedList<MapPoint&> testList;
     buildMapPoints("res/map_points/Montes", mons, testList);
+    buildMapPoints("res/map_points/Flumina", flumen, testList);
     
     for (Node<MapPoint&>* n = testList.first; n != NULL; n = n->next) {
         testMapScreen.addButton(n->data);
