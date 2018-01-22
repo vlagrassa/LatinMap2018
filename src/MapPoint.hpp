@@ -62,9 +62,9 @@ private:
 
 class MapPoint : public LinkedButton {
 public:
-    MapPoint(std::string                name,
-            sf::Vector2f                pos,
-            MapPointType                type
+    MapPoint(std::string  name,
+            sf::Vector2f  pos,
+            MapPointType  type
             
     ) : LinkedButton(pos, *new PointScreen()) {
         names.latin = name;
@@ -73,11 +73,6 @@ public:
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen()),
     description(orig.description), coords(orig.coords) {};
-    
-//    MapPoint(sf::Window& window, sf::Vector2f pos, std::vector<std::string> strings, sf::Font font) :
-//    LinkedButton(pos, *new PointScreen(window), window),
-//    name(strings.at(0)), description(strings.at(1)), coords(strings.at(2))
-//    {};
     
     virtual ~MapPoint() {};
     
