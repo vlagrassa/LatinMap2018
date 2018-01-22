@@ -128,11 +128,20 @@ void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
                     std::cout << "Adding " << tempName << " at " << tempCoords.x << ", " << tempCoords.y << "\n";
                     tempPoint = new MapPoint(tempName, tempCoords, mons);
                     break;
-                case ('-'):
-                    tempPoint->events.push_back(line.substr(1, std::string::npos));
+                case ('E'):
+                    tempPoint->names.english = line.substr(3, std::string::npos);
+                    break;
+                case ('A'):
+                    tempPoint->names.alternate = line.substr(3, std::string::npos);
+                    break;
+                case ('C'):
+                    tempPoint->coords = line.substr(4, std::string::npos);
                     break;
                 case ('D'):
                     tempPoint->description = line.substr(3, std::string::npos);
+                    break;
+                case ('-'):
+                    tempPoint->events.push_back(line.substr(1, std::string::npos));
                     break;
                 case ('#'):
                     destination.add(*tempPoint);
