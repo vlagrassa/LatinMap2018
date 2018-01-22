@@ -44,17 +44,7 @@ int main() {
     testMapScreen.addButton(cithaeron1);
     testMapScreen.addButton(cithaeron2);
     
-    LinkedList<MapPoint&> mapPoints;
-    mapPoints.add(cithaeron1);
-    buildMapPoints("res/map_points/Montes", mapPoints);
-    std::cout << mapPoints.size << "\n";
-    std::cout << mapPoints << "\n";
-    
-    for (Node<MapPoint&>* n = mapPoints.first; n != NULL; n = n->next) {
-        std::cout << n->data << "\n";
-        n->data.setDefaultLook();
-        testMapScreen.addButton(n->data);
-    }
+    testMapScreen.addButton(*new MapPoint("Mons Parnassus", sf::Vector2f(100, 150), mons));
     
     listOfScreens.push(testMapScreen);
     std::cout << "Pushing Map Screen...\n" << listOfScreens << "\n";

@@ -69,6 +69,7 @@ public:
     ) : LinkedButton(pos, *new PointScreen()), type(type) {
         names.latin = name;
         link.addText(name, sf::Vector2f(215, 100), 60);
+        setDefaultLook();
     };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen()),
