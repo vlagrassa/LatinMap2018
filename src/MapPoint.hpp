@@ -145,6 +145,13 @@ private:
                 outline = tempCircle;
                 break;
             case (insula):
+                tempCircle.setPointCount(4);
+                tempCircle.setRadius(5);
+                tempCircle.move(5, 5);
+                tempCircle.setOutlineThickness(2);
+                tempCircle.setOutlineColor(sf::Color(25, 51, 0));
+                tempCircle.setFillColor(sf::Color(0, 153, 76));
+                outline = tempCircle;
                 break;
             case (mare):
                 tempCircle.setPointCount(20);
@@ -161,10 +168,23 @@ private:
                 outline = tempCircle;
                 break;
             case (provincia):
+                tempCircle.setPointCount(5);
+                tempCircle.setOutlineThickness(3);
+                tempCircle.setOutlineColor(sf::Color(0, 0, 51));
+                tempCircle.setFillColor(sf::Color(102, 0, 204));
+                outline = tempCircle;
                 break;
             case (regio):
+                tempCircle.setPointCount(20);
+                tempCircle.setOutlineThickness(2);
+                tempCircle.setOutlineColor(sf::Color(25, 51, 0));
+                tempCircle.setFillColor(sf::Color(0, 153, 76));
+                outline = tempCircle;
                 break;
             case (urbs):
+                tempCircle.setOutlineColor(sf::Color(102, 0, 0));
+                tempCircle.setFillColor(sf::Color(204, 0, 102));
+                outline = tempCircle;
                 break;
             case (via):
                 tempCircle.setRotation(180);
