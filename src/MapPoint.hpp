@@ -66,13 +66,13 @@ public:
             sf::Vector2f  pos,
             MapPointType  type
             
-    ) : LinkedButton(pos, *new PointScreen()) {
+    ) : LinkedButton(pos, *new PointScreen()), type(type) {
         names.latin = name;
         link.addText(name, sf::Vector2f(215, 100), 60);
     };
     
     MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen()),
-    description(orig.description), coords(orig.coords) {};
+    description(orig.description), coords(orig.coords), type(orig.type) {};
     
     virtual ~MapPoint() {};
     
@@ -113,7 +113,7 @@ public:
      */
     bool display;
     
-    MapPointType type;
+    const MapPointType type;
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const MapPoint& p) {
