@@ -73,7 +73,7 @@ public:
         
         screenCoords.x += temp;
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
-            n->data.move(-temp, 0);
+            n->data.outline.move(-temp, 0);
         }
     }
     
@@ -86,7 +86,7 @@ public:
         
         screenCoords.y += temp;
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
-            n->data.move(0, -temp);
+            n->data.outline.move(0, -temp);
         }
     }
 

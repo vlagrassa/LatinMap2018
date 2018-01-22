@@ -69,10 +69,10 @@ public:
     ) : LinkedButton(pos, *new PointScreen()), type(type) {
         names.latin = name;
         link.addText(name, sf::Vector2f(215, 100), 60);
-        setAppearance(type);
+        setAppearance();
     };
     
-    MapPoint(const MapPoint& orig) : LinkedButton(orig.getPosition(), *new PointScreen()),
+    MapPoint(const MapPoint& orig) : LinkedButton(orig.outline.getPosition(), *new PointScreen()),
     description(orig.description), coords(orig.coords), type(orig.type) {};
     
     virtual ~MapPoint() {};
@@ -116,15 +116,25 @@ public:
     
     const MapPointType type;
     
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        target.draw(outline);
+    }
+    
 private:
     friend std::ostream& operator<<(std::ostream &strm, const MapPoint& p) {
         return strm << p.operator std::string();
     };
     
-    void setAppearance(MapPointType type) {
+    void setAppearance() {
+        sf::CircleShape tempCircle(10);
         switch (type) {
             case (flumen):
-                setOutlineColor(sf::Color::Cyan);
+                tempCircle.setPointCount(20);
+                tempCircle.setOutlineThickness(2);
+                tempCircle.setPosition(outline.getPosition());
+                outline = tempCircle;
+                outline.setOutlineColor(sf::Color::Blue);
+                outline.setFillColor(sf::Color::Cyan);
                 break;
             case (insula):
                 break;

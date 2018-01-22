@@ -10,36 +10,37 @@
 class LinkedButton;
 class ScreenMode;
 
-class LinkedButton : public sf::RectangleShape {
+class LinkedButton : public sf::Drawable {
 public:
     ScreenMode& link;
+    sf::Shape& outline;
     
-    LinkedButton(sf::Vector2f location, ScreenMode& link) : link(link) {
-        setPosition(location);
+    LinkedButton(sf::Vector2f location, ScreenMode& link) : outline(*new sf::RectangleShape(location)), link(link) {
+        outline.setPosition(location);
     };
     
-    LinkedButton(sf::RectangleShape& orig, ScreenMode& link) : sf::RectangleShape(orig), link(link) {};
+    LinkedButton(sf::Shape& orig, ScreenMode& link) : outline(orig), link(link) {};
     
-    LinkedButton(sf::Vector2f location, ScreenMode* link) : link(*link) {
-        setPosition(location);
+    LinkedButton(sf::Vector2f location, ScreenMode* link) : outline(*new sf::RectangleShape(location)), link(*link) {
+        outline.setPosition(location);
     };
     
-    LinkedButton(sf::RectangleShape& orig, ScreenMode* link) : sf::RectangleShape(orig), link(*link) {};
+    LinkedButton(sf::Shape& orig, ScreenMode* link) : outline(orig), link(*link) {};
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link) {
-        setPosition(orig.getPosition());
+    LinkedButton(const LinkedButton& orig) : outline(orig.outline), link(orig.link) {
+        outline.setPosition(orig.outline.getPosition());
     };
     
     virtual ~LinkedButton() {};
     
     void setDefaultLook() {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Green);
-        setOutlineThickness(5);
+        //outline.setSize(sf::Vector2f(100, 50));
+        outline.setOutlineColor(sf::Color::Green);
+        outline.setOutlineThickness(5);
     }
     
     bool touchingMouse() {
-        return getGlobalBounds().contains(sf::Mouse().getPosition(DEFAULT_WINDOW).x, sf::Mouse().getPosition(DEFAULT_WINDOW).y);
+        return outline.getGlobalBounds().contains(sf::Mouse().getPosition(DEFAULT_WINDOW).x, sf::Mouse().getPosition(DEFAULT_WINDOW).y);
     }
     
     bool clicked() {
