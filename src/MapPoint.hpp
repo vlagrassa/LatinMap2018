@@ -52,8 +52,8 @@ public:
     
 private:
     void initPopup() {
-        popup.setPosition(205, 105);
-        popup.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().x - 410, DEFAULT_WINDOW.getSize().y - 210));
+        popup.setPosition(305, 205);
+        popup.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().x - 610, DEFAULT_WINDOW.getSize().y - 410));
         popup.setOutlineColor(sf::Color::Black);
         popup.setOutlineThickness(5);
     }
@@ -68,7 +68,7 @@ public:
             
     ) : LinkedButton(pos, *new PointScreen()), type(type) {
         names.latin = name;
-        link.addText(name, sf::Vector2f(215, 100), 60);
+        link.addText(name, sf::Vector2f(315, 200), 60);
         setAppearance();
     };
     
@@ -88,9 +88,10 @@ public:
     };
     
     void setText() {
-        link.addText(std::string("AKA ") + names.alternate, sf::Vector2f(215, 175));
-        link.addText(coords, sf::Vector2f(215, 225), 25);
-        link.addText(description, sf::Vector2f(250, 265));
+        link.addText(std::string("AKA ") + names.alternate, sf::Vector2f(315, 325));
+        link.addText(names.english, sf::Vector2f(315, 275));
+        link.addText(coords, sf::Vector2f(315, 415), 25);
+        //link.addText(description, sf::Vector2f(250, 265));
     }
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
