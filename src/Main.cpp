@@ -13,7 +13,7 @@
 #include "ScreenMode.hpp"
 #include "MapScreen.hpp"
 
-void buildMapPoints(std::string filename, LinkedList<MapPoint&> destination);
+void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination);
 
 const unsigned int WINDOW_X = 1300; //1366;
 const unsigned int WINDOW_Y = 650;  //768;
@@ -35,6 +35,14 @@ int main() {
     Stack<ScreenMode&> listOfScreens;
     
     MapScreen testMapScreen(&backTexture);
+    
+    LinkedList<MapPoint&> testList;
+    buildMapPoints("res/map_points/Montes", testList);
+    
+    for (Node<MapPoint&>* n = testList.first; n != NULL; n = n->next) {
+        testMapScreen.addButton(n->data);
+    }
+    
     testMapScreen.addButton(*new MapPoint("Mons Cithaeron", sf::Vector2f(20, 20), mons));
     testMapScreen.addButton(*new MapPoint("Mount Kithairon", sf::Vector2f(1200, 600), mons));
     testMapScreen.addButton(*new MapPoint("Mons Parnassus", sf::Vector2f(100, 150), mons));
@@ -101,7 +109,7 @@ int main() {
     std::cout << "\n\n" << listOfScreens << "\n";
 }
 
-void buildMapPoints(std::string filename, LinkedList<MapPoint&> destination) {
+void buildMapPoints(std::string filename, LinkedList<MapPoint&>& destination) {
     std::fstream                file(filename);
     std::string                 line;
     
@@ -115,7 +123,6 @@ void buildMapPoints(std::string filename, LinkedList<MapPoint&> destination) {
                 float tempy = std::stoi(line);
                 std::cout << "Adding " << tempName << " at " << tempx << ", " << tempy << "\n";
                 destination.add(*new MapPoint(tempName, sf::Vector2f(tempx, tempy), mons));
-                std::cout << destination << "\n";
             }
         }
         
