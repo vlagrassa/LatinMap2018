@@ -127,11 +127,11 @@ private:
     
     void setAppearance() {
         sf::CircleShape tempCircle(10);
+        tempCircle.setPosition(outline.getPosition());
         switch (type) {
             case (flumen):
                 tempCircle.setPointCount(20);
                 tempCircle.setOutlineThickness(2);
-                tempCircle.setPosition(outline.getPosition());
                 outline = tempCircle;
                 outline.setOutlineColor(sf::Color::Blue);
                 outline.setFillColor(sf::Color::Cyan);
@@ -141,6 +141,11 @@ private:
             case (mare):
                 break;
             case (mons):
+                tempCircle.setPointCount(3);
+                tempCircle.setOutlineThickness(3);
+                tempCircle.setOutlineColor(sf::Color(51, 25, 0));
+                tempCircle.setFillColor(sf::Color(153, 76, 0));
+                outline = tempCircle;
                 break;
             case (provincia):
                 break;
