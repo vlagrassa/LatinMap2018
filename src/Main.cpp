@@ -29,18 +29,14 @@ int main() {
     
     DEFAULT_FONT.loadFromFile("res/Cochin.ttc");
     
-    MapPoint cithaeron1("Mons Cithaeron", sf::Vector2f(20, 20), mons);
-    MapPoint cithaeron2("Mount Kithairon", sf::Vector2f(1200, 600), mons);
-    
     sf::Texture backTexture;
     backTexture.loadFromFile("res/Blank_Roman_Empire.png");
     
     Stack<ScreenMode&> listOfScreens;
     
     MapScreen testMapScreen(&backTexture);
-    testMapScreen.addButton(cithaeron1);
-    testMapScreen.addButton(cithaeron2);
-    
+    testMapScreen.addButton(MapPoint("Mons Cithaeron", sf::Vector2f(20, 20), mons));
+    testMapScreen.addButton(MapPoint("Mount Kithairon", sf::Vector2f(1200, 600), mons));
     testMapScreen.addButton(*new MapPoint("Mons Parnassus", sf::Vector2f(100, 150), mons));
     
     testMapScreen.move(200, 250);
