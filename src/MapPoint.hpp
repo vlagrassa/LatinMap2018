@@ -6,7 +6,6 @@
 #include "Utils.hpp"
 #include "Defaults.hpp"
 #include "ScreenMode.hpp"
-#include "MapScreen.hpp"
 
 struct MapPointNames;
 class PointScreen;
@@ -19,14 +18,14 @@ struct MapPointNames {
 };
 
 enum MapPointType {
-    flumen,
-    insula,
-    mare,
-    mons,
-    provincia,
-    regio,
-    urbs,
-    via
+    flumen      =   1,
+    insula      =   2,
+    mare        =   4,
+    mons        =   8,
+    provincia   =  16,
+    regio       =  32,
+    urbs        =  64,
+    via         = 128
 };
 
 class PointScreen : public ScreenMode {

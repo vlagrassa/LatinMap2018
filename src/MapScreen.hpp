@@ -7,11 +7,13 @@
 #include "Utils.hpp"
 #include "Defaults.hpp"
 #include "ScreenMode.hpp"
+#include "MapPoint.hpp"
 
 class MapScreen : public ScreenMode {
 public:
     sf::Sprite background;
     sf::Vector2i screenCoords;
+    char filter = 255;
     
     MapScreen(const sf::Texture* texture) : ScreenMode() {
         background.setTexture(*texture);
@@ -91,6 +93,10 @@ public:
         for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             n->data.outline.move(0, -temp);
         }
+    }
+    
+    void toggleFilter(MapPointType t) {
+        filter ^= t;
     }
 
 };
