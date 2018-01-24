@@ -15,19 +15,19 @@ public:
     ScreenMode& link;
     sf::Shape& outline;
     
-    LinkedButton(sf::Vector2f location, ScreenMode& link) : outline(*new sf::RectangleShape(location)), link(link) {
+    LinkedButton(sf::Vector2f location, ScreenMode& link) : link(link), outline(*new sf::RectangleShape(location)) {
         outline.setPosition(location);
     };
     
-    LinkedButton(sf::Shape& orig, ScreenMode& link) : outline(orig), link(link) {};
+    LinkedButton(sf::Shape& orig, ScreenMode& link) : link(link), outline(orig) {};
     
-    LinkedButton(sf::Vector2f location, ScreenMode* link) : outline(*new sf::RectangleShape(location)), link(*link) {
+    LinkedButton(sf::Vector2f location, ScreenMode* link) : link(*link), outline(*new sf::RectangleShape(location)) {
         outline.setPosition(location);
     };
     
-    LinkedButton(sf::Shape& orig, ScreenMode* link) : outline(orig), link(*link) {};
+    LinkedButton(sf::Shape& orig, ScreenMode* link) : link(*link), outline(orig) {};
     
-    LinkedButton(const LinkedButton& orig) : outline(orig.outline), link(orig.link) {
+    LinkedButton(const LinkedButton& orig) : link(orig.link), outline(orig.outline) {
         outline.setPosition(orig.outline.getPosition());
     };
     
