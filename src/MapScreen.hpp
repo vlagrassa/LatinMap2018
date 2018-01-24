@@ -19,7 +19,7 @@ public:
         background.setTexture(*texture);
         screenCoords.x = 0;
         screenCoords.y = 0;
-        legend.setPosition((DEFAULT_WINDOW.getSize().x-800)/2, DEFAULT_WINDOW.getSize().y-50);
+        initLegend();
     };
     
     MapScreen(const MapScreen& orig) : MapScreen(orig.background.getTexture()) {};
@@ -41,6 +41,9 @@ public:
     void moveX(int dist);
     
     void moveY(int dist);
+    
+private:
+    void initLegend();
 };
 
 #endif /* MAPSCREEN_H */

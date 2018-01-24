@@ -86,3 +86,8 @@ void MapScreen::moveY(int dist) {
         n->data.outline.move(0, -temp);
     }
 }
+
+void MapScreen::initLegend() {
+    legend.outline.setPosition((DEFAULT_WINDOW.getSize().x-800)/2, DEFAULT_WINDOW.getSize().y-50);
+    legend.add(*new MapPoint("", sf::Vector2f(100, 100), mare));
+}
