@@ -32,6 +32,8 @@ public:
     
     virtual ScreenMode* run(sf::Event event);
     
+    ScreenMode* checkButtons();
+    
     void moveArrows(sf::Event event);
     
     void moveScroll(sf::Event event);

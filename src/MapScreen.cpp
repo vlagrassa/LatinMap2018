@@ -33,6 +33,20 @@ ScreenMode* MapScreen::run(sf::Event event) {
     return checkButtons();
 };
 
+ScreenMode* MapScreen::checkButtons() {
+    for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
+        try {
+            MapPoint& temp = static_cast<MapPoint&>(n->data);
+            if (temp.clicked() && (temp.type & legend.filter)) {
+                return &n->data.link;
+            }
+        } catch (...) {
+            //throw std::generic_error("MapScreen should only have MapPoint buttons");
+        }
+    }
+    return this;
+};
+
 void MapScreen::moveArrows(sf::Event event) {
     switch (event.key.code) {
         case (sf::Keyboard::Left):
