@@ -21,30 +21,39 @@ const unsigned int WINDOW_Y = 650;  //768;
 sf::Font DEFAULT_FONT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(WINDOW_X, WINDOW_Y), "Orbis Romanus");
 
-int main() {
+int main(int argc, char* argv[]) {
     std::cout << "Salve, munde!" << "\n";
+    
+    std::cout << argv[0] << "\n";
+    std::string directory = std::string(argv[0]).substr(0, std::string(argv[0]).length()-10);
+    std::cout << "Directory is\n  " << directory << "\n";
     
     DEFAULT_WINDOW.setFramerateLimit(0);
     DEFAULT_WINDOW.setVerticalSyncEnabled(true);
     
-    DEFAULT_FONT.loadFromFile("res/Cochin.ttc");
+    DEFAULT_FONT.loadFromFile(directory + "res/Cochin.ttc");
     
     sf::Texture backTexture;
-    backTexture.loadFromFile("res/Blank_Roman_Empire.png");
+    backTexture.loadFromFile(directory + "res/Blank_Roman_Empire.png");
     
     Stack<ScreenMode&> listOfScreens;
     
     MapScreen testMapScreen(&backTexture);
     
     LinkedList<MapPoint&> testList;
-    buildMapPoints("res/map_points/Montes", mons, testList);
-    buildMapPoints("res/map_points/Flumina", flumen, testList);
-    buildMapPoints("res/map_points/Maria", mare, testList);
-    buildMapPoints("res/map_points/Viae", via, testList);
-    buildMapPoints("res/map_points/Insulae", insula, testList);
-    buildMapPoints("res/map_points/Regiones", regio, testList);
-    buildMapPoints("res/map_points/Provinciae", provincia, testList);
-    buildMapPoints("res/map_points/Urbes", urbs, testList);
+    buildMapPoints(directory + "res/map_points/Montes", mons, testList);
+    buildMapPoints(directory + "res/map_points/Flumina", flumen, testList);
+    buildMapPoints(directory + "res/map_points/Maria", mare, testList);
+    buildMapPoints(directory + "res/map_points/Viae", via, testList);
+    buildMapPoints(directory + "res/map_points/Insulae", insula, testList);
+    buildMapPoints(directory + "res/map_points/Regiones", regio, testList);
+    buildMapPoints(directory + "res/map_points/Provinciae", provincia, testList);
+    buildMapPoints(directory + "res/map_points/Urbes", urbs, testList);
+    
+    std::string tempn = "Salve";
+    std::wstring tempw(tempn.length(), L' ');
+    std::copy(tempn.begin(), tempn.end(), tempw.begin());
+    std::wcout << tempw << L"\n";
     
     for (Node<MapPoint&>* n = testList.first; n != NULL; n = n->next) {
         testMapScreen.addButton(n->data);
@@ -155,10 +164,11 @@ void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapP
                 case ('A'):
                     //tempPoint->names.alternate = std::to_wstring(std::to_string(line.substr(3, std::string::npos)));
                     //tempPoint->names.alternate = L"Κιθαιρών";
-//                    tempPoint->names.alternate = getWideStringSubstr(line, 3, std::string::npos);
-                    tempPoint->names.alternate = std::wstring(line.size(), L' ');
+                    //tempPoint->names.alternate = getWideStringSubstr(line, 3, std::string::npos);
+                    tempPoint->names.alternate = std::wstring(line.length(), L' ');
                     //std::copy(line.begin(), line.end(), tempPoint->names.alternate.begin());
                     copyWideStringSubstr(line, 3, std::string::npos, tempPoint->names.alternate);
+                    std::wcout << tempPoint->names.alternate << L"\n";
                     break;
                 case ('C'):
                     tempPoint->coords = line.substr(4, std::string::npos);
