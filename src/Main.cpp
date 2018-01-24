@@ -50,10 +50,12 @@ int main(int argc, char* argv[]) {
     buildMapPoints(directory + "res/map_points/Provinciae", provincia, testList);
     buildMapPoints(directory + "res/map_points/Urbes", urbs, testList);
     
-    std::string tempn = "Salve";
+    std::cout << "Printing from wcout:\n";
+    std::string tempn = "Salve";//"Κιθαιρών";
     std::wstring tempw(tempn.length(), L' ');
     std::copy(tempn.begin(), tempn.end(), tempw.begin());
     std::wcout << tempw << L"\n";
+    std::cout << "[Finished]\n";
     
     for (Node<MapPoint&>* n = testList.first; n != NULL; n = n->next) {
         testMapScreen.addButton(n->data);
@@ -117,14 +119,10 @@ int main(int argc, char* argv[]) {
             DEFAULT_WINDOW.draw(*nextScreen);
         }
         
-        //window.draw(testText);
         mouseCoords.setString(
             std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).x + testMapScreen.screenCoords.x)
           + std::string(", ")
           + std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).y + testMapScreen.screenCoords.y)
-//          + "\n"
-//          + std::bitset<8>(testMapScreen.legend.filter).to_string()
-//          + ""
         );
         DEFAULT_WINDOW.draw(mouseCoords);
         
@@ -155,7 +153,6 @@ void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapP
                     tempCoords.x = std::stoi(line)-10;
                     std::getline(file, line);
                     tempCoords.y = std::stoi(line)-10;
-                    std::cout << "Adding " << tempName << " at " << tempCoords.x << ", " << tempCoords.y << "\n";
                     tempPoint = new MapPoint(tempName, tempCoords, filetype);
                     break;
                 case ('E'):
@@ -188,5 +185,4 @@ void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapP
             }
         }
     }
-    std::cout << "At the end\n" << destination << "\n";
 }
