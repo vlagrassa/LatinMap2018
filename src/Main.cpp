@@ -72,7 +72,7 @@ int main() {
                         if (listOfScreens.top->hasNext()) listOfScreens.pop();
                     }
                     if (event.key.code == sf::Keyboard::L) {
-                        testMapScreen.toggleFilter(mare);
+                        testMapScreen.legend.toggleFilter(mare);
                     }
                     break;
                 default:
@@ -117,9 +117,9 @@ int main() {
           + std::string(", ")
           + std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).y + testMapScreen.screenCoords.y)
           + "\n"
-          + std::bitset<8>(testMapScreen.filter).to_string()
+          + std::bitset<8>(testMapScreen.legend.filter).to_string()
           + "   "
-          + std::to_string(MapPointType::mare & testMapScreen.filter)
+          + std::to_string(MapPointType::mare & testMapScreen.legend.filter)
         );
         DEFAULT_WINDOW.draw(mouseCoords);
         

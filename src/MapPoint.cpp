@@ -94,3 +94,8 @@ void MapPoint::setAppearance() {
             break;
     }
 }
+
+
+void MapPointLegend::toggleFilter(MapPointType t) {
+    filter ^= t;
+}

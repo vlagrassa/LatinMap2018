@@ -114,9 +114,13 @@ private:
 
 class MapPointLegend : public sf::RectangleShape, public LinkedList<MapPoint> {
 public:
+    char filter = 255;
+    
     MapPointLegend(const sf::Vector2f size) : RectangleShape(size) {};
     MapPointLegend(const MapPointLegend& orig) {};
     virtual ~MapPointLegend() {};
+    
+    void toggleFilter(MapPointType t);
 };
 
 #endif /* MAPPOINT_H */

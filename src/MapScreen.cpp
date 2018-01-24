@@ -10,7 +10,7 @@ void MapScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
         try {
             MapPoint& temp = static_cast<MapPoint&>(n->data);
-            if (temp.type & filter) {
+            if (temp.type & legend.filter) {
                 target.draw(temp);
             } else {
 
@@ -84,8 +84,4 @@ void MapScreen::moveY(int dist) {
     for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
         n->data.outline.move(0, -temp);
     }
-}
-
-void MapScreen::toggleFilter(MapPointType t) {
-    filter ^= t;
 }

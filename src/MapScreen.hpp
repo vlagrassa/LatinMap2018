@@ -13,9 +13,9 @@ class MapScreen : public ScreenMode {
 public:
     sf::Sprite background;
     sf::Vector2i screenCoords;
-    char filter = 255;
+    MapPointLegend legend;
     
-    MapScreen(const sf::Texture* texture) : ScreenMode() {
+    MapScreen(const sf::Texture* texture) : ScreenMode(), legend(sf::Vector2f(300, 10)) {
         background.setTexture(*texture);
         screenCoords.x = 0;
         screenCoords.y = 0;
@@ -40,8 +40,6 @@ public:
     void moveX(int dist);
     
     void moveY(int dist);
-    
-    void toggleFilter(MapPointType t);
 };
 
 #endif /* MAPSCREEN_H */
