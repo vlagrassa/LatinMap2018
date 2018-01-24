@@ -98,6 +98,25 @@ public:
     void toggleFilter(MapPointType t) {
         filter ^= t;
     }
+    
+    void draw(sf::RenderTarget& target, sf::RenderStates& states) const {
+        target.draw(background, states);
+        for (sf::Text t : displayText) {
+            target.draw(t);
+        }
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
+            try {
+                MapPoint& temp = static_cast<MapPoint&>(n->data);
+                if (temp.type & filter) {
+                    target.draw(temp);
+                } else {
+                    
+                }
+            } catch (...) {
+                target.draw(n->data);
+            }
+        }
+    }
 
 };
 

@@ -20,6 +20,7 @@ const unsigned int WINDOW_Y = 650;  //768;
 
 sf::Font DEFAULT_FONT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(WINDOW_X, WINDOW_Y), "Orbis Romanus");
+sf::RenderStates DEFAULT_STATES;
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
@@ -71,6 +72,9 @@ int main() {
                     if (event.key.code == sf::Keyboard::Q) {
                         if (listOfScreens.top->hasNext()) listOfScreens.pop();
                     }
+                    if (event.key.code == sf::Keyboard::L) {
+                        testMapScreen.toggleFilter(mare);
+                    }
                     break;
                 default:
                     break;
@@ -105,7 +109,8 @@ int main() {
             }
             */
             if (nextScreen->showPrevious) {DEFAULT_WINDOW.draw(listOfScreens.top->next->data);}
-            DEFAULT_WINDOW.draw(*nextScreen);
+            //DEFAULT_WINDOW.draw(*nextScreen);
+            nextScreen->draw(DEFAULT_WINDOW, DEFAULT_STATES);
         }
         
         //window.draw(testText);
@@ -113,6 +118,10 @@ int main() {
             std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).x + testMapScreen.screenCoords.x)
           + std::string(", ")
           + std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).y + testMapScreen.screenCoords.y)
+          + "\n"
+          + std::bitset<8>(testMapScreen.filter).to_string()
+          + "   "
+          + std::to_string(MapPointType::mare & testMapScreen.filter)
         );
         DEFAULT_WINDOW.draw(mouseCoords);
         

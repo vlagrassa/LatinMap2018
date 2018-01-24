@@ -80,7 +80,7 @@ public:
         
     }
     
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates& states) const {
         for (sf::Text t : displayText) {
             target.draw(t);
         }
