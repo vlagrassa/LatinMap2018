@@ -105,4 +105,7 @@ void MapPointLegend::draw(sf::RenderTarget& target, sf::RenderStates states) con
     for (Node<MapPoint>* n = this->first; n != NULL; n = n->next) {
         target.draw(n->data, states);
     }
+    for (sf::Text t : names) {
+        target.draw(t);
+    }
 }

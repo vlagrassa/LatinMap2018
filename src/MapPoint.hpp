@@ -116,6 +116,7 @@ class MapPointLegend : public sf::Drawable, public LinkedList<MapPoint> {
 public:
     char filter = 255;
     sf::RectangleShape outline;
+    std::vector<sf::Text> names;
     
     MapPointLegend(const sf::Vector2f size) : outline(size) {
         outline.setOutlineColor(sf::Color::Black);

@@ -90,27 +90,19 @@ void MapScreen::moveY(int dist) {
 void MapScreen::initLegend() {
     legend.outline.setPosition((DEFAULT_WINDOW.getSize().x-800)/2, DEFAULT_WINDOW.getSize().y-50);
     int yOffset = 5;
-//    addToLegend("", 1, yOffset, mare);
-//    addToLegend("", 2, yOffset, mare);
-//    addToLegend("", 3, yOffset, mare);
-//    addToLegend("", 4, yOffset, mare);
-//    addToLegend("", 5, yOffset, mare);
-//    addToLegend("", 6, yOffset, mare);
-//    addToLegend("", 7, yOffset, mare);
-//    addToLegend("", 8, yOffset, mare);
-    addToLegend("", 1, yOffset, flumen);
-    addToLegend("", 2, yOffset, insula);
-    addToLegend("", 3, yOffset, mare);
-    addToLegend("", 4, yOffset, mons);
-    addToLegend("", 5, yOffset, provincia);
-    addToLegend("", 6, yOffset, regio);
-    addToLegend("", 7, yOffset, urbs);
-    addToLegend("", 8, yOffset, via);
+    addToLegend("Flumina", 1, yOffset, flumen);
+    addToLegend("Insulae", 2, yOffset, insula);
+    addToLegend("Maria", 3, yOffset, mare);
+    addToLegend("Montes", 4, yOffset, mons);
+    addToLegend("Provinciae", 5, yOffset, provincia);
+    addToLegend("Regiones", 6, yOffset, regio);
+    addToLegend("Urbes", 7, yOffset, urbs);
+    addToLegend("Viae", 8, yOffset, via);
 }
 
 void MapScreen::addToLegend(std::string name, int xOffset, int yOffset, MapPointType type) {
     legend.add(*new MapPoint(name, sf::Vector2f(
-        legend.outline.getPosition().x + (legend.outline.getSize().x/9)*xOffset - (
+        legend.outline.getPosition().x + (legend.outline.getSize().x/9)*xOffset - 5 - (
             (type == insula || type == urbs) ? 10 :
             ((type == flumen) ? 40 :
             ((type == via) ? -20 :
@@ -121,4 +113,11 @@ void MapScreen::addToLegend(std::string name, int xOffset, int yOffset, MapPoint
             ((type == mons) ? 3 :
         0)))
     ), type));
+    sf::Text* temp = new sf::Text(name, DEFAULT_FONT, 20);
+    temp->setFillColor(sf::Color::Black);
+    temp->setPosition(
+        legend.outline.getPosition().x + (legend.outline.getSize().x/9)*xOffset - temp->getGlobalBounds().width/2 + 5,
+        legend.outline.getPosition().y + yOffset + 17
+    );
+    legend.names.push_back(*temp);
 }
