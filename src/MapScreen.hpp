@@ -15,10 +15,11 @@ public:
     sf::Vector2i screenCoords;
     MapPointLegend legend;
     
-    MapScreen(const sf::Texture* texture) : ScreenMode(), legend(sf::Vector2f(300, 10)) {
+    MapScreen(const sf::Texture* texture) : ScreenMode(), legend(sf::Vector2f(800, 50)) {
         background.setTexture(*texture);
         screenCoords.x = 0;
         screenCoords.y = 0;
+        legend.setPosition((DEFAULT_WINDOW.getSize().x-800)/2, DEFAULT_WINDOW.getSize().y-50);
     };
     
     MapScreen(const MapScreen& orig) : MapScreen(orig.background.getTexture()) {};

@@ -19,6 +19,7 @@ void MapScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
             target.draw(n->data);
         }
     }
+    target.draw(legend);
 }
 
 void MapScreen::update(sf::Event event) {

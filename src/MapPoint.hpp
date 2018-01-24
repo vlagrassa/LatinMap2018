@@ -116,7 +116,11 @@ class MapPointLegend : public sf::RectangleShape, public LinkedList<MapPoint> {
 public:
     char filter = 255;
     
-    MapPointLegend(const sf::Vector2f size) : RectangleShape(size) {};
+    MapPointLegend(const sf::Vector2f size) : RectangleShape(size) {
+        setOutlineColor(sf::Color::Black);
+        setOutlineThickness(5);
+        setFillColor(sf::Color::White);
+    };
     MapPointLegend(const MapPointLegend& orig) {};
     virtual ~MapPointLegend() {};
     
