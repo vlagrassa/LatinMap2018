@@ -47,6 +47,8 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    void setMinimapTexture(const sf::Texture* t);
+    
 private:
     void initPopup();
 

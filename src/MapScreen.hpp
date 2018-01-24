@@ -34,6 +34,8 @@ public:
     
     ScreenMode* checkButtons();
     
+    void addButton(LinkedButton& b);
+    
     void moveArrows(sf::Event event);
     
     void moveScroll(sf::Event event);

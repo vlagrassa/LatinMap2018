@@ -47,6 +47,16 @@ ScreenMode* MapScreen::checkButtons() {
     return this;
 };
 
+void MapScreen::addButton(LinkedButton& b) {
+    try {
+        PointScreen& temp = static_cast<PointScreen&>(b.link);
+        temp.setMinimapTexture(background.getTexture());
+    } catch (...) {
+
+    }
+    ScreenMode::addButton(b);
+}
+
 void MapScreen::moveArrows(sf::Event event) {
     switch (event.key.code) {
         case (sf::Keyboard::Left):

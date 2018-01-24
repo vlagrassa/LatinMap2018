@@ -7,6 +7,10 @@ void PointScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
     ScreenMode::draw(target, states);
 };
 
+void PointScreen::setMinimapTexture(const sf::Texture* t) {
+    inmap.setTexture(t);
+}
+
 void PointScreen::initPopup() {
     popup.setPosition(305, 205);
     popup.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().x - 610, DEFAULT_WINDOW.getSize().y - 410));
