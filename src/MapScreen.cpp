@@ -51,6 +51,7 @@ void MapScreen::addButton(LinkedButton& b) {
     try {
         PointScreen& temp = static_cast<PointScreen&>(b.link);
         temp.setMinimapTexture(background.getTexture());
+        temp.minimap.setTextureRect(sf::IntRect(b.outline.getPosition().x-100, b.outline.getPosition().y-100, 200, 200));
     } catch (...) {
 
     }
