@@ -59,8 +59,12 @@ public:
         setAppearance();
     };
     
-    MapPoint(const MapPoint& orig) : LinkedButton(orig.outline.getPosition(), *new PointScreen()),
-    description(orig.description), coords(orig.coords), type(orig.type) {};
+    MapPoint(const MapPoint& orig) : MapPoint(orig.names.english, orig.outline.getPosition(), orig.type) {
+        description = orig.description;
+        coords = orig.coords;
+        names.latin = orig.names.latin;
+        names.alternate = orig.names.alternate;
+    };
     
     virtual ~MapPoint() {};
     
