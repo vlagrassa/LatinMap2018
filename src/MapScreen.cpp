@@ -89,9 +89,36 @@ void MapScreen::moveY(int dist) {
 
 void MapScreen::initLegend() {
     legend.outline.setPosition((DEFAULT_WINDOW.getSize().x-800)/2, DEFAULT_WINDOW.getSize().y-50);
-    addToLegend("", 1, 5, mare);
+    int yOffset = 5;
+//    addToLegend("", 1, yOffset, mare);
+//    addToLegend("", 2, yOffset, mare);
+//    addToLegend("", 3, yOffset, mare);
+//    addToLegend("", 4, yOffset, mare);
+//    addToLegend("", 5, yOffset, mare);
+//    addToLegend("", 6, yOffset, mare);
+//    addToLegend("", 7, yOffset, mare);
+//    addToLegend("", 8, yOffset, mare);
+    addToLegend("", 1, yOffset, flumen);
+    addToLegend("", 2, yOffset, insula);
+    addToLegend("", 3, yOffset, mare);
+    addToLegend("", 4, yOffset, mons);
+    addToLegend("", 5, yOffset, provincia);
+    addToLegend("", 6, yOffset, regio);
+    addToLegend("", 7, yOffset, urbs);
+    addToLegend("", 8, yOffset, via);
 }
 
 void MapScreen::addToLegend(std::string name, int xOffset, int yOffset, MapPointType type) {
-    legend.add(*new MapPoint(name, sf::Vector2f(legend.outline.getPosition().x+(legend.outline.getSize().x/10)*xOffset, legend.outline.getPosition().y+yOffset), type));
+    legend.add(*new MapPoint(name, sf::Vector2f(
+        legend.outline.getPosition().x + (legend.outline.getSize().x/9)*xOffset - (
+            (type == insula || type == urbs) ? 10 :
+            ((type == flumen) ? 40 :
+            ((type == via) ? -20 :
+        0))),
+        legend.outline.getPosition().y + yOffset + (
+            (type == flumen || type == via) ? 17 :
+            ((type == insula || type == urbs) ? -10 :
+            ((type == mons) ? 3 :
+        0)))
+    ), type));
 }
