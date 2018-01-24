@@ -24,7 +24,7 @@ void PointScreen::initPopup() {
 
 
 void MapPoint::setText() {
-    if (names.alternate.size() > 0) link.addText(std::string("AKA ") + names.alternate, sf::Vector2f(315, 325));
+    if (names.alternate.size() > 0) link.addText(std::wstring(L"AKA ") + names.alternate, sf::Vector2f(315, 325));
     link.addText(names.english, sf::Vector2f(315, 275));
     link.addText(coords, sf::Vector2f(315, 415), 25);
     //link.addText(description, sf::Vector2f(250, 265));

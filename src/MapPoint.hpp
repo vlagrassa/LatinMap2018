@@ -14,7 +14,7 @@ class MapPoint;
 struct MapPointNames {
     std::string latin;
     std::string english;
-    std::string alternate;
+    std::wstring alternate;
 };
 
 enum MapPointType {

@@ -113,17 +113,21 @@ int main() {
             std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).x + testMapScreen.screenCoords.x)
           + std::string(", ")
           + std::to_string(sf::Mouse::getPosition(DEFAULT_WINDOW).y + testMapScreen.screenCoords.y)
-          + "\n"
-          + std::bitset<8>(testMapScreen.legend.filter).to_string()
-          + "   "
-          + std::to_string(MapPointType::mare & testMapScreen.legend.filter)
+//          + "\n"
+//          + std::bitset<8>(testMapScreen.legend.filter).to_string()
+//          + ""
         );
-        //DEFAULT_WINDOW.draw(mouseCoords);
+        DEFAULT_WINDOW.draw(mouseCoords);
         
         DEFAULT_WINDOW.display();
     }
     
     std::cout << "\n\n" << listOfScreens << "\n";
+}
+
+void copyWideStringSubstr(std::string source, int start, int end, std::wstring& destination) {
+    std::string temp = source.substr(start, end);
+    std::copy(temp.begin(), temp.end(), destination.begin());
 }
 
 void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapPoint&>& destination) {
@@ -149,7 +153,12 @@ void buildMapPoints(std::string filename, MapPointType filetype, LinkedList<MapP
                     tempPoint->names.english = line.substr(3, std::string::npos);
                     break;
                 case ('A'):
-                    tempPoint->names.alternate = line.substr(3, std::string::npos);
+                    //tempPoint->names.alternate = std::to_wstring(std::to_string(line.substr(3, std::string::npos)));
+                    //tempPoint->names.alternate = L"Κιθαιρών";
+//                    tempPoint->names.alternate = getWideStringSubstr(line, 3, std::string::npos);
+                    tempPoint->names.alternate = std::wstring(line.size(), L' ');
+                    //std::copy(line.begin(), line.end(), tempPoint->names.alternate.begin());
+                    copyWideStringSubstr(line, 3, std::string::npos, tempPoint->names.alternate);
                     break;
                 case ('C'):
                     tempPoint->coords = line.substr(4, std::string::npos);

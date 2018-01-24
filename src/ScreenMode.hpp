@@ -77,7 +77,14 @@ public:
         temp.setPosition(pos);
         temp.setFillColor(color);
         displayText.push_back(temp);
-        
+    }
+    
+    void addText(std::wstring text, sf::Vector2f pos, unsigned int size = 35, sf::Color color = sf::Color::Black) {
+        sf::Text temp(text, DEFAULT_FONT);
+        temp.setCharacterSize(size);
+        temp.setPosition(pos);
+        temp.setFillColor(color);
+        displayText.push_back(temp);
     }
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
