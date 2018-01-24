@@ -108,17 +108,20 @@ private:
     };
 };
 
-class MapPointLegend : public sf::RectangleShape, public LinkedList<MapPoint> {
+class MapPointLegend : public sf::Drawable, public LinkedList<MapPoint> {
 public:
     char filter = 255;
+    sf::RectangleShape outline;
     
-    MapPointLegend(const sf::Vector2f size) : RectangleShape(size) {
-        setOutlineColor(sf::Color::Black);
-        setOutlineThickness(5);
-        setFillColor(sf::Color::White);
+    MapPointLegend(const sf::Vector2f size) : outline(size) {
+        outline.setOutlineColor(sf::Color::Black);
+        outline.setOutlineThickness(5);
+        outline.setFillColor(sf::Color::White);
     };
     MapPointLegend(const MapPointLegend& orig) {};
     virtual ~MapPointLegend() {};
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
     void toggleFilter(MapPointType t);
 };

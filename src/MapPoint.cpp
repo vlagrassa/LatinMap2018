@@ -99,3 +99,10 @@ void MapPoint::setAppearance() {
 void MapPointLegend::toggleFilter(MapPointType t) {
     filter ^= t;
 }
+
+void MapPointLegend::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(outline, states);
+    for (Node<MapPoint>* n = this->first; n != NULL; n = n->next) {
+        target.draw(n->data, states);
+    }
+}
