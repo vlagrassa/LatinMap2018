@@ -20,7 +20,6 @@ const unsigned int WINDOW_Y = 650;  //768;
 
 sf::Font DEFAULT_FONT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(WINDOW_X, WINDOW_Y), "Orbis Romanus");
-sf::RenderStates DEFAULT_STATES;
 
 int main() {
     std::cout << "Salve, munde!" << "\n";
@@ -109,8 +108,7 @@ int main() {
             }
             */
             if (nextScreen->showPrevious) {DEFAULT_WINDOW.draw(listOfScreens.top->next->data);}
-            //DEFAULT_WINDOW.draw(*nextScreen);
-            nextScreen->draw(DEFAULT_WINDOW, DEFAULT_STATES);
+            DEFAULT_WINDOW.draw(*nextScreen);
         }
         
         //window.draw(testText);
