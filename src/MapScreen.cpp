@@ -119,9 +119,8 @@ void MapScreen::addToLegend(std::string name, int xOffset, int yOffset, MapPoint
     legend.add(*new MapPoint(name, sf::Vector2f(
         legend.outline.getPosition().x + (legend.outline.getSize().x/9)*xOffset - 5 - (
             (type == insula || type == urbs) ? 10 :
-            ((type == flumen) ? 40 :
-            ((type == via) ? -20 :
-        0))),
+            ((type == flumen || type == via) ? 40 :
+        0)),
         legend.outline.getPosition().y + yOffset + (
             (type == flumen || type == via) ? 17 :
             ((type == insula || type == urbs) ? -10 :

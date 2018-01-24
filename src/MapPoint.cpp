@@ -77,7 +77,7 @@ void MapPoint::setAppearance() {
             break;
         case (urbs):
             tempCircle.setPointCount(4);
-             tempCircle.setRadius(5);
+            tempCircle.setRadius(5);
             tempCircle.move(5, 5);
             tempCircle.setOutlineThickness(2);
             tempCircle.setOutlineColor(sf::Color(102, 0, 0));
@@ -86,6 +86,7 @@ void MapPoint::setAppearance() {
             break;
         case (via):
             tempCircle.setRotation(180);
+            tempCircle.move(20, 0);
             tempCircle.setPointCount(3);
             tempCircle.setOutlineThickness(3);
             tempCircle.setOutlineColor(sf::Color(102, 0, 0));
