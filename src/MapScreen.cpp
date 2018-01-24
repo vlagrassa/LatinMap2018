@@ -89,5 +89,9 @@ void MapScreen::moveY(int dist) {
 
 void MapScreen::initLegend() {
     legend.outline.setPosition((DEFAULT_WINDOW.getSize().x-800)/2, DEFAULT_WINDOW.getSize().y-50);
-    legend.add(*new MapPoint("", sf::Vector2f(100, 100), mare));
+    addToLegend("", 1, 5, mare);
+}
+
+void MapScreen::addToLegend(std::string name, int xOffset, int yOffset, MapPointType type) {
+    legend.add(*new MapPoint(name, sf::Vector2f(legend.outline.getPosition().x+(legend.outline.getSize().x/10)*xOffset, legend.outline.getPosition().y+yOffset), type));
 }

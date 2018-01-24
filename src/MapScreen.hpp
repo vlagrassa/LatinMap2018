@@ -44,6 +44,7 @@ public:
     
 private:
     void initLegend();
+    void addToLegend(std::string name, int xOffset, int yOffset, MapPointType type);
 };
 
 #endif /* MAPSCREEN_H */
