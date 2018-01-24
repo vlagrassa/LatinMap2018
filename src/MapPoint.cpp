@@ -3,12 +3,12 @@
 
 void PointScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(popup);
-    target.draw(inmap);
+    target.draw(minimap);
     ScreenMode::draw(target, states);
 };
 
 void PointScreen::setMinimapTexture(const sf::Texture* t) {
-    inmap.setTexture(t);
+    minimap.setTexture(t);
 }
 
 void PointScreen::initPopup() {
@@ -16,10 +16,10 @@ void PointScreen::initPopup() {
     popup.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().x - 610, DEFAULT_WINDOW.getSize().y - 410));
     popup.setOutlineColor(sf::Color::Black);
     popup.setOutlineThickness(5);
-    inmap.setPosition(DEFAULT_WINDOW.getSize().x - 305 - (DEFAULT_WINDOW.getSize().y - 410) + 10, 205 + 10);
-    inmap.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().y - 410 - 20, DEFAULT_WINDOW.getSize().y - 410 - 20));
-    inmap.setOutlineColor(sf::Color::Black);
-    inmap.setOutlineThickness(3);
+    minimap.setPosition(DEFAULT_WINDOW.getSize().x - 305 - (DEFAULT_WINDOW.getSize().y - 410) + 10, 205 + 10);
+    minimap.setSize(sf::Vector2f(DEFAULT_WINDOW.getSize().y - 410 - 20, DEFAULT_WINDOW.getSize().y - 410 - 20));
+    minimap.setOutlineColor(sf::Color::Black);
+    minimap.setOutlineThickness(3);
 };
 
 
