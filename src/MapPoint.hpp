@@ -31,6 +31,7 @@ enum MapPointType {
 class PointScreen : public ScreenMode {
 public:
     sf::RectangleShape popup;
+    sf::RectangleShape inmap;
     
     PointScreen() : ScreenMode() {
         initPopup();
