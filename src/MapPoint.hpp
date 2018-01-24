@@ -112,4 +112,11 @@ private:
     };
 };
 
+class MapPointLegend : public sf::RectangleShape, public LinkedList<MapPoint> {
+public:
+    MapPointLegend(const sf::Vector2f size) : RectangleShape(size) {};
+    MapPointLegend(const MapPointLegend& orig) {};
+    virtual ~MapPointLegend() {};
+};
+
 #endif /* MAPPOINT_H */
