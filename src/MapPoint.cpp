@@ -96,6 +96,13 @@ void MapPoint::setAppearance() {
 }
 
 
+void MapPointLegend::updateFilter() {
+    for (Node<MapPoint>* n = this->first; n != NULL; n = n->next) {
+        if (n->data.clicked())
+            toggleFilter(n->data.type);
+    }
+}
+
 void MapPointLegend::toggleFilter(MapPointType t) {
     filter ^= t;
 }

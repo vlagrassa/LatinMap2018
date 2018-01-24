@@ -24,6 +24,7 @@ void MapScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 void MapScreen::update(sf::Event event) {
     moveArrows(event);
+    legend.updateFilter();
 }
 
 ScreenMode* MapScreen::run(sf::Event event) {
