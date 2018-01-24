@@ -68,8 +68,6 @@ public:
     
     virtual ~MapPoint() {};
     
-    //virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-    
     operator std::string() const {
         std::string temp;
         temp += names.latin;
@@ -103,11 +101,6 @@ public:
      * coordinates.
      */
     std::string coords;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * Whether to render based on filters.
-     */
-    bool display;
     
     const MapPointType type;
     
